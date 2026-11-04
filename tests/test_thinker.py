@@ -732,6 +732,103 @@ def test_plan_dispatch_invalid_plan_is_empty():
     assert any("dispatch invalid" in n for n in result.notes), result.notes
 
 
+def test_clean_completion_cuts_glued_channel():
+    battery = [
+        # vLLM-decoded form (special tokens stripped, header glued).
+        (" to=usercreate.objects.plane size=20\nsim.play\n",
+         "create.objects.plane size=20\nsim.play\n"),
+        # Raw greedy form with full markers + end marker.
+        (" to=selfthinking<|eom|> to=user<|message|>sim.play\n<|eot|>extra",
+         "sim.play\n"),
+        # Lone message marker.
+        ("<|message|>sim.play\n", "sim.play\n"),
+        # No marker: passthrough.
+        ("sim.play\n", "sim.play\n"),
+        ("", ""),
+    ]
+    for raw, want in battery:
+        assert thinker.clean_completion(raw) == want, repr(raw)
+
+
+def test_clean_completion_skips_reasoning_turn():
+    raw = (" to=selfWe need to drive...<|eom|>"
+           " to=usercreate.objects.plane size=20\n")
+    assert thinker.clean_completion(raw) == "create.objects.plane size=20\n"
+
+
+def test_channel_cleaner_matches_batch():
+    battery = [
+        " to=usercreate.objects.plane size=20\nsim.play\n",
+        "sim.play\n",  # markerless: passthrough incl. tail
+        "x" * 5000 + "sim.play\n",  # long markerless: nothing eaten
+        "total concentration\n",  # head looks marker-ish, then fails
+    ]
+    for text in battery:
+        want = thinker.clean_completion(text)
+        whole = thinker.ChannelCleaner()
+        assert whole.feed(text) + whole.flush() == want, repr(text)
+        charfed = thinker.ChannelCleaner()
+        fed = "".join(charfed.feed(c) for c in text) + charfed.flush()
+        assert fed == want, repr(text)
+
+
+def test_channel_cleaner_reasoning_keeps_lines():
+    # Pre-channel reasoning passes through to the extractor (dropped as
+    # prose), so kept lines still match batch extraction.
+    known = set(catalog)
+    text = " to=selfthinks a bit<|eom|> to=usersim.play\n"
+    want, _ = thinker.extract_actions(thinker.clean_completion(text), known)
+    for pieces in ([text], list(text)):
+        ext = thinker.StreamExtractor(known)
+        cleaner = thinker.ChannelCleaner()
+        fed = []
+        for piece in pieces:
+            fed += ext.feed(cleaner.feed(piece))
+        fed += ext.feed(cleaner.flush()) + ext.flush()[0]
+        assert [line for _, line in fed] == want.splitlines(), pieces
+
+
+def test_extract_actions_keeps_glued_first_line():
+    known = set(catalog)
+    glued = " to=usercreate.objects.plane size=20\nsim.play\n"
+    kept, notes = thinker.extract_actions(thinker.clean_completion(glued), known)
+    assert kept.splitlines() == ["create.objects.plane size=20", "sim.play"], kept
+    assert notes == [], notes
+    # Single-line replies used to vanish entirely.
+    kept, _ = thinker.extract_actions(thinker.clean_completion(" to=usersim.play"), known)
+    assert kept == "sim.play", kept
+
+
+def test_plan_stream_strips_glued_channel():
+    # Marker split across SSE deltas, like live token streaming.
+    resp = _StreamResp(_sse_lines(
+        [" to", "=usercreate.objects.plane", " size=20\nsim", ".play\n"]))
+    seen = []
+    real_urlopen = _urlmod.urlopen
+    _urlmod.urlopen = lambda request, timeout=None: resp
+    try:
+        result = thinker.plan_stream(
+            "play the sim", "", ["sim.play"], [], set(catalog),
+            config=_stream_cfg(),
+            on_line=lambda line, is_comment: seen.append(
+                (line, is_comment)) or True)
+    finally:
+        _urlmod.urlopen = real_urlopen
+    assert seen == [("create.objects.plane size=20", False),
+                    ("sim.play", False)], seen
+    assert result.backend == "glimmer", (result.backend, result.notes)
+    assert result.raw.startswith(" to=user"), result.raw  # raw kept verbatim
+
+
+def test_plan_dispatch_strips_glued_channel():
+    result = _dispatch_stubbed(
+        " to=userDEPLOY agent=sense\nSTEP n=1 agent=sense do=read-stage\n")
+    assert result.backend == "glimmer", (result.backend, result.notes)
+    assert result.actions_text.splitlines() == [
+        "DEPLOY agent=sense", "STEP n=1 agent=sense do=read-stage"], \
+        result.actions_text
+
+
 if __name__ == "__main__":
     for name, fn in sorted([(k, v) for k, v in dict(globals()).items() if k.startswith("test_")]):
         check(name, fn)

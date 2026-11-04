@@ -34,8 +34,11 @@ MODEL_DIR = "/model"
 ADAPTER_DIR = "/adapter"  # reasoner-sft volume root (train writes /out/adapter)
 
 # Pinned 2026-11-04 via probe_versions.py; re-probe before changing.
+# devel (not runtime/slim): flashinfer JIT-compiles sampling kernels at
+# server startup and needs nvcc; without it EngineCore dies with
+# "Could not find nvcc" (seen 2026-11-04 on debian_slim).
 image = (
-    modal.Image.debian_slim(python_version="3.12")
+    modal.Image.from_registry("nvidia/cuda:12.8.1-devel-ubuntu22.04", add_python="3.12")
     .pip_install("vllm==0.32.0", "huggingface_hub[hf_transfer]==2.4.0")
     .env({"HF_HUB_ENABLE_HF_TRANSFER": "1"})
 )

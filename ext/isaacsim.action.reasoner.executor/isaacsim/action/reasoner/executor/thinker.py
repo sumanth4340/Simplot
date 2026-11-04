@@ -428,6 +428,113 @@ def _raw_verdict_done(raw: str) -> bool:
     return False
 
 
+# Glimmer chat-template channel markers. vLLM decodes completions with
+# skip_special_tokens=True, which glues the user-channel header to the
+# first line (" to=usercreate.objects.plane ..."). Uncut, extract_actions
+# drops the glued first line as prose — and single-line replies vanish.
+USER_CHANNEL = "to=user<|message|>"
+_CHANNEL_MARKERS = (USER_CHANNEL, "to=user", "<|message|>")
+_END_MARKERS = ("<|eot|>", "<|eom|>")
+
+
+def clean_completion(raw: str) -> str:
+    """Cut channel/end markers from a raw endpoint completion.
+
+    Prefers the user channel (skips any `to=self` reasoning turn),
+    cuts at end markers. Mirrors grade_adapter.clean_completion.
+    """
+    text = raw or ""
+    if USER_CHANNEL in text:
+        text = text.split(USER_CHANNEL, 1)[1]
+    elif "<|message|>" in text:
+        text = text.split("<|message|>", 1)[1]
+    elif "to=user" in text:
+        # vLLM-decoded form: special tokens already stripped.
+        text = text.split("to=user", 1)[1]
+    for end in _END_MARKERS:
+        text = text.split(end)[0]
+    return text
+
+
+class ChannelCleaner:
+    """Incremental twin of clean_completion for token streams.
+
+    Head phase: bytes are held only while they can still become a
+    leading channel marker (a strict marker prefix, or all spaces up
+    to HOLD). Anything else — an action line, prose, a `to=self`
+    reasoning turn — fails the prefix test within a few chars and
+    flows immediately, so instant line delivery never stalls.
+    Scan phase (after the head decision): pass through, still cutting
+    a later user-channel marker (base-model `to=self...to=user`
+    streams) while holding back only a trailing partial-marker
+    overlap. feed(all) + flush() equals clean_completion(all) when
+    the user marker leads the stream (the vLLM case); pre-channel
+    reasoning passes through to the extractor, which drops it as
+    prose, so kept lines still match batch.
+    """
+
+    HOLD = 64
+
+    def __init__(self):
+        self.done = False
+        self.buf = ""
+        self.tail = ""
+        self._maxlen = max(len(m) for m in _CHANNEL_MARKERS)
+
+    def _cut(self, text: str):
+        """Split text at the first channel marker; None when absent."""
+        for marker in _CHANNEL_MARKERS:
+            idx = text.find(marker)
+            if idx >= 0:
+                return text[idx + len(marker):]
+        return None
+
+    def _overlap(self, text: str) -> int:
+        """Length of the longest trailing partial-marker overlap."""
+        for k in range(min(len(text), self._maxlen - 1), 0, -1):
+            frag = text[-k:]
+            if any(m.startswith(frag.lstrip(" ")) for m in _CHANNEL_MARKERS):
+                return k
+        return 0
+
+    def _scan(self, text: str) -> str:
+        combined = self.tail + (text or "")
+        cut = self._cut(combined)
+        if cut is not None:
+            self.tail = ""
+            # Break the line: pre-cut reasoning may share the line with
+            # the first action (same-line glue); the extractor must see
+            # them as separate lines to keep the action.
+            return "\n" + cut
+        keep = self._overlap(combined)
+        out, self.tail = combined[:len(combined) - keep], combined[len(combined) - keep:]
+        return out
+
+    def feed(self, delta: str) -> str:
+        if self.done:
+            return self._scan(delta or "")
+        self.buf += delta or ""
+        cut = self._cut(self.buf)
+        if cut is not None:
+            self.done = True
+            self.buf = ""
+            return cut
+        cand = self.buf.lstrip(" ")
+        if len(self.buf) <= self.HOLD and (
+                not cand or any(m.startswith(cand) for m in _CHANNEL_MARKERS)):
+            return ""
+        self.done = True
+        out, self.buf = self.buf, ""
+        return self._scan(out)
+
+    def flush(self) -> str:
+        out = self.buf + self.tail
+        self.buf = ""
+        self.tail = ""
+        self.done = True
+        return out
+
+
 def extract_actions(text: str, known_keys=None):
     """Split model output into (action_lines_text, dropped_prose_notes).
 
@@ -843,12 +950,13 @@ def plan(task: str, snapshot: str = "", action_signatures=(), skills=(),
         notes = [f"endpoint failed ({exc}); fell back to mock planner"] + mock_notes
         return ThinkerPlan(actions_text=actions_text, notes=notes,
                            skills=skill_names, backend="mock")
-    if loop and _raw_verdict_done(raw):
+    cleaned = clean_completion(raw)
+    if loop and _raw_verdict_done(cleaned):
         return ThinkerPlan(actions_text="DONE\n",
                            notes=img_notes + ["planner verdict DONE"],
                            skills=skill_names, backend="glimmer", raw=raw,
                            images=images_used)
-    actions_text, notes = extract_actions(raw, known_keys)
+    actions_text, notes = extract_actions(cleaned, known_keys)
     notes = img_notes + notes
     if not actions_text.strip():
         fallback, mock_notes = mock_plan(task, snapshot)
@@ -904,6 +1012,7 @@ def plan_stream(task: str, snapshot: str = "", action_signatures=(),
                                  loop=loop)
     content, img_notes, images_used = build_user_content(task, snapshot, images)
     extractor = StreamExtractor(known_keys, verdict=loop)
+    cleaner = ChannelCleaner()
     delivered: list = []
     raw_parts: list = []
     stopped = False
@@ -915,13 +1024,18 @@ def plan_stream(task: str, snapshot: str = "", action_signatures=(),
     try:
         for delta in gen:
             raw_parts.append(delta)
-            for is_comment, line in extractor.feed(delta):
+            for is_comment, line in extractor.feed(cleaner.feed(delta)):
                 delivered.append(line)
                 if not sink(line, is_comment):
                     stopped = True
                     break
             if stopped or (loop and extractor.done):
                 break
+        if broke is None and not stopped:
+            for is_comment, line in extractor.feed(cleaner.flush()):
+                delivered.append(line)
+                if not sink(line, is_comment):
+                    break
     except ThinkerError as exc:
         broke = exc
     finally:
@@ -999,7 +1113,7 @@ def plan_dispatch(task: str, snapshot: str = "", roster_lines=(),
         return ThinkerPlan(actions_text="", notes=[f"endpoint failed ({exc}); "
                                                   "no deploy plan"],
                            skills=skill_names, backend="mock")
-    cleaned = _strip_fences(raw)
+    cleaned = _strip_fences(clean_completion(raw))
     if not cleaned.strip():
         return ThinkerPlan(actions_text="", notes=img_notes + [
             "endpoint returned no dispatch lines; no deploy plan"],

@@ -222,3 +222,7 @@ __marimo__/
 # Local scratch probes (never commit)
 tmp_*
 sim_launch*.log
+
+# Thinker endpoint config holds the Modal URL + API key (never commit)
+ext/isaacsim.action.reasoner.executor/data/thinker_config.json
+
