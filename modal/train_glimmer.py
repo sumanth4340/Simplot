@@ -7,9 +7,9 @@ from the sense watchdog's event lines, not screenshots.
 Data: finetune traces_mock + traces_drills + traces_dispatch +
 traces_live (458 traces; missing files are skipped).
 8 stratified held out for a post-train check.
-Loss is completion-only: prompt tokens masked, gradient only on the
-assistant turn (full-token loss taught the model to predict the
-catalog boilerplate instead of actions — grade 0.269).
+Loss is completion-only via prompt/completion columns (TRL builds
+the mask natively): gradient only on the assistant turn. Full-token
+loss taught the model to predict catalog boilerplate — grade 0.269.
 
 GPU: A100-80GB (4-bit 30B base + LoRA adapters + 4k context).
 Time: rough estimate ~1h for 5 epochs; watch the Modal dashboard
@@ -38,10 +38,6 @@ EPOCHS = 5
 LORA_R = 16
 LORA_ALPHA = 32
 HELD_OUT = 8
-# Completion mask boundary: the assistant-turn header, the exact point
-# where add_generation_prompt=True ends the inference prompt, so the
-# model learns the full assistant turn including its channel markers.
-RESPONSE_TEMPLATE = "<|start|>assistant"
 TRACE_FILES = ("traces_mock.jsonl", "traces_drills.jsonl",
                "traces_dispatch.jsonl", "traces_live.jsonl")
 
@@ -74,45 +70,21 @@ def render(messages, tok):
                                    add_generation_prompt=False)
 
 
-class CompletionOnlyCollator:
-    """Mask prompt tokens so loss falls only on the assistant turn.
-
-    trl 1.17 dropped DataCollatorForCompletionOnlyLM, so this inlines
-    the standard recipe: tokenize + pad + truncate, then -100 every
-    label up to the end of the last RESPONSE_TEMPLATE occurrence.
-    Samples without the marker (should not happen; verified offline
-    over all rows) contribute zero loss instead of corrupting the run.
-    """
-
-    def __init__(self, tokenizer, response_template, max_length):
-        import torch  # noqa: F401 - hard dep, fail fast at build time
-        self.tokenizer = tokenizer
-        self.max_length = max_length
-        self.response_ids = tokenizer.encode(
-            response_template, add_special_tokens=False)
-        assert self.response_ids, "empty response template ids"
-
-    def __call__(self, examples):
-        import torch
-        texts = [e["text"] if isinstance(e, dict) else e for e in examples]
-        enc = self.tokenizer(texts, padding=True, truncation=True,
-                             max_length=self.max_length,
-                             return_tensors="pt")
-        labels = enc["input_ids"].clone()
-        r = self.response_ids
-        for i in range(len(labels)):
-            ids = enc["input_ids"][i].tolist()
-            found = -1
-            for j in range(len(ids) - len(r) + 1):
-                if ids[j:j + len(r)] == r:
-                    found = j
-            if found >= 0:
-                labels[i, :found + len(r)] = -100
-            else:
-                labels[i, :] = -100
-        labels[enc["attention_mask"] == 0] = -100
-        return {"input_ids": enc["input_ids"],
-                "attention_mask": enc["attention_mask"], "labels": labels}
+def split_prompt_completion(messages, tok):
+    """Split one chat into (prompt, completion) strings for TRL's
+    prompt-completion format. The prompt ends exactly where inference
+    prompts end (<|start|>assistant); the completion is the full
+    assistant turn. Fails loud if the template render is not a clean
+    prefix split."""
+    full = render(messages, tok)
+    prompt = tok.apply_chat_template(messages[:-1], tokenize=False,
+                                     add_generation_prompt=True)
+    if not full.startswith(prompt):
+        raise RuntimeError("chat template render is not a prefix split")
+    completion = full[len(prompt):]
+    if not completion.strip():
+        raise RuntimeError("empty completion after prompt split")
+    return prompt, completion
 
 
 @app.function(image=image, volumes={"/data": data_vol}, timeout=600)
@@ -157,6 +129,9 @@ def train():
     # All rows are text-only (stage awareness via watchdog events).
     print(f"text rows: {len(rows)}")
     texts = [render(r["messages"], tok) for r in rows]
+    _pc = [split_prompt_completion(r["messages"], tok) for r in rows]
+    prompts = [p for p, _c in _pc]
+    completions = [c for _p, c in _pc]
     # Stratified held-out: round-robin over (backend, drill) groups so eval
     # covers drill skills, not just the mock head of the file order.
     _groups = {}
@@ -173,8 +148,14 @@ def train():
     _eval_set = set(_eval_idx)
     eval_texts = [t for i, t in enumerate(texts) if i in _eval_set]
     train_texts = [t for i, t in enumerate(texts) if i not in _eval_set]
-    train_ds = Dataset.from_dict({"text": train_texts})
-    eval_ds = Dataset.from_dict({"text": eval_texts})
+    train_ds = Dataset.from_dict({
+        "prompt": [p for i, p in enumerate(prompts) if i not in _eval_set],
+        "completion": [c for i, c in enumerate(completions)
+                       if i not in _eval_set]})
+    eval_ds = Dataset.from_dict({
+        "prompt": [p for i, p in enumerate(prompts) if i in _eval_set],
+        "completion": [c for i, c in enumerate(completions)
+                       if i in _eval_set]})
 
     bnb = BitsAndBytesConfig(
         load_in_4bit=True, bnb_4bit_quant_type="nf4",
@@ -225,6 +206,7 @@ def train():
         bf16=True,
         report_to="none",
         seed=42,
+        completion_only_loss=True,
     )
     if "eval_strategy" in _sig:
         _want["eval_strategy"] = "epoch"
@@ -233,10 +215,9 @@ def train():
     _want = {k: v for k, v in _want.items() if k in _sig}
     print("SFTConfig keys:", sorted(_want))
     args = SFTConfig(**_want)
-    collator = CompletionOnlyCollator(tok, RESPONSE_TEMPLATE, MAX_SEQ_LEN)
+    assert args.completion_only_loss is True
     trainer = SFTTrainer(model=model, train_dataset=train_ds,
-                         eval_dataset=eval_ds, args=args,
-                         data_collator=collator)
+                         eval_dataset=eval_ds, args=args)
     trainer.train()
     trainer.save_model("/out/adapter")
     tok.save_pretrained("/out/adapter")
