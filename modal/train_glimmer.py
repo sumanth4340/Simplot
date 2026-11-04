@@ -74,6 +74,47 @@ def render(messages, tok):
                                    add_generation_prompt=False)
 
 
+class CompletionOnlyCollator:
+    """Mask prompt tokens so loss falls only on the assistant turn.
+
+    trl 1.17 dropped DataCollatorForCompletionOnlyLM, so this inlines
+    the standard recipe: tokenize + pad + truncate, then -100 every
+    label up to the end of the last RESPONSE_TEMPLATE occurrence.
+    Samples without the marker (should not happen; verified offline
+    over all rows) contribute zero loss instead of corrupting the run.
+    """
+
+    def __init__(self, tokenizer, response_template, max_length):
+        import torch  # noqa: F401 - hard dep, fail fast at build time
+        self.tokenizer = tokenizer
+        self.max_length = max_length
+        self.response_ids = tokenizer.encode(
+            response_template, add_special_tokens=False)
+        assert self.response_ids, "empty response template ids"
+
+    def __call__(self, examples):
+        import torch
+        texts = [e["text"] if isinstance(e, dict) else e for e in examples]
+        enc = self.tokenizer(texts, padding=True, truncation=True,
+                             max_length=self.max_length,
+                             return_tensors="pt")
+        labels = enc["input_ids"].clone()
+        r = self.response_ids
+        for i in range(len(labels)):
+            ids = enc["input_ids"][i].tolist()
+            found = -1
+            for j in range(len(ids) - len(r) + 1):
+                if ids[j:j + len(r)] == r:
+                    found = j
+            if found >= 0:
+                labels[i, :found + len(r)] = -100
+            else:
+                labels[i, :] = -100
+        labels[enc["attention_mask"] == 0] = -100
+        return {"input_ids": enc["input_ids"],
+                "attention_mask": enc["attention_mask"], "labels": labels}
+
+
 @app.function(image=image, volumes={"/data": data_vol}, timeout=600)
 def upload_data():
     # Files are mounted read-write; the local entrypoint writes them.
@@ -93,8 +134,7 @@ def train():
     from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
     from transformers import (AutoModelForImageTextToText,
                               AutoTokenizer, BitsAndBytesConfig)
-    from trl import (DataCollatorForCompletionOnlyLM, SFTConfig,
-                     SFTTrainer)
+    from trl import SFTConfig, SFTTrainer
 
     rows = []
     for name in TRACE_FILES:
@@ -193,8 +233,7 @@ def train():
     _want = {k: v for k, v in _want.items() if k in _sig}
     print("SFTConfig keys:", sorted(_want))
     args = SFTConfig(**_want)
-    collator = DataCollatorForCompletionOnlyLM(RESPONSE_TEMPLATE,
-                                              tokenizer=tok)
+    collator = CompletionOnlyCollator(tok, RESPONSE_TEMPLATE, MAX_SEQ_LEN)
     trainer = SFTTrainer(model=model, train_dataset=train_ds,
                          eval_dataset=eval_ds, args=args,
                          data_collator=collator)
