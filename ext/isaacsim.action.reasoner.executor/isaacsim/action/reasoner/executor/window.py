@@ -6,12 +6,17 @@ import datetime
 import json
 import queue
 import threading
+import types
 from pathlib import Path
 
 from omni import ui
 
 import omni.timeline
 
+from . import dispatcher as dispatcher_mod
+from . import protocol as protocol_mod
+from . import supervisor as supervisor_mod
+from . import thinker as thinker_mod
 from .bridge import (
     default_bridge_dir,
     ensure_layout,
@@ -685,15 +690,57 @@ class ReasonerWindow:
         except Exception:
             return None
 
-    def _run_batch_text(self, text: str) -> dict:
+    def _run_dispatch_text(self, text: str, task: str) -> dict:
+        """Run a dispatch block: agents plan, the verdict gates execution.
+
+        On supervisor failure nothing executes. On success the emitted
+        action lines run through the normal batch path, so validation,
+        execution, watchdog events, and bridge recording all behave
+        alike. Recursion is one level: final_text holds validated
+        dotted action keys only, never dispatch verbs.
+        """
+        sense_before = self._sense_capture()
+        self._thinker_config = load_config()  # re-read: no restart needed
+        deps = types.SimpleNamespace(
+            thinker=thinker_mod, protocol=protocol_mod,
+            dispatcher=dispatcher_mod, catalog=self._catalog,
+            routing=self._routing,
+            signatures=[help_line(k, self._catalog[k])
+                        for k in HANDLED_ACTIONS if k in self._catalog])
+        res = supervisor_mod.run_block(
+            text, task or supervisor_mod.task_from_comments(text),
+            self._executor.snapshot(), deps, config=self._thinker_config,
+            guided_regex=load_guided_regex())
+        if not res["ok"]:
+            outcome = supervisor_mod.failure_outcome(text, res)
+        else:
+            outcome = supervisor_mod.combine_outcome(
+                res, self._run_batch_text(res["final_text"]))
+        try:
+            events = self._watcher.observe_after(
+                sense_before, self._sense_capture())
+        except Exception:
+            events = []
+        for ev in events:
+            outcome["log"].append("sense: " + ev)
+        outcome["events"] = events
+        return outcome
+
+    def _run_batch_text(self, text: str, task: str = "") -> dict:
         """Validate + run one batch -> {"ok", "lines", "results", "log", "events"}.
 
         Shared by the Run button and the file bridge so both behave alike:
-        top to bottom, stopping at the first failure. The sense watchdog
-        snapshots the stage before/after so every executed batch reports
-        what actually changed ("events", also mirrored into "log" as
-        sense: lines).
+        top to bottom, stopping at the first failure. Batches opening a
+        dispatch verb (DEPLOY/STEP/PARALLEL/COWORK) run the supervisor:
+        agents plan, the verdict gates execution, and the emitted lines
+        run through this same path. `task` feeds the agents' prompts
+        (the Run button passes the task box; the bridge falls back to
+        the first # comment). The sense watchdog snapshots the stage
+        before/after so every executed batch reports what actually
+        changed ("events", also mirrored into "log" as sense: lines).
         """
+        if supervisor_mod.is_dispatch_text(text):
+            return self._run_dispatch_text(text, task)
         try:
             batch = parse_batch(text)
         except ProtocolError as exc:
@@ -744,7 +791,8 @@ class ReasonerWindow:
             self._log("ERROR: no catalog loaded, cannot validate")
             return
         outcome = self._run_batch_text(
-            self._prompt.model.get_value_as_string())
+            self._prompt.model.get_value_as_string(),
+            self._task.model.get_value_as_string().strip())
         for line in outcome["log"]:
             self._log(line)
         _log_trace({

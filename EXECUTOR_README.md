@@ -186,6 +186,12 @@ through catalog validation and the action executor.
 Bridge runs are also appended to the traces log (`bridge_run` events),
 so they become fine-tune data like GUI runs.
 
+A batch opening with a dispatch verb (DEPLOY/STEP/PARALLEL/COWORK)
+runs the multi-agent supervisor instead: agents plan, the xval verdict
+gates execution, and the emitted lines execute live. Convention: put
+the original task in the first `#` comment line — the bridge has no
+task box, so the supervisor reads it from there.
+
 ## Observer (screenshot verification)
 
 Every `Snapshot` also captures the active viewport (no UI chrome) to

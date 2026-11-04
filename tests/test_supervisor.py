@@ -58,13 +58,14 @@ class _StubThinker:
         self.calls = []
 
     def plan(self, task, snapshot, sigs, skills, known_keys=None,
-             config=None):
+             config=None, guided_regex=None):
         if self.sleep:
             time.sleep(self.sleep)
         m = re.match(r"\[(\w+)/", task or "")
         agent = m.group(1) if m else "?"
         self.calls.append({"agent": agent, "task": task,
                            "snapshot": snapshot, "skills": skills,
+                           "guided_regex": guided_regex,
                            "ident": threading.get_ident()})
         return types.SimpleNamespace(
             actions_text=self.script.get(agent, "sim.play\n"),
@@ -199,6 +200,98 @@ def test_xval_verdict_counts_emitted_lines():
     assert res["verdict"] == {"ok": True, "checked": 3, "valid": 3,
                               "notes": ["xval re-validated 3/3 "
                                         "emitted lines"]}, res["verdict"]
+
+
+def test_is_dispatch_text_detects_verbs_only():
+    assert supervisor.is_dispatch_text(
+        "DEPLOY agent=sense\nSTEP n=1 agent=sense do=read-stage\n")
+    assert supervisor.is_dispatch_text("  PARALLEL agents=sense+stage\n")
+    assert supervisor.is_dispatch_text("# plan\nCOWORK agents=sense+stage\n")
+    assert not supervisor.is_dispatch_text(
+        "create.objects.plane size=20\nsim.play\n")
+    assert not supervisor.is_dispatch_text("sim.step n=5\n")
+    assert not supervisor.is_dispatch_text("# just a comment\nDONE\n")
+    assert not supervisor.is_dispatch_text("")
+    assert not supervisor.is_dispatch_text("deploy agent=sense\n")
+
+
+def test_task_from_comments():
+    assert supervisor.task_from_comments(
+        "# survey the arena\nDEPLOY agent=sense\n") == "survey the arena"
+    assert supervisor.task_from_comments(
+        "#\n# second\nSTEP n=1 agent=sense do=x\n") == "second"
+    assert supervisor.task_from_comments("STEP n=1 agent=sense do=x\n") == ""
+    assert supervisor.task_from_comments("") == ""
+
+
+def test_format_log_and_step_results():
+    stub = _StubThinker({"stage": "create.objects.cuboid size=oops\n"})
+    deps = _deps(stub)
+    ok_res = supervisor.run_block(
+        "DEPLOY agent=sense\nSTEP n=1 agent=sense do=read-stage\n",
+        "survey the stage", "sim: paused", deps)
+    log = supervisor.format_log(ok_res)
+    assert any("step 1 sense/read-stage" in ln for ln in log), log
+    assert log[-1].startswith("verdict: ok"), log
+    rows = supervisor.step_results(ok_res)
+    assert rows == [{"key": "step1:sense", "line": 0, "ok": True,
+                     "msg": "read-stage: valid 1/1"}], rows
+    bad_res = supervisor.run_block(
+        "DEPLOY agent=sense\nDEPLOY agent=stage\nDEPLOY agent=xval\n"
+        "STEP n=1 agent=sense do=read-stage\n"
+        "STEP n=2 agent=stage do=map-prims\n",
+        "survey the stage", "sim: paused", deps)
+    bad_log = supervisor.format_log(bad_res)
+    assert bad_log[0].startswith("ERROR: step 2"), bad_log
+    assert any(ln.startswith("verdict: FAIL") for ln in bad_log), bad_log
+    bad_rows = supervisor.step_results(bad_res)
+    assert [r["ok"] for r in bad_rows] == [True, False], bad_rows
+    assert "cuboid" in bad_rows[1]["msg"] or "size" in bad_rows[1]["msg"], \
+        bad_rows
+
+
+def test_failure_and_combine_outcome_shapes():
+    stub = _StubThinker({"stage": "create.objects.cuboid size=oops\n"})
+    deps = _deps(stub)
+    bad_text = ("DEPLOY agent=sense\nDEPLOY agent=stage\nDEPLOY agent=xval\n"
+                "STEP n=1 agent=sense do=read-stage\n"
+                "STEP n=2 agent=stage do=map-prims\n")
+    bad_res = supervisor.run_block(bad_text, "survey", "sim: paused", deps)
+    failed = supervisor.failure_outcome(bad_text, bad_res)
+    assert failed["ok"] is False and failed["events"] == [], failed
+    assert failed["lines"] == [ln for ln in bad_text.splitlines()
+                               if ln.strip()], failed
+    assert len(failed["results"]) == 2, failed
+    ok_res = supervisor.run_block(
+        "DEPLOY agent=sense\nSTEP n=1 agent=sense do=read-stage\n",
+        "survey", "sim: paused", deps)
+    assert ok_res["ok"], ok_res
+    fake_exec = {"ok": True, "lines": ["sim.play"],
+                 "results": [{"key": "sim.play", "line": 1, "ok": True,
+                              "msg": "playing"}],
+                 "log": ["ok [sim.play] playing"], "events": []}
+    combined = supervisor.combine_outcome(ok_res, fake_exec)
+    assert combined["ok"] is True, combined
+    assert combined["lines"] == ["sim.play"], combined
+    assert [r["key"] for r in combined["results"]] == [
+        "step1:sense", "sim.play"], combined
+    assert combined["log"][0].startswith("step 1"), combined
+    assert combined["log"][-1] == "ok [sim.play] playing", combined
+    assert combined["events"] == [], combined
+
+
+def test_guided_regex_forwarded_to_planner():
+    stub = _StubThinker({})
+    supervisor.run_block(
+        "DEPLOY agent=sense\nSTEP n=1 agent=sense do=read-stage\n",
+        "survey the stage", "sim: paused", _deps(stub),
+        guided_regex="X+")
+    assert [c["guided_regex"] for c in stub.calls] == ["X+"], stub.calls
+    stub2 = _StubThinker({})
+    supervisor.run_block(
+        "DEPLOY agent=sense\nSTEP n=1 agent=sense do=read-stage\n",
+        "survey the stage", "sim: paused", _deps(stub2))
+    assert [c["guided_regex"] for c in stub2.calls] == [None], stub2.calls
 
 
 def test_group_without_member_steps_skips_cleanly():
