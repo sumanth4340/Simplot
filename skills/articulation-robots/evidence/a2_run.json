@@ -1,0 +1,5 @@
+﻿{
+  "status": "ok",
+  "output": "A2-REPORT roots=/World/A2Bot/Base ndof=2 names=Hinge1,Hinge2 q0=[1.3214420668816729e-08, 3.086869613546338e-14] q1=[-4.770434003376067e-08, 1.0509908915379285e-12] dt=1.000",
+  "result": null
+}

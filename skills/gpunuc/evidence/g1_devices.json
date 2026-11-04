@@ -1,0 +1,20 @@
+{
+ "torch_cuda": true,
+ "torch_ndev": 1,
+ "torch_name0": "NVIDIA GeForce RTX 3050 Laptop GPU",
+ "warp_devices": [
+  "cpu",
+  "cuda:0"
+ ],
+ "sim_device": "cpu",
+ "backend": "numpy",
+ "active_engine": "physx",
+ "renderer": "rtx",
+ "gpu_found": null,
+ "init_device": "cpu",
+ "cuda_device": "cuda:0",
+ "cuda_backend": "numpy",
+ "cuda1_rejected": true,
+ "cuda1_err": "ValueError('Invalid device specification (cuda:1): Invalid device identifier: cuda:1')",
+ "final_device": "cuda:0"
+}

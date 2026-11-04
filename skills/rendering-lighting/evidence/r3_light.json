@@ -1,0 +1,5 @@
+{
+  "status": "ok",
+  "output": "R3-REPORT mean1=110.2 mean2=143.4 ratio=1.302 max2=202 shape=[240, 320, 3]",
+  "result": null
+}

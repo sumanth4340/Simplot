@@ -1,0 +1,5 @@
+{
+  "status": "ok",
+  "output": "X10-REPORT valid=True sizeG=0.40 sizeB=0.15 sizeL=0.20 bx=4.00 dtype=position stiff=100.0 damp=10.0 ops=2 ts=2 rs=2 echo=0.4000",
+  "result": null
+}

@@ -1,0 +1,5 @@
+{
+  "status": "ok",
+  "output": "P4-REPORT clean=[] dirty=['inertia', 'negscale', 'orphan', 'ref', 'zerosize']",
+  "result": null
+}

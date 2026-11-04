@@ -1,0 +1,5 @@
+{
+  "status": "ok",
+  "output": "X12-REPORT valid=True sA=0.80 sB=0.80 tA=-1.00,0.00,0.40 dome=3000.0 la={'class': ['v12a']} lb={'class': ['v12b']}",
+  "result": null
+}

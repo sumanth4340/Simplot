@@ -1,0 +1,48 @@
+$ send --file Downloads/IsaacSim-release-6.3/IsaacSim-release-6.3/skills/isaac-sim-remote/scripts/stage_info.py
+/ ()
+├─ World (Xform)
+│  ├─ A2Marker (Cube)
+│  ├─ OmniverseKit ()
+│  │  ├─ HydraTextures ()
+│  │  │  ├─ omni_kit_widget_viewport_ViewportTexture_0 (RenderProduct)
+│  ├─ OmniverseGlobalRenderSettings (RenderSettings)
+│  ├─ Vars ()
+│  │  ├─ LdrColor (RenderVar)
+├─ OmniverseKit_Persp (Camera)
+├─ OmniverseKit_Front (Camera)
+├─ OmniverseKit_Right (Camera)
+├─ OmniverseKit_Top (Camera)
+├─ OmniKit_Viewport_LightRig (Xform)
+│  ├─ Lights (Xform)
+│  │  ├─ DomeLight (DomeLight)
+│  │  ├─ DistantLight (DistantLight)
+$ send --arg filter_type=Cube
+/World (Xform)
+/World/A2Marker (Cube)
+/OmniverseKit_Persp (Camera)
+/OmniverseKit_Front (Camera)
+/OmniverseKit_Right (Camera)
+/OmniverseKit_Top (Camera)
+/OmniKit_Viewport_LightRig (Xform)
+/OmniKit_Viewport_LightRig/Lights (Xform)
+/OmniKit_Viewport_LightRig/Lights/DomeLight (DomeLight)
+/OmniKit_Viewport_LightRig/Lights/DistantLight (DistantLight)
+
+--- Filtered prims (type=Cube) ---
+/World/A2Marker (Cube)
+$ send --arg prim_path=/World/A2Marker
+Path: /World/A2Marker
+Type: Cube
+Active: True
+
+Attributes (10):
+  doubleSided = False
+  extent = Vt.Vec3fArray(2, (Gf.Vec3f(-1.0, -1.0, -1.0), Gf.Vec3f(1.0, 1.0, 1.0)))
+  orientation = 'rightHanded'
+  primvars:displayColor = None
+  primvars:displayOpacity = None
+  purpose = 'default'
+  size = 0.7
+  visibility = 'inherited'
+  xformOp:translate = Gf.Vec3d(1.0, 2.0, 0.35)
+  xformOpOrder = Vt.TokenArray(1, ('xformOp:translate',))

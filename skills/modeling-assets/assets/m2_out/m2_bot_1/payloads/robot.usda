@@ -1,0 +1,63 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "URDF USD Converter v0.1.2"
+    }
+    defaultPrim = "m2_bot"
+    doc = """Generated from Composed Stage of root layer C:\\Users\\SRUJA_~1\\AppData\\Local\\Temp\\tmpy6tpcrxy\\m2_bot.usdc
+
+
+Generated from Composed Stage of root layer C:\\Users\\SRUJA_~1\\AppData\\Local\\Temp\\urdf_import_m2_bot_nw1f6aof\\usdex_m2_bot\\m2_bot.usdc
+
+
+Generated from Composed Stage of root layer C:\\Users\\SRUJA_~1\\AppData\\Local\\Temp\\urdf_import_m2_bot_nw1f6aof\\temp_m2_bot\\m2_bot.usd
+"""
+    kilogramsPerUnit = 1
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+over "m2_bot" (
+    prepend apiSchemas = ["IsaacRobotAPI"]
+)
+{
+    prepend rel isaac:physics:robotJoints = [
+        </m2_bot/Physics/root_joint>,
+        </m2_bot/Physics/shoulder>,
+    ]
+    prepend rel isaac:physics:robotLinks = [
+        </m2_bot/Geometry/base>,
+        </m2_bot/Geometry/base/arm>,
+    ]
+    token isaac:robotType = "Default"
+
+    over "Geometry"
+    {
+        over "base" (
+            prepend apiSchemas = ["IsaacLinkAPI"]
+        )
+        {
+            over "arm" (
+                prepend apiSchemas = ["IsaacLinkAPI"]
+            )
+            {
+            }
+        }
+    }
+
+    over "Physics"
+    {
+        over "root_joint" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+
+        over "shoulder" (
+            prepend apiSchemas = ["IsaacJointAPI"]
+        )
+        {
+        }
+    }
+}
+

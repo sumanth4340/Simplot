@@ -1,0 +1,7 @@
+{
+  "_comment": "Copy this file to thinker_config.json in this folder and fill in your Modal URL + key. Env vars GLIMMER_ENDPOINT / GLIMMER_API_KEY / GLIMMER_MODEL override these per-field. No Isaac Sim restart needed after editing.",
+  "endpoint": "https://YOUR-MODAL-APP--serve.modal.run",
+  "api_key": "YOUR-GLIMMER_API_KEY",
+  "model": "glimmer-30b",
+  "timeout": 120
+}

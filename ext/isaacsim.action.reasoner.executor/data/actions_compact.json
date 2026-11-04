@@ -1,0 +1,3943 @@
+{
+ "create.objects.plane": {
+  "group": "create",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "size": {
+    "type": "float",
+    "default": 10.0
+   }
+  },
+  "pre_rules": [
+   "only one plane allowed",
+   "born with collider"
+  ]
+ },
+ "create.objects.cuboid": {
+  "group": "create",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "pos": {
+    "type": "vec3",
+    "default": [
+     0.0,
+     0.0,
+     0.5
+    ]
+   },
+   "color": {
+    "type": "vec3",
+    "default": null
+   },
+   "size": {
+    "type": "float",
+    "default": 1.0
+   },
+   "mass": {
+    "type": "float",
+    "default": 1.0
+   }
+  },
+  "pre_rules": [
+   "born rigid + collider (Dynamic* class)",
+   "clamp pos.z >= size/2"
+  ]
+ },
+ "create.objects.fixed_cuboid": {
+  "group": "create",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "pos": {
+    "type": "vec3",
+    "default": [
+     0.0,
+     0.0,
+     0.5
+    ]
+   },
+   "color": {
+    "type": "vec3",
+    "default": null
+   },
+   "size": {
+    "type": "float",
+    "default": 1.0
+   }
+  },
+  "pre_rules": [
+   "born static collider: never settles"
+  ]
+ },
+ "create.objects.visual_cuboid": {
+  "group": "create",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "pos": {
+    "type": "vec3",
+    "default": [
+     0.0,
+     0.0,
+     0.5
+    ]
+   },
+   "color": {
+    "type": "vec3",
+    "default": null
+   },
+   "size": {
+    "type": "float",
+    "default": 1.0
+   }
+  },
+  "pre_rules": [
+   "born without collider or rigid body"
+  ]
+ },
+ "create.objects.sphere": {
+  "group": "create",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "pos": {
+    "type": "vec3",
+    "default": [
+     0.0,
+     0.0,
+     0.5
+    ]
+   },
+   "color": {
+    "type": "vec3",
+    "default": null
+   },
+   "radius": {
+    "type": "float",
+    "default": 0.5
+   },
+   "mass": {
+    "type": "float",
+    "default": 1.0
+   }
+  },
+  "pre_rules": [
+   "born rigid + collider (Dynamic* class)",
+   "clamp pos.z >= radius"
+  ]
+ },
+ "create.objects.fixed_sphere": {
+  "group": "create",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "pos": {
+    "type": "vec3",
+    "default": [
+     0.0,
+     0.0,
+     0.5
+    ]
+   },
+   "color": {
+    "type": "vec3",
+    "default": null
+   },
+   "radius": {
+    "type": "float",
+    "default": 0.5
+   }
+  },
+  "pre_rules": [
+   "born static collider: never settles"
+  ]
+ },
+ "create.objects.visual_sphere": {
+  "group": "create",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "pos": {
+    "type": "vec3",
+    "default": [
+     0.0,
+     0.0,
+     0.5
+    ]
+   },
+   "color": {
+    "type": "vec3",
+    "default": null
+   },
+   "radius": {
+    "type": "float",
+    "default": 0.5
+   }
+  },
+  "pre_rules": [
+   "born without collider or rigid body"
+  ]
+ },
+ "create.objects.cylinder": {
+  "group": "create",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "pos": {
+    "type": "vec3",
+    "default": [
+     0.0,
+     0.0,
+     0.5
+    ]
+   },
+   "color": {
+    "type": "vec3",
+    "default": null
+   },
+   "radius": {
+    "type": "float",
+    "default": 0.4
+   },
+   "height": {
+    "type": "float",
+    "default": 1.0
+   },
+   "mass": {
+    "type": "float",
+    "default": 1.0
+   }
+  },
+  "pre_rules": [
+   "born rigid + collider (Dynamic* class)",
+   "clamp pos.z >= height/2"
+  ]
+ },
+ "create.objects.fixed_cylinder": {
+  "group": "create",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "pos": {
+    "type": "vec3",
+    "default": [
+     0.0,
+     0.0,
+     0.5
+    ]
+   },
+   "color": {
+    "type": "vec3",
+    "default": null
+   },
+   "radius": {
+    "type": "float",
+    "default": 0.4
+   },
+   "height": {
+    "type": "float",
+    "default": 1.0
+   }
+  },
+  "pre_rules": [
+   "born static collider: never settles"
+  ]
+ },
+ "create.objects.visual_cylinder": {
+  "group": "create",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "pos": {
+    "type": "vec3",
+    "default": [
+     0.0,
+     0.0,
+     0.5
+    ]
+   },
+   "color": {
+    "type": "vec3",
+    "default": null
+   },
+   "radius": {
+    "type": "float",
+    "default": 0.4
+   },
+   "height": {
+    "type": "float",
+    "default": 1.0
+   }
+  },
+  "pre_rules": [
+   "born without collider or rigid body"
+  ]
+ },
+ "create.objects.capsule": {
+  "group": "create",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "pos": {
+    "type": "vec3",
+    "default": [
+     0.0,
+     0.0,
+     0.5
+    ]
+   },
+   "color": {
+    "type": "vec3",
+    "default": null
+   },
+   "radius": {
+    "type": "float",
+    "default": 0.3
+   },
+   "height": {
+    "type": "float",
+    "default": 1.0
+   },
+   "mass": {
+    "type": "float",
+    "default": 1.0
+   }
+  },
+  "pre_rules": [
+   "born rigid + collider (Dynamic* class)",
+   "clamp pos.z >= height/2"
+  ]
+ },
+ "create.objects.fixed_capsule": {
+  "group": "create",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "pos": {
+    "type": "vec3",
+    "default": [
+     0.0,
+     0.0,
+     0.5
+    ]
+   },
+   "color": {
+    "type": "vec3",
+    "default": null
+   },
+   "radius": {
+    "type": "float",
+    "default": 0.3
+   },
+   "height": {
+    "type": "float",
+    "default": 1.0
+   }
+  },
+  "pre_rules": [
+   "born static collider: never settles"
+  ]
+ },
+ "create.objects.visual_capsule": {
+  "group": "create",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "pos": {
+    "type": "vec3",
+    "default": [
+     0.0,
+     0.0,
+     0.5
+    ]
+   },
+   "color": {
+    "type": "vec3",
+    "default": null
+   },
+   "radius": {
+    "type": "float",
+    "default": 0.3
+   },
+   "height": {
+    "type": "float",
+    "default": 1.0
+   }
+  },
+  "pre_rules": [
+   "born without collider or rigid body"
+  ]
+ },
+ "create.objects.cone": {
+  "group": "create",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "pos": {
+    "type": "vec3",
+    "default": [
+     0.0,
+     0.0,
+     0.5
+    ]
+   },
+   "color": {
+    "type": "vec3",
+    "default": null
+   },
+   "radius": {
+    "type": "float",
+    "default": 0.4
+   },
+   "height": {
+    "type": "float",
+    "default": 1.0
+   },
+   "mass": {
+    "type": "float",
+    "default": 1.0
+   }
+  },
+  "pre_rules": [
+   "born rigid + collider (Dynamic* class)",
+   "clamp pos.z >= height/2"
+  ]
+ },
+ "create.objects.fixed_cone": {
+  "group": "create",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "pos": {
+    "type": "vec3",
+    "default": [
+     0.0,
+     0.0,
+     0.5
+    ]
+   },
+   "color": {
+    "type": "vec3",
+    "default": null
+   },
+   "radius": {
+    "type": "float",
+    "default": 0.4
+   },
+   "height": {
+    "type": "float",
+    "default": 1.0
+   }
+  },
+  "pre_rules": [
+   "born static collider: never settles"
+  ]
+ },
+ "create.objects.visual_cone": {
+  "group": "create",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "pos": {
+    "type": "vec3",
+    "default": [
+     0.0,
+     0.0,
+     0.5
+    ]
+   },
+   "color": {
+    "type": "vec3",
+    "default": null
+   },
+   "radius": {
+    "type": "float",
+    "default": 0.4
+   },
+   "height": {
+    "type": "float",
+    "default": 1.0
+   }
+  },
+  "pre_rules": [
+   "born without collider or rigid body"
+  ]
+ },
+ "physics.add.rigid_body": {
+  "group": "physics",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {
+   "target": {
+    "type": "name",
+    "default": null
+   }
+  },
+  "pre_rules": [
+   "target exists",
+   "not already rigid",
+   "sim paused"
+  ]
+ },
+ "physics.remove.rigid_body": {
+  "group": "physics",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {
+   "target": {
+    "type": "name",
+    "default": null
+   }
+  },
+  "pre_rules": [
+   "target exists",
+   "target is rigid",
+   "sim paused"
+  ]
+ },
+ "physics.add.collider": {
+  "group": "physics",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {
+   "target": {
+    "type": "name",
+    "default": null
+   }
+  },
+  "pre_rules": [
+   "target exists",
+   "has mesh",
+   "not already collider",
+   "sim paused"
+  ]
+ },
+ "physics.remove.collider": {
+  "group": "physics",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {
+   "target": {
+    "type": "name",
+    "default": null
+   }
+  },
+  "pre_rules": [
+   "target exists",
+   "has collider",
+   "sim paused"
+  ]
+ },
+ "physics.set.mass": {
+  "group": "physics",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {
+   "target": {
+    "type": "name",
+    "default": null
+   },
+   "value": {
+    "type": "float",
+    "default": 1.0
+   }
+  },
+  "pre_rules": [
+   "target exists",
+   "target is rigid",
+   "value > 0",
+   "sim paused"
+  ]
+ },
+ "physics.set.velocity": {
+  "group": "physics",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {
+   "target": {
+    "type": "name",
+    "default": null
+   },
+   "linear": {
+    "type": "vec3",
+    "default": null
+   },
+   "angular": {
+    "type": "vec3",
+    "default": null
+   }
+  },
+  "pre_rules": [
+   "target exists",
+   "target is rigid"
+  ]
+ },
+ "physics.set.pose": {
+  "group": "physics",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {
+   "target": {
+    "type": "name",
+    "default": null
+   },
+   "pos": {
+    "type": "vec3",
+    "default": null
+   },
+   "orient": {
+    "type": "vec4",
+    "default": null
+   }
+  },
+  "pre_rules": [
+   "target exists",
+   "sim paused"
+  ]
+ },
+ "physics.apply.material": {
+  "group": "physics",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "physics_material": {
+    "type": "'PhysicsMaterial'",
+    "required": true
+   },
+   "weaker_than_descendants": {
+    "type": "bool",
+    "default": false
+   }
+  },
+  "pre_rules": [
+   "target exists",
+   "has mesh"
+  ]
+ },
+ "physics.add.fixed_joint": {
+  "group": "physics",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {
+   "a": {
+    "type": "name",
+    "default": null
+   },
+   "b": {
+    "type": "name",
+    "default": null
+   }
+  },
+  "pre_rules": [
+   "both exist",
+   "both rigid",
+   "sim paused"
+  ]
+ },
+ "sim.play": {
+  "group": "sim",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {},
+  "pre_rules": [
+   "not already playing",
+   "at least one dynamic body"
+  ]
+ },
+ "sim.pause": {
+  "group": "sim",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {},
+  "pre_rules": [
+   "is playing"
+  ]
+ },
+ "sim.reset": {
+  "group": "sim",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {},
+  "pre_rules": []
+ },
+ "sim.stop": {
+  "group": "sim",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {},
+  "pre_rules": [
+   "is playing"
+  ]
+ },
+ "sim.step": {
+  "group": "sim",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {
+   "n": {
+    "type": "int",
+    "default": 1
+   }
+  },
+  "pre_rules": [
+   "n >= 1"
+  ]
+ },
+ "sim.set.gravity": {
+  "group": "sim",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {
+   "value": {
+    "type": "vec3",
+    "default": [
+     0,
+     0,
+     -9.81
+    ]
+   }
+  },
+  "pre_rules": []
+ },
+ "sim.set.dt": {
+  "group": "sim",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {
+   "physics": {
+    "type": "float",
+    "default": 0.016666666666666666
+   },
+   "rendering": {
+    "type": "float",
+    "default": 0.016666666666666666
+   }
+  },
+  "pre_rules": []
+ },
+ "import.asset.usd": {
+  "group": "import",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {
+   "path": {
+    "type": "asset",
+    "default": null
+   },
+   "name": {
+    "type": "str",
+    "default": null
+   },
+   "pos": {
+    "type": "vec3",
+    "default": null
+   }
+  },
+  "pre_rules": [
+   "path in asset registry",
+   "name not taken"
+  ]
+ },
+ "scene.create.prim": {
+  "group": "scene",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {
+   "path": {
+    "type": "str",
+    "default": null
+   },
+   "type": {
+    "type": "str",
+    "default": "Xform"
+   },
+   "pos": {
+    "type": "vec3",
+    "default": null
+   },
+   "scale": {
+    "type": "vec3",
+    "default": null
+   }
+  },
+  "pre_rules": [
+   "path free"
+  ]
+ },
+ "scene.delete.prim": {
+  "group": "scene",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {
+   "target": {
+    "type": "name",
+    "default": null
+   }
+  },
+  "pre_rules": [
+   "target exists",
+   "sim paused"
+  ]
+ },
+ "scene.open": {
+  "group": "scene",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {
+   "path": {
+    "type": "str",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "scene.save": {
+  "group": "scene",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {
+   "path": {
+    "type": "str",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "scene.clear": {
+  "group": "scene",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {},
+  "pre_rules": []
+ },
+ "anim.add.anim_curves": {
+  "group": "anim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "paths": {
+    "type": "list",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "physics.add.collision_group": {
+  "group": "physics",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "stage": {
+    "type": "any",
+    "required": true
+   },
+   "path": {
+    "type": "any",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "joint.add.d6": {
+  "group": "joint",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "component": {
+    "type": "str",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "joint.add.distance": {
+  "group": "joint",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "component": {
+    "type": "str",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "joint.add.fixed": {
+  "group": "joint",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "component": {
+    "type": "str",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "physics.add.physics": {
+  "group": "physics",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "component": {
+    "type": "str",
+    "required": true
+   },
+   "multiple_api_token": {
+    "type": "str",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "physics.add.physics_scene": {
+  "group": "physics",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "stage": {
+    "type": "any",
+    "required": true
+   },
+   "path": {
+    "type": "any",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "joint.add.prismatic": {
+  "group": "joint",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "component": {
+    "type": "str",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "joint.add.revolute": {
+  "group": "joint",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "component": {
+    "type": "str",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "material.add.rigid_body_material": {
+  "group": "material",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "stage": {
+    "type": "any",
+    "required": true
+   },
+   "path": {
+    "type": "any",
+    "required": true
+   },
+   "density": {
+    "type": "NoneType",
+    "default": null
+   },
+   "staticFriction": {
+    "type": "NoneType",
+    "default": null
+   },
+   "dynamicFriction": {
+    "type": "NoneType",
+    "default": null
+   },
+   "restitution": {
+    "type": "NoneType",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "joint.add.spherical": {
+  "group": "joint",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "component": {
+    "type": "str",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.add.xform_op": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "payload": {
+    "type": "any",
+    "required": true
+   },
+   "precision": {
+    "type": "any",
+    "required": true
+   },
+   "rotation_order": {
+    "type": "any",
+    "required": true
+   },
+   "add_translate_op": {
+    "type": "any",
+    "required": true
+   },
+   "add_orient_op": {
+    "type": "any",
+    "required": true
+   },
+   "add_scale_op": {
+    "type": "any",
+    "required": true
+   },
+   "add_transform_op": {
+    "type": "any",
+    "required": true
+   },
+   "add_pivot_op": {
+    "type": "any",
+    "required": true
+   },
+   "add_rotateXYZ_op": {
+    "type": "NoneType",
+    "default": null
+   },
+   "add_rotate_xyz_op": {
+    "type": "NoneType",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.append.api_to_prims": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "paths": {
+    "type": "typing.List[str]",
+    "required": true
+   },
+   "api_schema": {
+    "type": "str",
+    "required": true
+   },
+   "api_instance": {
+    "type": "str",
+    "default": ""
+   }
+  },
+  "pre_rules": []
+ },
+ "material.bind.material": {
+  "group": "material",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "prim_path": {
+    "type": "typing.Union[str, list]",
+    "required": true
+   },
+   "material_path": {
+    "type": "str",
+    "required": true
+   },
+   "strength": {
+    "type": "NoneType",
+    "default": null
+   },
+   "context_name": {
+    "type": "typing.Optional[str]",
+    "default": null
+   },
+   "material_purpose": {
+    "type": "typing.Optional[str]",
+    "default": ""
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.change.metadata_in_prims": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "prim_paths": {
+    "type": "typing.List[str]",
+    "required": true
+   },
+   "key": {
+    "type": "typing.Any",
+    "required": true
+   },
+   "value": {
+    "type": "typing.Any",
+    "required": true
+   },
+   "usd_context_name": {
+    "type": "str",
+    "default": ""
+   }
+  },
+  "pre_rules": []
+ },
+ "stage.change.pipeline_stage": {
+  "group": "stage",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "graph": {
+    "type": "Graph",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.change.prim_display_name": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "prim_path": {
+    "type": "Path",
+    "required": true
+   },
+   "new_display_name": {
+    "type": "str",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "anim.clear.curves_splits_overrides": {
+  "group": "anim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {},
+  "pre_rules": []
+ },
+ "prim.connect.prim": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "attr": {
+    "type": "typing.Union[str, omni.graph.core._omni_",
+    "required": true
+   },
+   "prim_path": {
+    "type": "str",
+    "required": true
+   },
+   "is_bundle_connection": {
+    "type": "bool",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "physics.cook.physx_colliders": {
+  "group": "physics",
+  "available": true,
+  "resolution": "resolved",
+  "params": {},
+  "pre_rules": []
+ },
+ "prim.copy.prim": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "path_from": {
+    "type": "str",
+    "required": true
+   },
+   "path_to": {
+    "type": "str",
+    "default": null
+   },
+   "duplicate_layers": {
+    "type": "bool",
+    "default": false
+   },
+   "combine_layers": {
+    "type": "bool",
+    "default": false
+   },
+   "exclusive_select": {
+    "type": "bool",
+    "default": true
+   },
+   "usd_context_name": {
+    "type": "str",
+    "default": ""
+   },
+   "flatten_references": {
+    "type": "bool",
+    "default": false
+   },
+   "copy_to_introducing_layer": {
+    "type": "bool",
+    "default": false
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.copy.prims": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "paths_from": {
+    "type": "typing.List[str]",
+    "required": true
+   },
+   "paths_to": {
+    "type": "typing.List[str]",
+    "default": null
+   },
+   "duplicate_layers": {
+    "type": "bool",
+    "default": false
+   },
+   "combine_layers": {
+    "type": "bool",
+    "default": false
+   },
+   "flatten_references": {
+    "type": "bool",
+    "default": false
+   },
+   "copy_to_introducing_layer": {
+    "type": "bool",
+    "default": false
+   }
+  },
+  "pre_rules": []
+ },
+ "material.create.and_bind_mdl_material_from_library": {
+  "group": "material",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "mdl_name": {
+    "type": "str",
+    "required": true
+   },
+   "mtl_name": {
+    "type": "str",
+    "default": ""
+   },
+   "mtl_created_list": {
+    "type": "list",
+    "default": null
+   },
+   "bind_selected_prims": {
+    "type": "list",
+    "default": false
+   },
+   "select_new_prim": {
+    "type": "bool",
+    "default": true
+   },
+   "prim_name": {
+    "type": "str",
+    "default": ""
+   },
+   "on_created_fn": {
+    "type": "<built-in function callable>",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "material.create.and_bind_mtlx_surface_from_library": {
+  "group": "material",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "mtlx_id": {
+    "type": "str",
+    "default": null
+   },
+   "mtl_name": {
+    "type": "str",
+    "default": null
+   },
+   "mtl_created_list": {
+    "type": "list",
+    "default": null
+   },
+   "bind_selected_prims": {
+    "type": "list",
+    "default": false
+   }
+  },
+  "pre_rules": []
+ },
+ "physics.create.audio_prim_from_asset_path": {
+  "group": "physics",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "usd_context": {
+    "type": "UsdContext",
+    "required": true
+   },
+   "path_to": {
+    "type": "Path",
+    "required": true
+   },
+   "asset_path": {
+    "type": "str",
+    "required": true
+   },
+   "select_prim": {
+    "type": "bool",
+    "default": true
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.create.default_xform_on": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "prim_path": {
+    "type": "str",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "joint.create.joint": {
+  "group": "joint",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "stage": {
+    "type": "any",
+    "required": true
+   },
+   "joint_type": {
+    "type": "any",
+    "required": true
+   },
+   "from_prim": {
+    "type": "any",
+    "required": true
+   },
+   "to_prim": {
+    "type": "any",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "joint.create.joints": {
+  "group": "joint",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "stage": {
+    "type": "any",
+    "required": true
+   },
+   "joint_type": {
+    "type": "any",
+    "required": true
+   },
+   "paths": {
+    "type": "any",
+    "required": true
+   },
+   "join_to_parent": {
+    "type": "bool",
+    "default": false
+   }
+  },
+  "pre_rules": []
+ },
+ "material.create.mdl_material": {
+  "group": "material",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "mtl_url": {
+    "type": "str",
+    "required": true
+   },
+   "mtl_name": {
+    "type": "str",
+    "required": true
+   },
+   "mtl_path": {
+    "type": "str",
+    "required": true
+   },
+   "select_new_prim": {
+    "type": "bool",
+    "default": false
+   },
+   "context_name": {
+    "type": "typing.Optional[str]",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "mesh.create.mesh": {
+  "group": "mesh",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "prim_type": {
+    "type": "str",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "mesh.create.mesh_prim_with_default_xform": {
+  "group": "mesh",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "prim_type": {
+    "type": "str",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "material.create.mtlx_material": {
+  "group": "material",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "mtlx_url": {
+    "type": "str",
+    "required": true
+   },
+   "base_path": {
+    "type": "str",
+    "required": true
+   },
+   "select_new_prim": {
+    "type": "bool",
+    "default": false
+   },
+   "context_name": {
+    "type": "typing.Optional[str]",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "material.create.preview_surface_material": {
+  "group": "material",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "mtl_path": {
+    "type": "str",
+    "required": true
+   },
+   "shader_prim_name": {
+    "type": "str",
+    "default": "Shader"
+   },
+   "select_new_prim": {
+    "type": "bool",
+    "default": false
+   }
+  },
+  "pre_rules": []
+ },
+ "material.create.preview_surface_texture_material": {
+  "group": "material",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "mtl_path": {
+    "type": "typing.Union[str, pxr.Sdf.Path]",
+    "required": true
+   },
+   "select_new_prim": {
+    "type": "bool",
+    "default": false
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.create.prim": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "prim_type": {
+    "type": "str",
+    "required": true
+   },
+   "prim_path": {
+    "type": "str",
+    "default": null
+   },
+   "select_new_prim": {
+    "type": "bool",
+    "default": true
+   },
+   "attributes": {
+    "type": "typing.Dict[str, typing.Any]",
+    "default": {}
+   },
+   "create_default_xform": {
+    "type": "bool",
+    "default": true
+   },
+   "context_name": {
+    "type": "typing.Optional[str]",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.create.prim_with_default_xform": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "prim_type": {
+    "type": "str",
+    "required": true
+   },
+   "prim_path": {
+    "type": "str",
+    "default": null
+   },
+   "select_new_prim": {
+    "type": "bool",
+    "default": true
+   },
+   "attributes": {
+    "type": "typing.Dict[str, typing.Any]",
+    "default": {}
+   },
+   "create_default_xform": {
+    "type": "bool",
+    "default": true
+   },
+   "context_name": {
+    "type": "typing.Optional[str]",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.create.prims": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "prim_types": {
+    "type": "typing.List[str]",
+    "required": true
+   },
+   "usd_context_name": {
+    "type": "typing.Optional[str]",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "material.create.shader_prim_from_sdr": {
+  "group": "material",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "parent_path": {
+    "type": "str",
+    "required": true
+   },
+   "identifier": {
+    "type": "str",
+    "required": true
+   },
+   "prim_name": {
+    "type": "str",
+    "default": null
+   },
+   "select_new_prim": {
+    "type": "bool",
+    "default": false
+   },
+   "node_type": {
+    "type": "str",
+    "default": "mdl"
+   }
+  },
+  "pre_rules": []
+ },
+ "robot.create.surface_gripper": {
+  "group": "robot",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {},
+  "pre_rules": []
+ },
+ "stage.create.usd_attribute": {
+  "group": "stage",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "attr_name": {
+    "type": "str",
+    "required": true
+   },
+   "attr_type": {
+    "type": "ValueTypeName",
+    "required": true
+   },
+   "custom": {
+    "type": "bool",
+    "default": true
+   },
+   "variability": {
+    "type": "Variability",
+    "default": "Sdf.VariabilityVarying"
+   },
+   "attr_value": {
+    "type": "typing.Any",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "stage.create.usd_attribute_on_path": {
+  "group": "stage",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "attr_path": {
+    "type": "typing.Union[pxr.Sdf.Path, str]",
+    "required": true
+   },
+   "attr_type": {
+    "type": "ValueTypeName",
+    "required": true
+   },
+   "custom": {
+    "type": "bool",
+    "default": true
+   },
+   "variability": {
+    "type": "Variability",
+    "default": "Sdf.VariabilityVarying"
+   },
+   "attr_value": {
+    "type": "typing.Any",
+    "default": null
+   },
+   "usd_context_name": {
+    "type": "str",
+    "default": ""
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.delete.prims": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "paths": {
+    "type": "typing.List[typing.Union[str, pxr.Sdf.Pa",
+    "required": true
+   },
+   "destructive": {
+    "type": "bool",
+    "default": true
+   },
+   "context_name": {
+    "type": "typing.Optional[str]",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.do.disconnect": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "attr": {
+    "type": "typing.Union[str, omni.graph.core._omni_",
+    "required": true
+   },
+   "prim_path": {
+    "type": "str",
+    "required": true
+   },
+   "is_bundle_connection": {
+    "type": "bool",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "camera.duplicate.camera": {
+  "group": "camera",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "camera_path": {
+    "type": "str",
+    "default": ""
+   },
+   "time": {
+    "type": "float",
+    "default": null
+   },
+   "usd_context_name": {
+    "type": "str",
+    "default": ""
+   },
+   "new_camera_path": {
+    "type": "str",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "camera.duplicate.viewport_camera": {
+  "group": "camera",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "viewport_api": {
+    "type": "any",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "anim.do.edit_anim_curve_keys": {
+  "group": "anim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "selection_state": {
+    "type": "KeySelectionState",
+    "default": null
+   },
+   "time": {
+    "type": "NoneType",
+    "default": null
+   },
+   "value": {
+    "type": "NoneType",
+    "default": null
+   },
+   "additive": {
+    "type": "bool",
+    "default": false
+   },
+   "tangent_broken": {
+    "type": "bool",
+    "default": null
+   },
+   "tangent_type": {
+    "type": "str",
+    "default": null
+   },
+   "tangent_weighted": {
+    "type": "bool",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.do.enable_xform_op": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "op_attr_path": {
+    "type": "str",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "anim.do.extract_anim_curves": {
+  "group": "anim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "paths": {
+    "type": "list",
+    "default": null
+   },
+   "recursive": {
+    "type": "bool",
+    "default": false
+   },
+   "attribute_mask": {
+    "type": "NoneType",
+    "default": null
+   },
+   "source_frame_rate": {
+    "type": "float",
+    "default": 0.0
+   },
+   "start_time": {
+    "type": "float",
+    "default": 0.0
+   },
+   "sparse": {
+    "type": "bool",
+    "default": false
+   },
+   "max_error_percent": {
+    "type": "float",
+    "default": 0.1
+   },
+   "compute_tangents": {
+    "type": "bool",
+    "default": false
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.do.frame_prims": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "prim_to_move": {
+    "type": "typing.Union[str, pxr.Sdf.Path]",
+    "required": true
+   },
+   "prims_to_frame": {
+    "type": "typing.Optional[typing.Sequence[typing.U",
+    "default": null
+   },
+   "time_code": {
+    "type": "TimeCode",
+    "default": "DEFAULT"
+   },
+   "usd_context_name": {
+    "type": "str",
+    "default": ""
+   },
+   "aspect_ratio": {
+    "type": "float",
+    "default": 1
+   },
+   "use_horizontal_fov": {
+    "type": "bool",
+    "default": null
+   },
+   "zoom": {
+    "type": "float",
+    "default": 0.45
+   },
+   "horizontal_fov": {
+    "type": "float",
+    "default": 0.20656116130367255
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.group.prims": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "prim_paths": {
+    "type": "typing.List[typing.Union[str, pxr.Sdf.Pa",
+    "required": true
+   },
+   "context_name": {
+    "type": "typing.Optional[str]",
+    "default": null
+   },
+   "destructive": {
+    "type": "bool",
+    "default": true
+   }
+  },
+  "pre_rules": []
+ },
+ "sensor.create.light_beam_sensor": {
+  "group": "sensor",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "path": {
+    "type": "str",
+    "default": "/LightBeam_Sensor"
+   },
+   "parent": {
+    "type": "str",
+    "default": null
+   },
+   "translation": {
+    "type": "vec3",
+    "default": "(0, 0, 0)"
+   },
+   "orientation": {
+    "type": "Quatd",
+    "default": "(1, 0, 0, 0)"
+   },
+   "num_rays": {
+    "type": "int",
+    "default": 1
+   },
+   "curtain_length": {
+    "type": "float",
+    "default": 0.0
+   },
+   "forward_axis": {
+    "type": "vec3",
+    "default": "(1, 0, 0)"
+   },
+   "curtain_axis": {
+    "type": "vec3",
+    "default": "(0, 0, 1)"
+   },
+   "min_range": {
+    "type": "float",
+    "default": 0.4
+   },
+   "max_range": {
+    "type": "float",
+    "default": 100.0
+   },
+   "draw_points": {
+    "type": "bool",
+    "default": false
+   },
+   "draw_lines": {
+    "type": "bool",
+    "default": false
+   }
+  },
+  "pre_rules": []
+ },
+ "sensor.create.rtx_ids": {
+  "group": "sensor",
+  "available": true,
+  "resolution": "resolved",
+  "params": {},
+  "pre_rules": []
+ },
+ "sensor.create.rtx_lidar": {
+  "group": "sensor",
+  "available": true,
+  "resolution": "resolved",
+  "params": {},
+  "pre_rules": []
+ },
+ "sensor.create.rtx_radar": {
+  "group": "sensor",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "path": {
+    "type": "str | None",
+    "default": null
+   },
+   "parent": {
+    "type": "str | None",
+    "default": null
+   },
+   "config": {
+    "type": "str | None",
+    "default": null
+   },
+   "usd_path": {
+    "type": "str | None",
+    "default": null
+   },
+   "translation": {
+    "type": "vec3",
+    "default": "(0, 0, 0)"
+   },
+   "orientation": {
+    "type": "Gf.Quatd | None",
+    "default": "(1, 0, 0, 0)"
+   },
+   "visibility": {
+    "type": "bool",
+    "default": false
+   },
+   "variant": {
+    "type": "str | dict[str, str] | None",
+    "default": null
+   },
+   "force_camera_prim": {
+    "type": "bool",
+    "default": false
+   }
+  },
+  "pre_rules": []
+ },
+ "sensor.create.rtx_sensor": {
+  "group": "sensor",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "path": {
+    "type": "str | None",
+    "default": null
+   },
+   "parent": {
+    "type": "str | None",
+    "default": null
+   },
+   "config": {
+    "type": "str | None",
+    "default": null
+   },
+   "usd_path": {
+    "type": "str | None",
+    "default": null
+   },
+   "translation": {
+    "type": "vec3",
+    "default": "(0, 0, 0)"
+   },
+   "orientation": {
+    "type": "Gf.Quatd | None",
+    "default": "(1, 0, 0, 0)"
+   },
+   "visibility": {
+    "type": "bool",
+    "default": false
+   },
+   "variant": {
+    "type": "str | dict[str, str] | None",
+    "default": null
+   },
+   "force_camera_prim": {
+    "type": "bool",
+    "default": false
+   }
+  },
+  "pre_rules": []
+ },
+ "sensor.create.rtx_ultrasonic": {
+  "group": "sensor",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "path": {
+    "type": "str | None",
+    "default": null
+   },
+   "parent": {
+    "type": "str | None",
+    "default": null
+   },
+   "config": {
+    "type": "str | None",
+    "default": null
+   },
+   "usd_path": {
+    "type": "str | None",
+    "default": null
+   },
+   "translation": {
+    "type": "vec3",
+    "default": "(0, 0, 0)"
+   },
+   "orientation": {
+    "type": "Gf.Quatd | None",
+    "default": "(1, 0, 0, 0)"
+   },
+   "visibility": {
+    "type": "bool",
+    "default": false
+   },
+   "variant": {
+    "type": "str | dict[str, str] | None",
+    "default": null
+   },
+   "force_camera_prim": {
+    "type": "bool",
+    "default": false
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.do.isaac_sim_destroy": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "prim_path": {
+    "type": "str",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.do.isaac_sim_scale": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "prim_path": {
+    "type": "str",
+    "required": true
+   },
+   "scale": {
+    "type": "Float3",
+    "default": "(0, 0, 0)"
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.do.isaac_sim_spawn": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "usd_path": {
+    "type": "str",
+    "required": true
+   },
+   "prim_path": {
+    "type": "str",
+    "required": true
+   },
+   "translation": {
+    "type": "Float3",
+    "default": "(0, 0, 0)"
+   },
+   "rotation": {
+    "type": "Float4",
+    "default": "(0, 0, 0, 1)"
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.do.isaac_sim_teleport": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "prim_path": {
+    "type": "str",
+    "required": true
+   },
+   "translation": {
+    "type": "Float3",
+    "default": "(0, 0, 0)"
+   },
+   "rotation": {
+    "type": "Float4",
+    "default": "(0, 0, 0, 1)"
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.move.prim": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "path_from": {
+    "type": "typing.Union[str, pxr.Sdf.Path]",
+    "required": true
+   },
+   "path_to": {
+    "type": "typing.Union[str, pxr.Sdf.Path]",
+    "required": true
+   },
+   "time_code": {
+    "type": "TimeCode",
+    "default": "DEFAULT"
+   },
+   "keep_world_transform": {
+    "type": "bool",
+    "default": true
+   },
+   "on_move_fn": {
+    "type": "typing.Callable[[pxr.Sdf.Path, pxr.Sdf.P",
+    "default": null
+   },
+   "destructive": {
+    "type": "bool",
+    "default": true
+   },
+   "resolve_reference": {
+    "type": "bool",
+    "default": true
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.move.prim_specs_to_layer": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "dst_layer_identifier": {
+    "type": "str",
+    "required": true
+   },
+   "src_layer_identifier": {
+    "type": "str",
+    "required": true
+   },
+   "prim_spec_path": {
+    "type": "str",
+    "required": true
+   },
+   "dst_stronger_than_src": {
+    "type": "bool",
+    "required": true
+   },
+   "usd_context": {
+    "type": "typing.Union[str, omni.usd._usd.UsdConte",
+    "default": ""
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.move.prims": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "paths_to_move": {
+    "type": "typing.Dict[str, str]",
+    "required": true
+   },
+   "time_code": {
+    "type": "TimeCode",
+    "default": "DEFAULT"
+   },
+   "keep_world_transform": {
+    "type": "bool",
+    "default": true
+   },
+   "on_move_fn": {
+    "type": "typing.Callable",
+    "default": null
+   },
+   "destructive": {
+    "type": "bool",
+    "default": true
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.do.parent_prims": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "parent_path": {
+    "type": "str",
+    "required": true
+   },
+   "child_paths": {
+    "type": "typing.List[str]",
+    "required": true
+   },
+   "on_move_fn": {
+    "type": "<built-in function callable>",
+    "default": null
+   },
+   "keep_world_transform": {
+    "type": "bool",
+    "default": true
+   }
+  },
+  "pre_rules": []
+ },
+ "anim.do.paste_anim_curve_keys": {
+  "group": "anim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "paths": {
+    "type": "list",
+    "default": null
+   },
+   "time": {
+    "type": "TimeCode",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "anim.do.paste_anim_curves": {
+  "group": "anim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "listSchemaKeys": {
+    "type": "list",
+    "required": true
+   },
+   "dstCurvePath": {
+    "type": "any",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.do.prim_var": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "prim_path": {
+    "type": "typing.List[str]",
+    "required": true
+   },
+   "prim_name": {
+    "type": "str",
+    "required": true
+   },
+   "prim_type": {
+    "type": "str",
+    "required": true
+   },
+   "value": {
+    "type": "typing.Any",
+    "required": true
+   },
+   "usd_context_name": {
+    "type": "typing.Optional[str]",
+    "default": ""
+   }
+  },
+  "pre_rules": []
+ },
+ "sensor.do.range_sensor_create_generic": {
+  "group": "sensor",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "path": {
+    "type": "str",
+    "default": "/GenericSensor"
+   },
+   "parent": {
+    "type": "object",
+    "default": null
+   },
+   "translation": {
+    "type": "vec3",
+    "default": "(0, 0, 0)"
+   },
+   "orientation": {
+    "type": "Quatd",
+    "default": "(1, 0, 0, 0)"
+   },
+   "min_range": {
+    "type": "float",
+    "default": 0.4
+   },
+   "max_range": {
+    "type": "float",
+    "default": 100.0
+   },
+   "draw_points": {
+    "type": "bool",
+    "default": false
+   },
+   "draw_lines": {
+    "type": "bool",
+    "default": false
+   },
+   "sampling_rate": {
+    "type": "int",
+    "default": 60
+   }
+  },
+  "pre_rules": []
+ },
+ "sensor.do.range_sensor_create_lidar": {
+  "group": "sensor",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "path": {
+    "type": "str",
+    "default": "/Lidar"
+   },
+   "parent": {
+    "type": "object",
+    "default": null
+   },
+   "translation": {
+    "type": "vec3",
+    "default": "(0, 0, 0)"
+   },
+   "orientation": {
+    "type": "Quatd",
+    "default": "(1, 0, 0, 0)"
+   },
+   "min_range": {
+    "type": "float",
+    "default": 0.4
+   },
+   "max_range": {
+    "type": "float",
+    "default": 100.0
+   },
+   "draw_points": {
+    "type": "bool",
+    "default": false
+   },
+   "draw_lines": {
+    "type": "bool",
+    "default": false
+   },
+   "horizontal_fov": {
+    "type": "float",
+    "default": 360.0
+   },
+   "vertical_fov": {
+    "type": "float",
+    "default": 30.0
+   },
+   "horizontal_resolution": {
+    "type": "float",
+    "default": 0.4
+   },
+   "vertical_resolution": {
+    "type": "float",
+    "default": 4.0
+   },
+   "rotation_rate": {
+    "type": "float",
+    "default": 20.0
+   },
+   "high_lod": {
+    "type": "bool",
+    "default": false
+   },
+   "yaw_offset": {
+    "type": "float",
+    "default": 0.0
+   },
+   "enable_semantics": {
+    "type": "bool",
+    "default": false
+   }
+  },
+  "pre_rules": []
+ },
+ "sensor.do.range_sensor_create": {
+  "group": "sensor",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "path": {
+    "type": "str",
+    "default": ""
+   },
+   "parent": {
+    "type": "str",
+    "default": ""
+   },
+   "schema_type": {
+    "type": "type",
+    "default": "<class 'omni.isaac.RangeSensorSchema.Lidar'>"
+   },
+   "translation": {
+    "type": "vec3",
+    "default": "(0, 0, 0)"
+   },
+   "orientation": {
+    "type": "typing.Optional[pxr.Gf.Quatd]",
+    "default": "(1, 0, 0, 0)"
+   },
+   "visibility": {
+    "type": "typing.Optional[bool]",
+    "default": false
+   },
+   "min_range": {
+    "type": "typing.Optional[float]",
+    "default": 0.4
+   },
+   "max_range": {
+    "type": "typing.Optional[float]",
+    "default": 100.0
+   },
+   "draw_points": {
+    "type": "typing.Optional[bool]",
+    "default": false
+   },
+   "draw_lines": {
+    "type": "typing.Optional[bool]",
+    "default": false
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.remove.api_from_prims": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "paths": {
+    "type": "typing.List[str]",
+    "required": true
+   },
+   "api_schema": {
+    "type": "str",
+    "required": true
+   },
+   "api_instance": {
+    "type": "str",
+    "default": ""
+   }
+  },
+  "pre_rules": []
+ },
+ "anim.remove.anim_curve_keys": {
+  "group": "anim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "paths": {
+    "type": "list",
+    "default": null
+   },
+   "time": {
+    "type": "TimeCode",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "anim.remove.anim_curves": {
+  "group": "anim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "paths": {
+    "type": "list",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "joint.remove.d6": {
+  "group": "joint",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "component": {
+    "type": "str",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "joint.remove.distance": {
+  "group": "joint",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "component": {
+    "type": "str",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "joint.remove.fixed": {
+  "group": "joint",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "component": {
+    "type": "str",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "physics.remove.physics": {
+  "group": "physics",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "component": {
+    "type": "str",
+    "required": true
+   },
+   "multiple_api_token": {
+    "type": "str",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.remove.prim_spec": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "layer_identifier": {
+    "type": "str",
+    "required": true
+   },
+   "prim_spec_path": {
+    "type": "typing.Union[pxr.Sdf.Path, typing.List[p",
+    "required": true
+   },
+   "usd_context": {
+    "type": "typing.Union[str, omni.usd._usd.UsdConte",
+    "default": ""
+   }
+  },
+  "pre_rules": []
+ },
+ "joint.remove.prismatic": {
+  "group": "joint",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "component": {
+    "type": "str",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "joint.remove.revolute": {
+  "group": "joint",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "component": {
+    "type": "str",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "physics.remove.rigid_body_2": {
+  "group": "physics",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "path": {
+    "type": "any",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "joint.remove.spherical": {
+  "group": "joint",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "component": {
+    "type": "str",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "physics.remove.static_collider": {
+  "group": "physics",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "path": {
+    "type": "any",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.remove.xform_op": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "op_order_attr_path": {
+    "type": "str",
+    "required": true
+   },
+   "op_name": {
+    "type": "str",
+    "required": true
+   },
+   "op_order_index": {
+    "type": "int",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.remove.xform_op_and_attrbute": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "op_order_attr_path": {
+    "type": "str",
+    "required": true
+   },
+   "op_name": {
+    "type": "str",
+    "required": true
+   },
+   "op_order_index": {
+    "type": "int",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.do.reorder": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "prim_path": {
+    "type": "Path",
+    "required": true
+   },
+   "move_to_location": {
+    "type": "int",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "scene.do.scene_optimizer_json_parser": {
+  "group": "scene",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "context": {
+    "type": "NoneType",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "scene.do.scene_optimizer_list_operation_arguments": {
+  "group": "scene",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "operation": {
+    "type": "any",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "scene.do.scene_optimizer_list_operations": {
+  "group": "scene",
+  "available": true,
+  "resolution": "resolved",
+  "params": {},
+  "pre_rules": []
+ },
+ "scene.do.scene_optimizer_operation": {
+  "group": "scene",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "operation": {
+    "type": "any",
+    "required": true
+   },
+   "context": {
+    "type": "NoneType",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "anim.do.select_anim_curve_keys": {
+  "group": "anim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "paths": {
+    "type": "typing.Union[str, typing.List[str]]",
+    "default": null
+   },
+   "operation": {
+    "type": "str",
+    "default": "replace"
+   },
+   "indices": {
+    "type": "typing.Union[int, typing.List[int]]",
+    "default": null
+   },
+   "times": {
+    "type": "typing.Union[float, typing.Tuple[float, ",
+    "default": null
+   },
+   "key": {
+    "type": "bool",
+    "default": true
+   },
+   "in_tangent": {
+    "type": "bool",
+    "default": true
+   },
+   "out_tangent": {
+    "type": "bool",
+    "default": true
+   },
+   "selection_state": {
+    "type": "KeySelectionState",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.do.select_prims": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "old_selected_paths": {
+    "type": "typing.List[str]",
+    "required": true
+   },
+   "new_selected_paths": {
+    "type": "typing.List[str]",
+    "required": true
+   },
+   "expand_in_stage": {
+    "type": "bool",
+    "default": true
+   },
+   "source": {
+    "type": "SourceType",
+    "default": "SourceType.USD"
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.do.select_variant": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "prim_path": {
+    "type": "str",
+    "required": true
+   },
+   "vset_name": {
+    "type": "str",
+    "required": true
+   },
+   "var_name": {
+    "type": "str",
+    "required": true
+   },
+   "usd_context_name": {
+    "type": "str",
+    "default": ""
+   }
+  },
+  "pre_rules": []
+ },
+ "anim.set.anim_curve_default_tangent_type": {
+  "group": "anim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "paths": {
+    "type": "list",
+    "default": null
+   },
+   "default_tangent_type": {
+    "type": "str",
+    "default": "auto"
+   }
+  },
+  "pre_rules": []
+ },
+ "anim.set.anim_curve_infinity_type": {
+  "group": "anim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "paths": {
+    "type": "list",
+    "default": null
+   },
+   "is_post_infinity": {
+    "type": "bool",
+    "default": true
+   },
+   "infinity_type": {
+    "type": "str",
+    "default": "constant"
+   }
+  },
+  "pre_rules": []
+ },
+ "anim.set.anim_curve_keys": {
+  "group": "anim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "paths": {
+    "type": "list",
+    "default": null
+   },
+   "time": {
+    "type": "typing.Union[float, int, pxr.Usd.TimeCod",
+    "default": null
+   },
+   "value": {
+    "type": "typing.Any",
+    "default": null
+   },
+   "preserveCurveShape": {
+    "type": "bool",
+    "default": true
+   },
+   "inTangentType": {
+    "type": "typing.Optional[str]",
+    "default": null
+   },
+   "outTangentType": {
+    "type": "typing.Optional[str]",
+    "default": null
+   },
+   "tangentBreakDown": {
+    "type": "typing.Optional[bool]",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "light.set.lighting_menu_mode": {
+  "group": "light",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "lighting_mode": {
+    "type": "str",
+    "required": true
+   },
+   "usd_context_name": {
+    "type": "str",
+    "default": ""
+   }
+  },
+  "pre_rules": []
+ },
+ "material.set.material_strength": {
+  "group": "material",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "rel": {
+    "type": "any",
+    "required": true
+   },
+   "strength": {
+    "type": "any",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.set.pay_load_load_selected_prims": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "selected_paths": {
+    "type": "typing.List[str]",
+    "required": true
+   },
+   "value": {
+    "type": "bool",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "physics.set.rigid_body": {
+  "group": "physics",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "path": {
+    "type": "any",
+    "required": true
+   },
+   "approximationShape": {
+    "type": "str",
+    "default": "convexHull"
+   },
+   "kinematic": {
+    "type": "bool",
+    "default": false
+   }
+  },
+  "pre_rules": []
+ },
+ "physics.set.static_collider": {
+  "group": "physics",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "path": {
+    "type": "any",
+    "required": true
+   },
+   "approximationShape": {
+    "type": "str",
+    "default": "none"
+   }
+  },
+  "pre_rules": []
+ },
+ "stage.set.usd_shade_info_attribute": {
+  "group": "stage",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "prop_path": {
+    "type": "str",
+    "required": true
+   },
+   "value": {
+    "type": "typing.Any",
+    "required": true
+   },
+   "prev": {
+    "type": "typing.Any",
+    "required": true
+   },
+   "timecode": {
+    "type": "NoneType",
+    "default": null
+   },
+   "type_to_create_if_not_exist": {
+    "type": "ValueTypeNames",
+    "default": null
+   },
+   "target_layer": {
+    "type": "Layer",
+    "default": null
+   },
+   "is_custom": {
+    "type": "bool",
+    "default": false
+   },
+   "variability": {
+    "type": "Variability",
+    "default": "Sdf.VariabilityVarying"
+   }
+  },
+  "pre_rules": []
+ },
+ "camera.set.viewport_camera": {
+  "group": "camera",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "camera_path": {
+    "type": "typing.Union[str, pxr.Sdf.Path]",
+    "required": true
+   },
+   "viewport_api": {
+    "type": "any",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "anim.do.simplify_anim_curves": {
+  "group": "anim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "paths": {
+    "type": "list",
+    "default": null
+   },
+   "max_error_percent": {
+    "type": "float",
+    "default": 1
+   },
+   "attribute_mask": {
+    "type": "str",
+    "default": null
+   },
+   "continuous_algorithm": {
+    "type": "SimplificationAlgorithm",
+    "default": null
+   },
+   "compute_tangents": {
+    "type": "bool",
+    "default": true
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.do.stitch_prim_specs_to_layer": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "prim_paths": {
+    "type": "typing.List[str]",
+    "required": true
+   },
+   "target_layer_identifier": {
+    "type": "str",
+    "required": true
+   },
+   "usd_context": {
+    "type": "typing.Union[str, omni.usd._usd.UsdConte",
+    "default": ""
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.do.toggle_active_prims": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "prim_paths": {
+    "type": "typing.List[pxr.Sdf.Path]",
+    "required": true
+   },
+   "active": {
+    "type": "typing.Optional[bool]",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.do.toggle_pay_load_load_selected_prims": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "selected_paths": {
+    "type": "typing.List[str]",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.do.toggle_prim_var": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "prim_path": {
+    "type": "typing.List[str]",
+    "required": true
+   },
+   "prim_name": {
+    "type": "str",
+    "required": true
+   },
+   "usd_context_name": {
+    "type": "typing.Optional[str]",
+    "default": ""
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.do.toggle_visibility_selected_prims": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "selected_paths": {
+    "type": "typing.List[str]",
+    "required": true
+   },
+   "visible": {
+    "type": "typing.Optional[bool]",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.do.transform_multi_prims_srt_cpp": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {},
+  "pre_rules": []
+ },
+ "prim.do.transform": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "path": {
+    "type": "str",
+    "required": true
+   },
+   "new_transform_matrix": {
+    "type": "Matrix4d",
+    "required": true
+   },
+   "old_transform_matrix": {
+    "type": "Matrix4d",
+    "default": null
+   },
+   "time_code": {
+    "type": "TimeCode",
+    "default": "DEFAULT"
+   },
+   "had_transform_at_key": {
+    "type": "bool",
+    "default": false
+   },
+   "usd_context_name": {
+    "type": "str",
+    "default": ""
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.do.transform_prim_srt": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "path": {
+    "type": "str",
+    "required": true
+   },
+   "new_translation": {
+    "type": "vec3",
+    "default": null
+   },
+   "new_rotation_euler": {
+    "type": "vec3",
+    "default": null
+   },
+   "new_scale": {
+    "type": "vec3",
+    "default": null
+   },
+   "new_rotation_order": {
+    "type": "vec3",
+    "default": null
+   },
+   "old_translation": {
+    "type": "vec3",
+    "default": null
+   },
+   "old_rotation_euler": {
+    "type": "vec3",
+    "default": null
+   },
+   "old_rotation_order": {
+    "type": "vec3",
+    "default": null
+   },
+   "old_scale": {
+    "type": "vec3",
+    "default": null
+   },
+   "time_code": {
+    "type": "TimeCode",
+    "default": "DEFAULT"
+   },
+   "had_transform_at_key": {
+    "type": "bool",
+    "default": false
+   },
+   "usd_context_name": {
+    "type": "str",
+    "default": ""
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.do.transform_prims": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "prims_to_transform": {
+    "type": "typing.List[typing.Tuple[str, pxr.Gf.Mat",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.do.transform_prims_srt": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "prims_to_transform": {
+    "type": "vec3",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.do.ungroup_prims": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "prim_paths": {
+    "type": "typing.List[typing.Union[str, pxr.Sdf.Pa",
+    "required": true
+   },
+   "context_name": {
+    "type": "typing.Optional[str]",
+    "default": null
+   },
+   "destructive": {
+    "type": "bool",
+    "default": true
+   }
+  },
+  "pre_rules": []
+ },
+ "prim.do.unhide_all_prims": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {},
+  "pre_rules": []
+ },
+ "prim.do.unparent_prims": {
+  "group": "prim",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "paths": {
+    "type": "typing.List[str]",
+    "required": true
+   },
+   "on_move_fn": {
+    "type": "<built-in function callable>",
+    "default": null
+   },
+   "keep_world_transform": {
+    "type": "bool",
+    "default": true
+   }
+  },
+  "pre_rules": []
+ },
+ "light.upgrade.usd_lux_lights": {
+  "group": "light",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "usd_context_name": {
+    "type": "str",
+    "default": ""
+   },
+   "use_upgrade_layer": {
+    "type": "bool",
+    "default": false
+   },
+   "use_session_layer": {
+    "type": "bool",
+    "default": false
+   }
+  },
+  "pre_rules": []
+ },
+ "stage.do.usd_shade_disconnect": {
+  "group": "stage",
+  "available": true,
+  "resolution": "resolved",
+  "params": {
+   "target": {
+    "type": "Input",
+    "required": true
+   }
+  },
+  "pre_rules": []
+ },
+ "import.robot.urdf": {
+  "group": "import",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {
+   "path": {
+    "type": "asset",
+    "default": null
+   },
+   "fix_base": {
+    "type": "bool",
+    "default": false
+   },
+   "merge_fixed_joints": {
+    "type": "bool",
+    "default": true
+   }
+  },
+  "pre_rules": []
+ },
+ "import.robot.mjcf": {
+  "group": "import",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {
+   "path": {
+    "type": "asset",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "export.asset.urdf": {
+  "group": "export",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {
+   "path": {
+    "type": "str",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "import.asset.heightmap": {
+  "group": "import",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {
+   "path": {
+    "type": "asset",
+    "default": null
+   },
+   "scale": {
+    "type": "float",
+    "default": 1.0
+   }
+  },
+  "pre_rules": []
+ },
+ "create.asset.conveyor": {
+  "group": "create",
+  "available": false,
+  "resolution": "import-failed",
+  "params": {
+   "length": {
+    "type": "float",
+    "default": 5.0
+   }
+  },
+  "pre_rules": []
+ },
+ "robot.clone": {
+  "group": "robot",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {
+   "target": {
+    "type": "name",
+    "default": null
+   },
+   "count": {
+    "type": "int",
+    "default": 2
+   }
+  },
+  "pre_rules": []
+ },
+ "robot.add.articulation": {
+  "group": "robot",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {
+   "path": {
+    "type": "str",
+    "default": null
+   },
+   "usd_path": {
+    "type": "asset",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "robot.set.joint_drive": {
+  "group": "robot",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {
+   "target": {
+    "type": "name",
+    "default": null
+   },
+   "stiffness": {
+    "type": "float",
+    "default": 10000.0
+   },
+   "damping": {
+    "type": "float",
+    "default": 1000.0
+   },
+   "max_force": {
+    "type": "float",
+    "default": 10000.0
+   }
+  },
+  "pre_rules": []
+ },
+ "robot.set.wheel_drive": {
+  "group": "robot",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {
+   "target": {
+    "type": "name",
+    "default": null
+   },
+   "wheel_radius": {
+    "type": "float",
+    "default": 0.1
+   }
+  },
+  "pre_rules": []
+ },
+ "sensor.add.contact": {
+  "group": "sensor",
+  "available": false,
+  "resolution": "import-failed",
+  "params": {
+   "target": {
+    "type": "name",
+    "default": null
+   },
+   "threshold": {
+    "type": "float",
+    "default": 0.0
+   }
+  },
+  "pre_rules": []
+ },
+ "sensor.add.camera": {
+  "group": "sensor",
+  "available": false,
+  "resolution": "import-failed",
+  "params": {
+   "path": {
+    "type": "str",
+    "default": null
+   },
+   "pos": {
+    "type": "vec3",
+    "default": [
+     0,
+     0,
+     2
+    ]
+   }
+  },
+  "pre_rules": []
+ },
+ "sensor.add.imu": {
+  "group": "sensor",
+  "available": false,
+  "resolution": "import-failed",
+  "params": {
+   "target": {
+    "type": "name",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "rl.env.create": {
+  "group": "rl",
+  "available": false,
+  "resolution": "import-failed",
+  "params": {
+   "task": {
+    "type": "str",
+    "default": null
+   },
+   "num_envs": {
+    "type": "int",
+    "default": 1
+   },
+   "headless": {
+    "type": "bool",
+    "default": true
+   }
+  },
+  "pre_rules": []
+ },
+ "rl.env.step": {
+  "group": "rl",
+  "available": false,
+  "resolution": "import-failed",
+  "params": {
+   "n": {
+    "type": "int",
+    "default": 1
+   }
+  },
+  "pre_rules": []
+ },
+ "rl.env.reset": {
+  "group": "rl",
+  "available": false,
+  "resolution": "import-failed",
+  "params": {},
+  "pre_rules": []
+ },
+ "rl.reward.add": {
+  "group": "rl",
+  "available": false,
+  "resolution": "import-failed",
+  "params": {
+   "term": {
+    "type": "str",
+    "default": null
+   },
+   "weight": {
+    "type": "float",
+    "default": 1.0
+   }
+  },
+  "pre_rules": []
+ },
+ "rl.termination.add": {
+  "group": "rl",
+  "available": false,
+  "resolution": "import-failed",
+  "params": {
+   "term": {
+    "type": "str",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "rl.observation.add": {
+  "group": "rl",
+  "available": false,
+  "resolution": "import-failed",
+  "params": {
+   "term": {
+    "type": "str",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "rl.action.add": {
+  "group": "rl",
+  "available": false,
+  "resolution": "import-failed",
+  "params": {
+   "term": {
+    "type": "str",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "rl.command.add": {
+  "group": "rl",
+  "available": false,
+  "resolution": "import-failed",
+  "params": {
+   "term": {
+    "type": "str",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "rl.curriculum.add": {
+  "group": "rl",
+  "available": false,
+  "resolution": "import-failed",
+  "params": {
+   "term": {
+    "type": "str",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "rl.event.add": {
+  "group": "rl",
+  "available": false,
+  "resolution": "import-failed",
+  "params": {
+   "term": {
+    "type": "str",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "rl.agent.create": {
+  "group": "rl",
+  "available": false,
+  "resolution": "import-failed",
+  "params": {
+   "algo": {
+    "type": "str",
+    "default": "ppo"
+   },
+   "lr": {
+    "type": "float",
+    "default": 0.001
+   }
+  },
+  "pre_rules": []
+ },
+ "rl.train.run": {
+  "group": "rl",
+  "available": false,
+  "resolution": "import-failed",
+  "params": {
+   "iterations": {
+    "type": "int",
+    "default": 100
+   },
+   "experiment": {
+    "type": "str",
+    "default": "default"
+   }
+  },
+  "pre_rules": []
+ },
+ "rl.play.run": {
+  "group": "rl",
+  "available": false,
+  "resolution": "import-failed",
+  "params": {
+   "checkpoint": {
+    "type": "asset",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "rl.actuator.set": {
+  "group": "rl",
+  "available": false,
+  "resolution": "import-failed",
+  "params": {
+   "target": {
+    "type": "name",
+    "default": null
+   },
+   "actuator": {
+    "type": "str",
+    "default": "implicit_actuator"
+   }
+  },
+  "pre_rules": []
+ },
+ "ros2.bridge.enable": {
+  "group": "ros2",
+  "available": false,
+  "resolution": "import-failed",
+  "params": {},
+  "pre_rules": []
+ },
+ "ros2.publisher.create": {
+  "group": "ros2",
+  "available": false,
+  "resolution": "import-failed",
+  "params": {
+   "topic": {
+    "type": "str",
+    "default": null
+   },
+   "msg_type": {
+    "type": "str",
+    "default": null
+   },
+   "target": {
+    "type": "name",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "ros2.subscriber.create": {
+  "group": "ros2",
+  "available": false,
+  "resolution": "import-failed",
+  "params": {
+   "topic": {
+    "type": "str",
+    "default": null
+   },
+   "msg_type": {
+    "type": "str",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "ros2.topic.publish": {
+  "group": "ros2",
+  "available": false,
+  "resolution": "import-failed",
+  "params": {
+   "topic": {
+    "type": "str",
+    "default": null
+   },
+   "message": {
+    "type": "str",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "ros2.clock.enable": {
+  "group": "ros2",
+  "available": false,
+  "resolution": "import-failed",
+  "params": {},
+  "pre_rules": []
+ },
+ "ros2.tf.publish": {
+  "group": "ros2",
+  "available": false,
+  "resolution": "import-failed",
+  "params": {},
+  "pre_rules": []
+ },
+ "ros2.urdf.import": {
+  "group": "ros2",
+  "available": false,
+  "resolution": "import-failed",
+  "params": {
+   "path": {
+    "type": "asset",
+    "default": null
+   }
+  },
+  "pre_rules": []
+ },
+ "ros2.sim.control": {
+  "group": "ros2",
+  "available": false,
+  "resolution": "import-failed",
+  "params": {
+   "command": {
+    "type": "str",
+    "default": "play"
+   }
+  },
+  "pre_rules": []
+ },
+ "robot.set.torque": {
+  "group": "robot",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {
+   "target": {
+    "type": "name",
+    "default": null
+   },
+   "value": {
+    "type": "float",
+    "default": 0.0
+   }
+  },
+  "pre_rules": []
+ },
+ "robot.set.torque_limit": {
+  "group": "robot",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {
+   "target": {
+    "type": "name",
+    "default": null
+   },
+   "value": {
+    "type": "float",
+    "default": 10.0
+   }
+  },
+  "pre_rules": []
+ },
+ "robot.set.velocity_limit": {
+  "group": "robot",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {
+   "target": {
+    "type": "name",
+    "default": null
+   },
+   "value": {
+    "type": "float",
+    "default": 10.0
+   }
+  },
+  "pre_rules": []
+ },
+ "robot.set.dc_motor": {
+  "group": "robot",
+  "available": true,
+  "resolution": "virtual-backend",
+  "params": {
+   "target": {
+    "type": "name",
+    "default": null
+   },
+   "torque_constant": {
+    "type": "float",
+    "default": 1.0
+   },
+   "effort_limit": {
+    "type": "float",
+    "default": 10.0
+   },
+   "velocity_limit": {
+    "type": "float",
+    "default": 10.0
+   }
+  },
+  "pre_rules": []
+ }
+}

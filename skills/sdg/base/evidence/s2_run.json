@@ -1,0 +1,5 @@
+{
+  "status": "ok",
+  "output": "S2-REPORT nbox=1 area=7225 cls=s2cube path=/World/S1Cube uniq=[1, 2] npix2=5847",
+  "result": null
+}

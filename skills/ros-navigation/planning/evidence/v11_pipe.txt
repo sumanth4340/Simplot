@@ -1,0 +1,1 @@
+V11-PIPE len=33 bad=0 done=True steps=122 arr=0.479 maxdev=0.176

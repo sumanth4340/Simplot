@@ -1,0 +1,5 @@
+{
+  "status": "ok",
+  "output": "R4-REPORT mean1=143.6 mean2=213.2 ratio=1.485 max2=244 shape=[240, 320, 3]",
+  "result": null
+}

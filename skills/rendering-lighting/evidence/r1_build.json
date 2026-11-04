@@ -1,0 +1,5 @@
+{
+  "status": "ok",
+  "output": "R1-REPORT dome=400.0 sun=1500.0 sunrot=[-50.0, 20.0, 0.0] cubesize=1.00 focal=24.0 campos=[3.0, -3.0, 2.0]",
+  "result": null
+}

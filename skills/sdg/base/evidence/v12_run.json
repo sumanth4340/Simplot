@@ -1,0 +1,5 @@
+{
+  "status": "ok",
+  "output": "V12-REPORT f0:nbox=2,cls=v12a+v12b,pxa=3079,pxb=4226,mean=63.7 f1:nbox=2,cls=v12a+v12b,pxa=4761,pxb=2807,mean=63.5 f2:nbox=2,cls=v12a+v12b,pxa=4412,pxb=3633,mean=63.6",
+  "result": null
+}

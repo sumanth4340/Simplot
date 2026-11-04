@@ -1,0 +1,91 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "URDF USD Converter v0.1.2"
+    }
+    defaultPrim = "m2_bot"
+    doc = """Generated from Composed Stage of root layer C:\\Users\\SRUJA_~1\\AppData\\Local\\Temp\\tmpy6tpcrxy\\m2_bot.usdc
+
+
+Generated from Composed Stage of root layer C:\\Users\\SRUJA_~1\\AppData\\Local\\Temp\\urdf_import_m2_bot_nw1f6aof\\usdex_m2_bot\\m2_bot.usdc
+
+
+Generated from Composed Stage of root layer C:\\Users\\SRUJA_~1\\AppData\\Local\\Temp\\urdf_import_m2_bot_nw1f6aof\\temp_m2_bot\\m2_bot.usd
+"""
+    kilogramsPerUnit = 1
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+over "m2_bot"
+{
+    over "Geometry"
+    {
+        over "base" (
+            prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsArticulationRootAPI", "NewtonArticulationRootAPI", "PhysicsMassAPI"]
+        )
+        {
+            bool newton:selfCollisionEnabled = 0
+            float3 physics:diagonalInertia = (0.1, 0.1, 0.1)
+            float physics:mass = 2
+            quatf physics:principalAxes = (1, 0, 0, 0)
+
+            over "box_1" (
+                prepend apiSchemas = ["NewtonCollisionAPI"]
+            )
+            {
+            }
+
+            over "arm" (
+                prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+            )
+            {
+                float3 physics:diagonalInertia = (0.02, 0.05, 0.05)
+                float physics:mass = 1
+                quatf physics:principalAxes = (0.5, 0.5, 0.5, 0.5)
+
+                over "cylinder_1" (
+                    prepend apiSchemas = ["NewtonCollisionAPI"]
+                )
+                {
+                }
+            }
+        }
+    }
+
+    over "Physics"
+    {
+        def PhysicsRevoluteJoint "shoulder" (
+            prepend apiSchemas = ["PhysicsDriveAPI:angular", "PhysicsJointStateAPI:angular"]
+        )
+        {
+            float drive:angular:physics:maxForce = 10
+            uniform token physics:axis = "Z"
+            custom rel physics:body0
+            prepend rel physics:body0 = </m2_bot/Geometry/base>
+            custom rel physics:body1
+            prepend rel physics:body1 = </m2_bot/Geometry/base/arm>
+            point3f physics:localPos0 = (0, 0, 0.5)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = -89.95438
+            float physics:upperLimit = 89.95438
+            custom float urdf:limit:effort = 10
+            custom float urdf:limit:velocity = 1
+        }
+
+        def PhysicsFixedJoint "root_joint"
+        {
+            custom rel physics:body0
+            prepend rel physics:body0 = </m2_bot>
+            custom rel physics:body1
+            prepend rel physics:body1 = </m2_bot/Geometry/base>
+            point3f physics:localPos0 = (0, 0, 0)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (1, 0, 0, 0)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+        }
+    }
+}
+

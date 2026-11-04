@@ -1,0 +1,522 @@
+[
+ {
+  "skill": "action-and-event-data-generation",
+  "name": "action-and-event-data-generation",
+  "description": "Entry point for Isaac Sim synthetic data generation (SDG) with actors, humans, robots, events, incidents, captions, or cameras. Use when planning an Action and Event Data Generation (AEDG) run.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\action-and-event-data-generation\\SKILL.md",
+  "has_scripts": false,
+  "has_references": false
+ },
+ {
+  "skill": "actor-sdg-generate-lighting-variations",
+  "name": "actor-sdg-generate-lighting-variations",
+  "description": "Generate deterministic USD lighting override sublayers for Actor SDG. Use when randomizing lights, creating lighting variations, or preparing IRA prop_asset_paths.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\actor-sdg-generate-lighting-variations\\SKILL.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "actor-sdg-sweep-config",
+  "name": "actor-sdg-sweep-config",
+  "description": "Generate validated Isaac Sim Replicator Agent YAML variations and optionally batch-run Actor SDG. Use when sweeping an IRA config or preparing batch Actor SDG runs.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\actor-sdg-sweep-config\\SKILL.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "behavior-tree-generation",
+  "name": "behavior-tree-generation",
+  "description": "LLM-driven Behavior Tree Generation for Isaac Sim: turn a natural-language scenario into behavior-tree files. Use when generating a tree, authoring context/schema, or scripting the planner.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\behavior-tree-generation\\SKILL.md",
+  "has_scripts": true,
+  "has_references": true
+ },
+ {
+  "skill": "calibrate-metropolis-camera",
+  "name": "calibrate-metropolis-camera",
+  "description": "Extract camera intrinsics, extrinsics, and FOV polygons to calibration.json. Use after cameras are placed; to place them first use place-camera-max-coverage.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\calibrate-metropolis-camera\\SKILL.md",
+  "has_scripts": true,
+  "has_references": true
+ },
+ {
+  "skill": "data-collection-sim",
+  "name": "data-collection-sim",
+  "description": "Headless Replicator SDG for static scenes (writers, poses, Kitti). Use when collecting annotated training data. Do NOT use for mobile-robot SDG (use mobility-gen).",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\data-collection-sim\\SKILL.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "generate-incident-config",
+  "name": "generate-incident-config",
+  "description": "Author and validate the IRI event config YAML defining topple, fire, and spill incidents. Use when writing or debugging an incident config; to drive events use run-incident-events.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\generate-incident-config\\SKILL.md",
+  "has_scripts": true,
+  "has_references": true
+ },
+ {
+  "skill": "isaac-camera",
+  "name": "isaac-camera",
+  "description": "USD camera setup, render products, intrinsics, and lens distortion. Use when configuring Isaac Sim cameras.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\isaac-camera\\SKILL.md",
+  "has_scripts": false,
+  "has_references": false
+ },
+ {
+  "skill": "isaac-sim-assets",
+  "name": "isaac-sim-assets",
+  "description": "Configure and troubleshoot Isaac Sim asset access through Asset Region Profiles, custom or local asset roots, downloadable asset packs, availability manifests, and the public storage APIs. Use for missing or unreachable Isaac Sim assets, regional routing, offline assets, or asset-root precedence; do not use for installing Isaac Sim.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\isaac-sim-assets\\SKILL.md",
+  "has_scripts": false,
+  "has_references": false
+ },
+ {
+  "skill": "isaac-sim-headless-deployment",
+  "name": "isaac-sim-headless-deployment",
+  "description": "Run a built Isaac Sim 6 headless with --no-window and the renderer disabled. Use for batch SDG jobs, physics-only CI, or unattended server runs.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\isaac-sim-headless-deployment\\SKILL.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "isaac-sim-installation",
+  "name": "\"isaac-sim-installation\"",
+  "description": "Install Isaac Sim from a public standalone build, Docker image, or Python package behind preflight, compatibility, EULA, and --execute gates. Use when installing Isaac Sim; never launches the app.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\isaac-sim-installation\\SKILL.md",
+  "has_scripts": true,
+  "has_references": true
+ },
+ {
+  "skill": "isaac-sim-migration",
+  "name": "isaac-sim-migration",
+  "description": "Audit and validate Isaac Sim release migrations; currently covers 5.1 to 6.0. Do NOT use for new-project setup or unrelated runtime bugs.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\isaac-sim-migration\\SKILL.md",
+  "has_scripts": false,
+  "has_references": false
+ },
+ {
+  "skill": "isaac-sim-orchestrator",
+  "name": "isaac-sim-orchestrator",
+  "description": "Integrate approved multi-skill Isaac Sim demos and validate delivery. Route focused obstacle-aware arm demos to motion-generation, including video requests; scope gaps with isaac-sim-workflow.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\isaac-sim-orchestrator\\SKILL.md",
+  "has_scripts": false,
+  "has_references": true
+ },
+ {
+  "skill": "isaac-sim-remote",
+  "name": "isaac-sim-remote",
+  "description": "Localhost IPC client for a trusted Isaac Sim python_server (127.0.0.1:8226). Use for live stage iteration; intentional full Kit/Python surface on loopback only.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\isaac-sim-remote\\SKILL.md",
+  "has_scripts": true,
+  "has_references": true
+ },
+ {
+  "skill": "isaac-sim-rendering",
+  "name": "isaac-sim-rendering",
+  "description": "Headless RT2/PathTracing production rendering with ACES tuning. Use when capturing frames or validating render quality.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\isaac-sim-rendering\\SKILL.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "isaac-sim-robot-navigation",
+  "name": "isaac-sim-robot-navigation",
+  "description": "Live robot navigation and RL policy deployment in Isaac Sim. Use for runtime control or deploying exported robot policies with RobotPolicyRunner, env.yaml, and IO descriptors.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\isaac-sim-robot-navigation\\SKILL.md",
+  "has_scripts": false,
+  "has_references": true
+ },
+ {
+  "skill": "isaac-sim-ros-workspaces",
+  "name": "isaac-sim-ros-workspaces",
+  "description": "Clone, configure, or build IsaacSim-ros_workspaces using native ROS, Docker, custom interfaces, or Pixi. Use only for Isaac Sim ROS workspace requests, not generic workspace setup.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\isaac-sim-ros-workspaces\\SKILL.md",
+  "has_scripts": true,
+  "has_references": true
+ },
+ {
+  "skill": "isaac-sim-ros2-bridge",
+  "name": "isaac-sim-ros2-bridge",
+  "description": "ROS 2 OmniGraph bridge, Nav2, and multi-robot namespacing in Isaac Sim 6. Use for ROS 2 integration and fleet topics.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\isaac-sim-ros2-bridge\\SKILL.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "isaac-sim-sensor",
+  "name": "isaac-sim-sensor",
+  "description": "RTX and physics sensor simulation (camera, LiDAR, IMU, contact). Use when adding, tuning, or validating sensors.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\isaac-sim-sensor\\SKILL.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "isaac-sim-troubleshooting",
+  "name": "isaac-sim-troubleshooting",
+  "description": "Diagnose standalone library import/load/link failures and Kit hangs, freezes, or performance stalls.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\isaac-sim-troubleshooting\\SKILL.md",
+  "has_scripts": false,
+  "has_references": false
+ },
+ {
+  "skill": "isaac-sim-validator",
+  "name": "isaac-sim-validator",
+  "description": "Pre-delivery QA gate for standalone Isaac Sim libraries and Kit scripts. Level 3 executes untrusted Python unsandboxed and needs --confirm-execute.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\isaac-sim-validator\\SKILL.md",
+  "has_scripts": true,
+  "has_references": true
+ },
+ {
+  "skill": "isaac-sim-web-viewer",
+  "name": "\"isaac-sim-web-viewer\"",
+  "description": "Use when you need Isaac Sim in Chromium over WebRTC at http://HOST:8210 via this Compose stack. Not for installs, image-only pulls, or headless.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\isaac-sim-web-viewer\\SKILL.md",
+  "has_scripts": true,
+  "has_references": true
+ },
+ {
+  "skill": "isaac-sim-workflow",
+  "name": "isaac-sim-workflow",
+  "description": "Scope Isaac Sim demos, libraries, POCs, and captures when deliverables or criteria are undefined, or only a plan is requested. Route approved builds to isaac-sim-orchestrator.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\isaac-sim-workflow\\SKILL.md",
+  "has_scripts": false,
+  "has_references": false
+ },
+ {
+  "skill": "manipulation-ik",
+  "name": "manipulation-ik",
+  "description": "Differential IK, grasp frames, and joint-space manipulation in Isaac Sim 6. Use for arm control, grasps, and contact validation.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\manipulation-ik\\SKILL.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "meta-skills",
+  "name": "meta-skills",
+  "description": "Use when asked to structure, create, compose, or improve agent skills, including new-skill proposals and Meta-Skilling Framework (MSF) authoring plans.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\meta-skills\\SKILL.md",
+  "has_scripts": false,
+  "has_references": true
+ },
+ {
+  "skill": "mobility-gen",
+  "name": "mobility-gen",
+  "description": "MobilityGen SDG: record trajectories then replay-render sensors. Use for mobile-robot synthetic datasets.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\mobility-gen\\SKILL.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "motion-generation",
+  "name": "motion-generation",
+  "description": "Build obstacle-aware arm and mobile-base controllers. Primary for UR10 pick-and-place around obstacles with physics/video; use manipulation-ik for obstacle-free grasp tasks.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\motion-generation\\SKILL.md",
+  "has_scripts": true,
+  "has_references": true
+ },
+ {
+  "skill": "navigation-primitives",
+  "name": "navigation-primitives",
+  "description": "Shared mobile-robot substrate: footprints, A*, kinematics, cameras. Use before navigation/MobilityGen; not for map.yaml export (use occupancy-map).",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\navigation-primitives\\SKILL.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "object-bin-packing",
+  "name": "object-bin-packing",
+  "description": "Pack boxes/parcels into a bin, pallet, or container and render SDG with IRO's bin_pack harmonizer. Use for warehouse/logistics packing synthetic data.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\object-bin-packing\\SKILL.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "occupancy-map",
+  "name": "occupancy-map",
+  "description": "Export ROS occupancy grids (map.yaml/png) from USD for Nav2. Not for footprints, A*, or kinematics (use navigation-primitives).",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\occupancy-map\\SKILL.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "physics-simulation",
+  "name": "physics-simulation",
+  "description": "PhysX/Newton scene and prim setup (bodies, joints, materials, sensors). Use when configuring simulation physics.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\physics-simulation\\SKILL.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "physx-to-newton-conversion",
+  "name": "physx-to-newton-conversion",
+  "description": "Convert a legacy PhysX-only USD asset (for example an Isaac Sim 5.x robot) to a Newton-capable package with the PhysX to MJC Conversion preset. Use when a PhysX asset must also run under Newton.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\physx-to-newton-conversion\\SKILL.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "place-camera-aim-at",
+  "name": "place-camera-aim-at",
+  "description": "Occlusion-aware CircularCameraPlacement around one target prim or world point. Use for multi-angle product or robot inspection shots that must keep the subject visible.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\place-camera-aim-at\\SKILL.md",
+  "has_scripts": true,
+  "has_references": true
+ },
+ {
+  "skill": "place-camera-max-coverage",
+  "name": "place-camera-max-coverage",
+  "description": "Greedy CameraPlacementManager that fills a navmesh or XY scope until a patch-coverage ratio is met. Use for facility surveillance layouts that minimize camera count.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\place-camera-max-coverage\\SKILL.md",
+  "has_scripts": true,
+  "has_references": true
+ },
+ {
+  "skill": "profile-isaac-sim",
+  "name": "profile-isaac-sim",
+  "description": "Profile standalone Isaac Sim libraries or Kit workloads. Use when measuring runtime performance with benchmarks or Tracy captures.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\profile-isaac-sim\\SKILL.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "run-incident-events",
+  "name": "run-incident-events",
+  "description": "Tag prims and drive IRI topple, fire, and spill incidents on a live stage, then record a report. Use when running incidents; to author the config YAML use generate-incident-config.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\run-incident-events\\SKILL.md",
+  "has_scripts": true,
+  "has_references": true
+ },
+ {
+  "skill": "skill-distillation",
+  "name": "skill-distillation",
+  "description": "Propose skill-library updates from session learnings (loop step 5); writes only after explicit user confirmation. Use after novel fixes, workflows, or user corrections.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\skill-distillation\\SKILL.md",
+  "has_scripts": false,
+  "has_references": false
+ },
+ {
+  "skill": "spatial-reasoning",
+  "name": "spatial-reasoning",
+  "description": "USD spatial math: transforms, bbox, layouts, and planning helpers. Use when placing, scaling, or arranging scene assets.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\spatial-reasoning\\SKILL.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "urdf-mjcf-to-usd-conversion",
+  "name": "urdf-mjcf-to-usd-conversion",
+  "description": "Convert URDF/MJCF to USD for Isaac Sim and Isaac Lab. Use when importing a new robot description.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\urdf-mjcf-to-usd-conversion\\SKILL.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "usd-articulation",
+  "name": "usd-articulation",
+  "description": "Validate and build multi-arm articulations in USD. Use when assembling or fixing robot joint hierarchies.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\usd-articulation\\SKILL.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "usd-composition-architecture",
+  "name": "usd-composition-architecture",
+  "description": "Layered USD composition with physics and appearance payloads. Use when structuring sim-ready robot or environment assets.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\usd-composition-architecture\\SKILL.md",
+  "has_scripts": false,
+  "has_references": false
+ },
+ {
+  "skill": "usd-pipeline",
+  "name": "usd-pipeline",
+  "description": "USD asset discovery, measurement, placement, and shader compatibility. Use for scene assembly and headless render prep.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\usd-pipeline\\SKILL.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "validation-diff-gifs",
+  "name": "validation-diff-gifs",
+  "description": "Pixel-diff GIFs comparing validation captures to golden images. Use to triage benchmark or regression image failures.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\validation-diff-gifs\\SKILL.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "vlm-scene-captioning",
+  "name": "vlm-scene-captioning",
+  "description": "Generate image + caption pairs and structured scene graphs (IRC, isaacsim.replicator.caption.core) for VLM training. Use when captioning scenes or wiring IRC into an actor/object SDG run.",
+  "path": "C:\\Users\\sruja_ob3di74\\Downloads\\IsaacSim-release-6.3\\IsaacSim-release-6.3\\skills\\vlm-scene-captioning\\SKILL.md",
+  "has_scripts": true,
+  "has_references": true
+ },
+ {
+  "skill": "nav2",
+  "name": "nav2",
+  "description": "Skid-steer odometry and RTX lidar ROS2 scan bring-up drills (N1/N2) - wheel-collider rules, drive geometry, and the root-parented lidar + Helper-graph /scan recipe. Use when building a wheeled base, debugging odometry, or publishing lidar scans over ROS 2.",
+  "path": "C:\\\\Users\\\\sruja_ob3di74\\\\.agents\\\\skills\\\\nav2\\\\SKILL.md",
+  "has_scripts": true,
+  "has_references": true
+ },
+ {
+  "skill": "sdg-adv",
+  "name": "sdg-adv",
+  "description": "Advanced synthetic data at scale - KittiWriter contract, seeded deterministic layouts, 50-frame volume sweeps, and re-sweep exams (A1/A2/A3/VA). Use when writing KITTI datasets, seeding deterministic scenes, or running volume sweeps.",
+  "path": "C:\\\\Users\\\\sruja_ob3di74\\\\.agents\\\\skills\\\\sdg-adv\\\\SKILL.md",
+  "has_scripts": true,
+  "has_references": true
+ },
+ {
+  "skill": "deform",
+  "name": "deform",
+  "description": "PhysX volume-deformable drill (D1) - explicit-PhysicsScene authoring, DeformablePrim tensor reads, stiffness scaling, and Newton no-go rules. Use when simulating soft bodies, reading deformable tensors, or checking Newton/deformable compatibility.",
+  "path": "C:\\\\Users\\\\sruja_ob3di74\\\\.agents\\\\skills\\\\deform\\\\SKILL.md",
+  "has_scripts": true,
+  "has_references": true
+ },
+ {
+  "skill": "radac",
+  "name": "radac",
+  "description": "RTX radar (R1) and acoustic (R2) GMO drills - vendor-config radar with ghost fingerprinting, bare-constructor acoustic arrays, and writer-based capture. Use when adding radar/acoustic sensing, debugging silent GMO, or validating detections on geometry.",
+  "path": "C:\\\\Users\\\\sruja_ob3di74\\\\.agents\\\\skills\\\\radac\\\\SKILL.md",
+  "has_scripts": true,
+  "has_references": true
+ },
+ {
+  "skill": "gpunuc",
+  "name": "gpunuc",
+  "description": "Device honesty (G1) and asset-root resolution (G2) drills - single-GPU enumeration/selection with phantom-id negative test, and public-API asset resolution with clean-miss diagnosis. Use when checking GPU visibility, selecting sim devices, or diagnosing missing assets.",
+  "path": "C:\\\\Users\\\\sruja_ob3di74\\\\.agents\\\\skills\\\\gpunuc\\\\SKILL.md",
+  "has_scripts": true,
+  "has_references": true
+ },
+ {
+  "skill": "pyapi",
+  "name": "pyapi",
+  "description": "Kit Python API gap drills (P1) - command execute/undo map, omni.client sync-tuple contract, and the timeline play/advance/stop roundtrip over physics steps. Use when scripting Kit commands with undo, doing omni.client file ops, driving the timeline, or stepping physics.",
+  "path": "C:\\\\Users\\\\sruja_ob3di74\\\\.agents\\\\skills\\\\pyapi\\\\SKILL.md",
+  "has_scripts": true,
+  "has_references": true
+ },
+ {
+  "skill": "sense",
+  "name": "sense",
+  "description": "Live stage telemetry: sense.py JSON snapshot via the bridge, local verify/co_verify evidence checks. Use when reading prims, poses, velocities, or joints.",
+  "path": "C:\\Users\\sruja_ob3di74\\action-reasoner\\skills\\workspace-sense\\TOOLS.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "stage",
+  "name": "stage",
+  "description": "Stage and USD core: save/open round-trip, prim authoring (Cube size is edge length, hand Mesh), properties, variants, payloads. Use when creating prims, create a prim, or setting an attribute.",
+  "path": "C:\\Users\\sruja_ob3di74\\action-reasoner\\skills\\stage-core\\README.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "modeling",
+  "name": "modeling",
+  "description": "Indexed mesh authoring (points/counts/indices, CCW winding), OFFLINE URDF/USD asset import then reference into live stage, GridCloner to clone prims in a grid, UsdShade materials (bind a material to prims). Use when building meshes, importing robots, cloning, or binding materials.",
+  "path": "C:\\Users\\sruja_ob3di74\\action-reasoner\\skills\\modeling-assets\\README.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "articulation",
+  "name": "articulation",
+  "description": "Articulation roots (root-on-dynamic-link + FixedJoint), DOF tensor reads after play, angular drive targets in DEGREES. Use when assembling robots or reading joints.",
+  "path": "C:\\Users\\sruja_ob3di74\\action-reasoner\\skills\\articulation-robots\\README.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "manipulation",
+  "name": "manipulation",
+  "description": "USD drive-target commanding + stop/play re-parse, IsaacSiteAPI grasp frames, DLS IK, FixedJoint grasp attach. Use for arm control, IK, or grasping.",
+  "path": "C:\\Users\\sruja_ob3di74\\action-reasoner\\skills\\manipulation-motion\\README.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "rendering",
+  "name": "rendering",
+  "description": "RtxCamera + CameraSensor capture (resolution [H,W], settle, rgb unwrap), dome/DistantLight exposure response. Use when capturing frames or tuning lights.",
+  "path": "C:\\Users\\sruja_ob3di74\\action-reasoner\\skills\\rendering-lighting\\README.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "viewport",
+  "name": "viewport",
+  "description": "Viewport/app screenshots, camera_control look_at, select_prim round-trip. Use when screenshotting or driving the viewport camera.",
+  "path": "C:\\Users\\sruja_ob3di74\\action-reasoner\\skills\\viewport-ui\\README.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "omnigraph",
+  "name": "omnigraph",
+  "description": "Atomic Controller.edit graphs (CREATE_NODES+CONNECT+SET_VALUES), typed 3-tuple template inputs, tick-vs-authoring gating. Use when authoring OmniGraph graphs.",
+  "path": "C:\\Users\\sruja_ob3di74\\action-reasoner\\skills\\omnigraph\\README.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "behavior",
+  "name": "behavior",
+  "description": "60 timecodes/sec sampling, live-time reads via XformCache(tc), xformOp-degrees vs DOF-radians layers. Use when keyframing animation or sampling motion.",
+  "path": "C:\\Users\\sruja_ob3di74\\action-reasoner\\skills\\behavior-anim\\README.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "appsession",
+  "name": "appsession",
+  "description": "External session driving via isaacsim_send (simulation_control, open_stage, stage_info), timeline STOPPED/PLAYING/PAUSED cycle. Use when controlling play or opening stages.",
+  "path": "C:\\Users\\sruja_ob3di74\\action-reasoner\\skills\\app-session\\README.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "physics",
+  "name": "physics",
+  "description": "Rigid-body physics: stepping, simulated-state reads, velocity (linear/angular) reads, hinge drives, colliders, contacts, gravity, trial reset, determinism, PhysX/Newton equivalence and runtime switching. Use when stepping sim, driving joints, setting gravity, or resetting the trial.",
+  "path": "C:\\Users\\sruja_ob3di74\\action-reasoner\\skills\\physics\\SKILL.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "xval",
+  "name": "xval",
+  "description": "Cross-skill co-validation drills X1-X14 with XN-REPORT receipts. Use when gauntlet-checking a new capability against all graduated skills.",
+  "path": "C:\\Users\\sruja_ob3di74\\action-reasoner\\skills\\cross-val\\TOOLS.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "sensors",
+  "name": "sensors",
+  "description": "RTX camera/lidar + physics IMU/contact drills (S1-S4, V7): depth frames, range sensing, contact validation. Use when adding or validating a camera, lidar, IMU, contact, range sensor, or light beam.",
+  "path": "C:\\Users\\sruja_ob3di74\\action-reasoner\\skills\\sensors\\SKILL.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "rosnav",
+  "name": "rosnav",
+  "description": "ROS bridge bringup and rover navigation: bridge topics, odometry, skid-steer drive, Nav2 planning. Use when wiring ROS topics, driving a rover, or planning paths.",
+  "path": "C:\\Users\\sruja_ob3di74\\action-reasoner\\skills\\ros-navigation\\SKILL.md",
+  "has_scripts": true,
+  "has_references": false
+ },
+ {
+  "skill": "sdg",
+  "name": "sdg",
+  "description": "Synthetic data generation: Replicator writers, poses, KITTI labels, dataset sweeps. Use when collecting annotated training data or running SDG captures.",
+  "path": "C:\\Users\\sruja_ob3di74\\action-reasoner\\skills\\sdg\\SKILL.md",
+  "has_scripts": true,
+  "has_references": false
+ }
+]

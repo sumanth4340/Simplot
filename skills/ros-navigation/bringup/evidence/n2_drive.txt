@@ -1,0 +1,47 @@
+STOP0: STOPPED-0
+BUILD: N1-BUILD-OK nodes=['CTL', 'ODO', 'OnPB', 'PUB', 'Time'] art=/World/N1Base_1793735521
+MOUNT: N2-LIDAR rp=/Render/OmniverseKit/HydraTextures/Replicator_03
+N2-MOUNT-OK nodes=['HELP', 'OnPB'] rp=/Render/OmniverseKit/HydraTextures/Replicator_03 art=/World/N1Base_1793735521
+PLAY: Currently unsupported type (unknown) for UsdAttribute.Get() at <invalid UsdAttribute>
+PLAYING-60
+LISTEN: PY=C:\dev\lyrical\.pixi\envs\default\python.exe
+LISTEN-OK count=5
+LISTEN-DONE
+PUMP-LOG: {
+  "status": "ok",
+  "output": "PUMP40 art=/World/N1Base_1793735521",
+  "result": null
+}
+
+{
+  "status": "ok",
+  "output": "PUMP40 art=/World/N1Base_1793735521",
+  "result": null
+}
+
+{
+  "status": "ok",
+  "output": "PUMP40 art=/World/N1Base_1793735521",
+  "result": null
+}
+
+{
+  "status": "ok",
+  "output": "PUMP40 art=/World/N1Base_1793735521",
+  "result": null
+}
+
+{
+  "status": "ok",
+  "output": "PUMP40 art=/World/N1Base_1793735521",
+  "result": null
+}
+
+{
+  "status": "ok",
+  "output": "PUMP40 art=/World/N1Base_1793735521",
+  "result": null
+}
+
+STOP: Currently unsupported type (unknown) for UsdAttribute.Get() at <invalid UsdAttribute>
+STOPPED

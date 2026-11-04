@@ -1,0 +1,5 @@
+﻿{
+  "status": "ok",
+  "output": "V4-REPORT robot=True type=Default root=True ndof=1 q0=0.0335 q1=0.7852 dt=2.000",
+  "result": null
+}

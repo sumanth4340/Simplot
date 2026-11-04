@@ -1,0 +1,2994 @@
+{
+ "meta": {
+  "sources": {
+   "traces_drills.jsonl": 270,
+   "traces_mock.jsonl": 19,
+   "traces_dispatch.jsonl": 36,
+   "traces_live.jsonl": 82,
+   "traces_vision.jsonl": 15
+  },
+  "traces": 422,
+  "compact_actions": 195,
+  "handled_actions": 57,
+  "unknown_keys": {}
+ },
+ "by_drill": {
+  "A1": {
+   "traces": 6,
+   "skills": [
+    "actor-sdg-sweep-config",
+    "appsession",
+    "data-collection-sim",
+    "deform",
+    "isaac-sim-installation",
+    "sdg",
+    "sdg-adv"
+   ],
+   "actions": [
+    "create.objects.fixed_cuboid",
+    "sim.play"
+   ],
+   "dispatch": 0
+  },
+  "A2": {
+   "traces": 6,
+   "skills": [
+    "actor-sdg-sweep-config",
+    "object-bin-packing",
+    "physics-simulation",
+    "sdg",
+    "sdg-adv",
+    "spatial-reasoning",
+    "usd-pipeline",
+    "vlm-scene-captioning"
+   ],
+   "actions": [
+    "create.objects.fixed_cuboid",
+    "sim.play"
+   ],
+   "dispatch": 0
+  },
+  "AP1": {
+   "traces": 15,
+   "skills": [
+    "appsession",
+    "articulation",
+    "isaac-sim-remote",
+    "isaac-sim-rendering",
+    "manipulation",
+    "manipulation-ik",
+    "modeling",
+    "object-bin-packing",
+    "pyapi",
+    "run-incident-events",
+    "stage"
+   ],
+   "actions": [
+    "scene.open",
+    "scene.save",
+    "sim.pause",
+    "sim.play",
+    "sim.reset",
+    "sim.step",
+    "sim.stop"
+   ],
+   "dispatch": 0
+  },
+  "AR1": {
+   "traces": 15,
+   "skills": [
+    "articulation",
+    "data-collection-sim",
+    "deform",
+    "generate-incident-config",
+    "isaac-sim-orchestrator",
+    "manipulation",
+    "manipulation-ik",
+    "nav2",
+    "omnigraph",
+    "physics",
+    "usd-articulation"
+   ],
+   "actions": [
+    "create.objects.cuboid",
+    "joint.create.joint",
+    "robot.add.articulation",
+    "robot.set.joint_drive",
+    "robot.set.torque",
+    "robot.set.torque_limit",
+    "robot.set.velocity_limit"
+   ],
+   "dispatch": 0
+  },
+  "D1": {
+   "traces": 12,
+   "skills": [
+    "appsession",
+    "behavior",
+    "deform",
+    "isaac-sim-web-viewer",
+    "physics",
+    "rendering"
+   ],
+   "actions": [
+    "create.objects.cone",
+    "create.objects.plane",
+    "physics.add.physics_scene",
+    "sim.play",
+    "sim.step"
+   ],
+   "dispatch": 0
+  },
+  "DSP": {
+   "traces": 36,
+   "skills": [
+    "action-and-event-data-generation",
+    "actor-sdg-sweep-config",
+    "appsession",
+    "articulation",
+    "behavior",
+    "calibrate-metropolis-camera",
+    "data-collection-sim",
+    "deform",
+    "generate-incident-config",
+    "gpunuc",
+    "isaac-camera",
+    "isaac-sim-headless-deployment",
+    "isaac-sim-orchestrator",
+    "isaac-sim-remote",
+    "isaac-sim-robot-navigation",
+    "isaac-sim-ros-workspaces",
+    "isaac-sim-ros2-bridge",
+    "isaac-sim-sensor",
+    "manipulation",
+    "manipulation-ik",
+    "modeling",
+    "motion-generation",
+    "nav2",
+    "omnigraph",
+    "physics-simulation",
+    "place-camera-aim-at",
+    "pyapi",
+    "rendering",
+    "rosnav",
+    "run-incident-events",
+    "sdg",
+    "sdg-adv",
+    "sensors",
+    "stage",
+    "viewport",
+    "vlm-scene-captioning",
+    "xval"
+   ],
+   "actions": [],
+   "dispatch": 36
+  },
+  "G1": {
+   "traces": 6,
+   "skills": [
+    "appsession",
+    "gpunuc",
+    "isaac-sim-assets",
+    "isaac-sim-headless-deployment",
+    "isaac-sim-ros-workspaces",
+    "isaac-sim-sensor",
+    "motion-generation",
+    "omnigraph"
+   ],
+   "actions": [
+    "sim.play",
+    "sim.set.dt"
+   ],
+   "dispatch": 0
+  },
+  "G2": {
+   "traces": 6,
+   "skills": [
+    "appsession",
+    "gpunuc",
+    "isaac-sim-assets",
+    "isaac-sim-troubleshooting",
+    "modeling",
+    "object-bin-packing",
+    "stage",
+    "usd-composition-architecture"
+   ],
+   "actions": [
+    "scene.open"
+   ],
+   "dispatch": 0
+  },
+  "MO1": {
+   "traces": 45,
+   "skills": [
+    "actor-sdg-generate-lighting-variations",
+    "data-collection-sim",
+    "gpunuc",
+    "isaac-sim-assets",
+    "isaac-sim-robot-navigation",
+    "isaac-sim-ros-workspaces",
+    "isaac-sim-ros2-bridge",
+    "isaac-sim-troubleshooting",
+    "modeling",
+    "navigation-primitives",
+    "object-bin-packing",
+    "physics",
+    "physx-to-newton-conversion",
+    "urdf-mjcf-to-usd-conversion",
+    "usd-pipeline"
+   ],
+   "actions": [
+    "create.objects.cuboid",
+    "create.objects.fixed_cuboid",
+    "export.asset.urdf",
+    "import.asset.heightmap",
+    "import.asset.usd",
+    "import.robot.mjcf",
+    "import.robot.urdf",
+    "material.add.rigid_body_material",
+    "material.bind.material",
+    "robot.clone"
+   ],
+   "dispatch": 0
+  },
+  "N1": {
+   "traces": 12,
+   "skills": [
+    "articulation",
+    "data-collection-sim",
+    "generate-incident-config",
+    "isaac-sim-robot-navigation",
+    "isaac-sim-ros2-bridge",
+    "manipulation",
+    "mobility-gen",
+    "motion-generation",
+    "nav2",
+    "rosnav"
+   ],
+   "actions": [
+    "create.objects.cuboid",
+    "create.objects.sphere",
+    "robot.set.joint_drive",
+    "scene.delete.prim",
+    "sim.play"
+   ],
+   "dispatch": 0
+  },
+  "N2": {
+   "traces": 12,
+   "skills": [
+    "isaac-sim-sensor",
+    "nav2",
+    "rosnav",
+    "sensors"
+   ],
+   "actions": [
+    "create.objects.cuboid",
+    "sensor.create.rtx_lidar",
+    "sim.play",
+    "sim.step"
+   ],
+   "dispatch": 0
+  },
+  "P1": {
+   "traces": 12,
+   "skills": [
+    "appsession",
+    "articulation",
+    "isaac-sim-headless-deployment",
+    "isaac-sim-remote",
+    "isaac-sim-sensor",
+    "isaac-sim-troubleshooting",
+    "isaac-sim-validator",
+    "manipulation",
+    "meta-skills",
+    "motion-generation",
+    "omnigraph",
+    "physics",
+    "profile-isaac-sim",
+    "pyapi",
+    "stage"
+   ],
+   "actions": [
+    "scene.delete.prim",
+    "sim.pause",
+    "sim.play",
+    "sim.step",
+    "sim.stop"
+   ],
+   "dispatch": 0
+  },
+  "PH1": {
+   "traces": 51,
+   "skills": [
+    "action-and-event-data-generation",
+    "data-collection-sim",
+    "gpunuc",
+    "isaac-sim-headless-deployment",
+    "isaac-sim-rendering",
+    "isaac-sim-sensor",
+    "manipulation-ik",
+    "motion-generation",
+    "nav2",
+    "omnigraph",
+    "physics",
+    "physics-simulation",
+    "pyapi",
+    "usd-composition-architecture"
+   ],
+   "actions": [
+    "create.objects.cuboid",
+    "create.objects.fixed_cuboid",
+    "create.objects.sphere",
+    "physics.add.collider",
+    "physics.add.rigid_body",
+    "physics.remove.collider",
+    "physics.remove.rigid_body",
+    "physics.set.mass",
+    "physics.set.pose",
+    "physics.set.rigid_body",
+    "physics.set.static_collider",
+    "physics.set.velocity",
+    "sim.pause",
+    "sim.play",
+    "sim.reset",
+    "sim.set.dt",
+    "sim.set.gravity",
+    "sim.step",
+    "sim.stop"
+   ],
+   "dispatch": 0
+  },
+  "R1": {
+   "traces": 6,
+   "skills": [
+    "isaac-sim-sensor",
+    "nav2",
+    "radac",
+    "sensors"
+   ],
+   "actions": [
+    "create.objects.fixed_cuboid",
+    "sensor.create.rtx_radar",
+    "sim.play"
+   ],
+   "dispatch": 0
+  },
+  "R2": {
+   "traces": 6,
+   "skills": [
+    "object-bin-packing",
+    "radac",
+    "rendering"
+   ],
+   "actions": [
+    "create.objects.fixed_cuboid",
+    "sensor.create.rtx_ultrasonic",
+    "sim.play",
+    "sim.step"
+   ],
+   "dispatch": 0
+  },
+  "SE1": {
+   "traces": 24,
+   "skills": [
+    "isaac-sim-ros-workspaces",
+    "isaac-sim-sensor",
+    "meta-skills",
+    "nav2",
+    "omnigraph",
+    "radac",
+    "sensors",
+    "stage"
+   ],
+   "actions": [
+    "sensor.create.light_beam_sensor",
+    "sensor.create.rtx_radar",
+    "sensor.create.rtx_ultrasonic",
+    "sensor.do.range_sensor_create_generic",
+    "sensor.do.range_sensor_create_lidar"
+   ],
+   "dispatch": 0
+  },
+  "ST1": {
+   "traces": 36,
+   "skills": [
+    "appsession",
+    "isaac-sim-orchestrator",
+    "isaac-sim-remote",
+    "isaac-sim-web-viewer",
+    "meta-skills",
+    "modeling",
+    "motion-generation",
+    "omnigraph",
+    "physics-simulation",
+    "place-camera-aim-at",
+    "run-incident-events",
+    "stage"
+   ],
+   "actions": [
+    "create.objects.capsule",
+    "create.objects.cuboid",
+    "create.objects.cylinder",
+    "create.objects.fixed_capsule",
+    "create.objects.fixed_cone",
+    "create.objects.fixed_cylinder",
+    "create.objects.fixed_sphere",
+    "create.objects.visual_capsule",
+    "create.objects.visual_cone",
+    "create.objects.visual_cuboid",
+    "create.objects.visual_cylinder",
+    "create.objects.visual_sphere",
+    "scene.create.prim",
+    "scene.delete.prim",
+    "scene.save"
+   ],
+   "dispatch": 0
+  },
+  "live": {
+   "traces": 97,
+   "skills": [
+    "action-and-event-data-generation",
+    "actor-sdg-generate-lighting-variations",
+    "actor-sdg-sweep-config",
+    "appsession",
+    "articulation",
+    "behavior",
+    "behavior-tree-generation",
+    "calibrate-metropolis-camera",
+    "data-collection-sim",
+    "deform",
+    "generate-incident-config",
+    "gpunuc",
+    "isaac-camera",
+    "isaac-sim-assets",
+    "isaac-sim-headless-deployment",
+    "isaac-sim-installation",
+    "isaac-sim-migration",
+    "isaac-sim-orchestrator",
+    "isaac-sim-remote",
+    "isaac-sim-robot-navigation",
+    "isaac-sim-ros-workspaces",
+    "isaac-sim-sensor",
+    "isaac-sim-troubleshooting",
+    "isaac-sim-web-viewer",
+    "manipulation",
+    "manipulation-ik",
+    "meta-skills",
+    "modeling",
+    "motion-generation",
+    "nav2",
+    "omnigraph",
+    "physics",
+    "physics-simulation",
+    "physx-to-newton-conversion",
+    "place-camera-aim-at",
+    "pyapi",
+    "radac",
+    "rosnav",
+    "run-incident-events",
+    "sdg-adv",
+    "sense",
+    "sensors",
+    "skill-distillation",
+    "spatial-reasoning",
+    "stage",
+    "urdf-mjcf-to-usd-conversion",
+    "usd-articulation",
+    "usd-pipeline",
+    "viewport",
+    "vlm-scene-captioning"
+   ],
+   "actions": [
+    "create.objects.capsule",
+    "create.objects.cone",
+    "create.objects.cuboid",
+    "create.objects.cylinder",
+    "create.objects.fixed_capsule",
+    "create.objects.fixed_cone",
+    "create.objects.fixed_cuboid",
+    "create.objects.fixed_cylinder",
+    "create.objects.fixed_sphere",
+    "create.objects.plane",
+    "create.objects.sphere",
+    "create.objects.visual_capsule",
+    "create.objects.visual_cone",
+    "create.objects.visual_cuboid",
+    "create.objects.visual_cylinder",
+    "create.objects.visual_sphere",
+    "export.asset.urdf",
+    "import.asset.heightmap",
+    "import.asset.usd",
+    "import.robot.mjcf",
+    "import.robot.urdf",
+    "joint.create.joint",
+    "material.add.rigid_body_material",
+    "material.bind.material",
+    "physics.add.rigid_body",
+    "physics.remove.rigid_body",
+    "physics.set.mass",
+    "physics.set.pose",
+    "physics.set.rigid_body",
+    "robot.add.articulation",
+    "robot.clone",
+    "robot.set.joint_drive",
+    "robot.set.torque_limit",
+    "scene.create.prim",
+    "scene.delete.prim",
+    "scene.open",
+    "scene.save",
+    "sensor.create.light_beam_sensor",
+    "sensor.create.rtx_lidar",
+    "sensor.create.rtx_radar",
+    "sensor.create.rtx_ultrasonic",
+    "sensor.do.range_sensor_create_generic",
+    "sensor.do.range_sensor_create_lidar",
+    "sim.pause",
+    "sim.play",
+    "sim.reset",
+    "sim.set.dt",
+    "sim.set.gravity",
+    "sim.stop"
+   ],
+   "dispatch": 0
+  },
+  "mock": {
+   "traces": 19,
+   "skills": [
+    "action-and-event-data-generation",
+    "actor-sdg-sweep-config",
+    "appsession",
+    "articulation",
+    "behavior-tree-generation",
+    "data-collection-sim",
+    "generate-incident-config",
+    "gpunuc",
+    "isaac-sim-headless-deployment",
+    "isaac-sim-installation",
+    "isaac-sim-robot-navigation",
+    "isaac-sim-ros-workspaces",
+    "isaac-sim-sensor",
+    "manipulation",
+    "meta-skills",
+    "motion-generation",
+    "nav2",
+    "object-bin-packing",
+    "omnigraph",
+    "physics-simulation",
+    "pyapi",
+    "rosnav",
+    "sensors",
+    "spatial-reasoning",
+    "stage",
+    "usd-articulation"
+   ],
+   "actions": [
+    "create.objects.cuboid",
+    "create.objects.plane",
+    "create.objects.sphere",
+    "joint.create.joint",
+    "physics.set.mass",
+    "robot.add.articulation",
+    "robot.set.joint_drive",
+    "sensor.create.rtx_lidar",
+    "sim.play"
+   ],
+   "dispatch": 0
+  }
+ },
+ "by_action": {
+  "create.objects.plane": {
+   "traces": 23,
+   "drills": [
+    "D1",
+    "live",
+    "mock"
+   ],
+   "skills": [
+    "action-and-event-data-generation",
+    "actor-sdg-sweep-config",
+    "articulation",
+    "behavior-tree-generation",
+    "data-collection-sim",
+    "deform",
+    "generate-incident-config",
+    "gpunuc",
+    "isaac-sim-installation",
+    "isaac-sim-robot-navigation",
+    "isaac-sim-ros-workspaces",
+    "isaac-sim-sensor",
+    "manipulation-ik",
+    "meta-skills",
+    "motion-generation",
+    "nav2",
+    "object-bin-packing",
+    "omnigraph",
+    "physics",
+    "physics-simulation",
+    "rosnav",
+    "sensors",
+    "spatial-reasoning",
+    "stage",
+    "usd-articulation"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "create.objects.cuboid": {
+   "traces": 125,
+   "drills": [
+    "AR1",
+    "MO1",
+    "N1",
+    "N2",
+    "PH1",
+    "ST1",
+    "live",
+    "mock"
+   ],
+   "skills": [
+    "actor-sdg-generate-lighting-variations",
+    "actor-sdg-sweep-config",
+    "appsession",
+    "articulation",
+    "behavior",
+    "calibrate-metropolis-camera",
+    "data-collection-sim",
+    "deform",
+    "generate-incident-config",
+    "gpunuc",
+    "isaac-sim-headless-deployment",
+    "isaac-sim-installation",
+    "isaac-sim-migration",
+    "isaac-sim-orchestrator",
+    "isaac-sim-remote",
+    "isaac-sim-robot-navigation",
+    "isaac-sim-ros-workspaces",
+    "isaac-sim-ros2-bridge",
+    "isaac-sim-sensor",
+    "isaac-sim-web-viewer",
+    "manipulation",
+    "manipulation-ik",
+    "meta-skills",
+    "modeling",
+    "motion-generation",
+    "nav2",
+    "object-bin-packing",
+    "omnigraph",
+    "physics",
+    "physics-simulation",
+    "physx-to-newton-conversion",
+    "place-camera-aim-at",
+    "pyapi",
+    "rosnav",
+    "run-incident-events",
+    "sdg-adv",
+    "sense",
+    "sensors",
+    "skill-distillation",
+    "spatial-reasoning",
+    "stage",
+    "usd-articulation",
+    "usd-composition-architecture"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "create.objects.fixed_cuboid": {
+   "traces": 55,
+   "drills": [
+    "A1",
+    "A2",
+    "MO1",
+    "PH1",
+    "R1",
+    "R2",
+    "live"
+   ],
+   "skills": [
+    "actor-sdg-sweep-config",
+    "appsession",
+    "articulation",
+    "data-collection-sim",
+    "deform",
+    "gpunuc",
+    "isaac-sim-headless-deployment",
+    "isaac-sim-installation",
+    "isaac-sim-sensor",
+    "meta-skills",
+    "modeling",
+    "motion-generation",
+    "object-bin-packing",
+    "omnigraph",
+    "physics",
+    "physics-simulation",
+    "radac",
+    "rendering",
+    "sdg",
+    "sdg-adv",
+    "sensors",
+    "skill-distillation",
+    "spatial-reasoning",
+    "usd-pipeline",
+    "vlm-scene-captioning"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "create.objects.visual_cuboid": {
+   "traces": 13,
+   "drills": [
+    "ST1",
+    "live"
+   ],
+   "skills": [
+    "appsession",
+    "articulation",
+    "gpunuc",
+    "meta-skills",
+    "omnigraph",
+    "physics",
+    "physics-simulation",
+    "place-camera-aim-at",
+    "skill-distillation",
+    "stage"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "create.objects.sphere": {
+   "traces": 77,
+   "drills": [
+    "N1",
+    "PH1",
+    "live",
+    "mock"
+   ],
+   "skills": [
+    "action-and-event-data-generation",
+    "actor-sdg-sweep-config",
+    "appsession",
+    "articulation",
+    "behavior-tree-generation",
+    "data-collection-sim",
+    "deform",
+    "generate-incident-config",
+    "gpunuc",
+    "isaac-sim-headless-deployment",
+    "isaac-sim-installation",
+    "isaac-sim-robot-navigation",
+    "isaac-sim-ros-workspaces",
+    "isaac-sim-ros2-bridge",
+    "isaac-sim-sensor",
+    "manipulation",
+    "manipulation-ik",
+    "meta-skills",
+    "mobility-gen",
+    "motion-generation",
+    "nav2",
+    "omnigraph",
+    "physics",
+    "physics-simulation",
+    "rosnav",
+    "sensors",
+    "spatial-reasoning",
+    "stage",
+    "usd-articulation"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "create.objects.fixed_sphere": {
+   "traces": 7,
+   "drills": [
+    "ST1",
+    "live"
+   ],
+   "skills": [
+    "appsession",
+    "gpunuc",
+    "isaac-sim-remote",
+    "meta-skills",
+    "modeling",
+    "omnigraph",
+    "physics-simulation",
+    "place-camera-aim-at",
+    "stage"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "create.objects.visual_sphere": {
+   "traces": 5,
+   "drills": [
+    "ST1",
+    "live"
+   ],
+   "skills": [
+    "gpunuc",
+    "isaac-sim-ros-workspaces",
+    "meta-skills",
+    "modeling",
+    "omnigraph",
+    "physics-simulation",
+    "place-camera-aim-at",
+    "stage"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "create.objects.cylinder": {
+   "traces": 22,
+   "drills": [
+    "ST1",
+    "live"
+   ],
+   "skills": [
+    "articulation",
+    "gpunuc",
+    "isaac-sim-headless-deployment",
+    "isaac-sim-orchestrator",
+    "isaac-sim-sensor",
+    "manipulation",
+    "meta-skills",
+    "modeling",
+    "motion-generation",
+    "nav2",
+    "omnigraph",
+    "physics",
+    "physics-simulation",
+    "place-camera-aim-at",
+    "run-incident-events",
+    "sdg-adv",
+    "sense",
+    "stage"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "create.objects.fixed_cylinder": {
+   "traces": 18,
+   "drills": [
+    "ST1",
+    "live"
+   ],
+   "skills": [
+    "gpunuc",
+    "meta-skills",
+    "omnigraph",
+    "physics-simulation",
+    "place-camera-aim-at",
+    "sensors",
+    "stage"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "create.objects.visual_cylinder": {
+   "traces": 4,
+   "drills": [
+    "ST1",
+    "live"
+   ],
+   "skills": [
+    "gpunuc",
+    "meta-skills",
+    "omnigraph",
+    "physics-simulation",
+    "place-camera-aim-at",
+    "stage"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "create.objects.capsule": {
+   "traces": 5,
+   "drills": [
+    "ST1",
+    "live"
+   ],
+   "skills": [
+    "gpunuc",
+    "isaac-sim-orchestrator",
+    "meta-skills",
+    "motion-generation",
+    "omnigraph",
+    "stage"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "create.objects.fixed_capsule": {
+   "traces": 4,
+   "drills": [
+    "ST1",
+    "live"
+   ],
+   "skills": [
+    "gpunuc",
+    "meta-skills",
+    "omnigraph",
+    "physics-simulation",
+    "place-camera-aim-at",
+    "stage"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "create.objects.visual_capsule": {
+   "traces": 4,
+   "drills": [
+    "ST1",
+    "live"
+   ],
+   "skills": [
+    "gpunuc",
+    "meta-skills",
+    "omnigraph",
+    "physics-simulation",
+    "place-camera-aim-at",
+    "stage"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "create.objects.cone": {
+   "traces": 16,
+   "drills": [
+    "D1",
+    "live"
+   ],
+   "skills": [
+    "appsession",
+    "behavior",
+    "deform",
+    "gpunuc",
+    "isaac-sim-web-viewer",
+    "meta-skills",
+    "omnigraph",
+    "physics",
+    "rendering",
+    "stage"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "create.objects.fixed_cone": {
+   "traces": 25,
+   "drills": [
+    "ST1",
+    "live"
+   ],
+   "skills": [
+    "appsession",
+    "articulation",
+    "calibrate-metropolis-camera",
+    "gpunuc",
+    "isaac-sim-remote",
+    "isaac-sim-ros-workspaces",
+    "meta-skills",
+    "modeling",
+    "omnigraph",
+    "physics-simulation",
+    "place-camera-aim-at",
+    "stage"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "create.objects.visual_cone": {
+   "traces": 4,
+   "drills": [
+    "ST1",
+    "live"
+   ],
+   "skills": [
+    "gpunuc",
+    "meta-skills",
+    "omnigraph",
+    "physics-simulation",
+    "place-camera-aim-at",
+    "stage"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "physics.add.rigid_body": {
+   "traces": 13,
+   "drills": [
+    "PH1",
+    "live"
+   ],
+   "skills": [
+    "data-collection-sim",
+    "nav2",
+    "physics"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "physics.remove.rigid_body": {
+   "traces": 4,
+   "drills": [
+    "PH1",
+    "live"
+   ],
+   "skills": [
+    "nav2",
+    "physics"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "physics.add.collider": {
+   "traces": 3,
+   "drills": [
+    "PH1"
+   ],
+   "skills": [
+    "nav2",
+    "physics"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "physics.remove.collider": {
+   "traces": 3,
+   "drills": [
+    "PH1"
+   ],
+   "skills": [
+    "nav2",
+    "physics"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "physics.set.mass": {
+   "traces": 8,
+   "drills": [
+    "PH1",
+    "live",
+    "mock"
+   ],
+   "skills": [
+    "appsession",
+    "articulation",
+    "gpunuc",
+    "isaac-sim-headless-deployment",
+    "isaac-sim-sensor",
+    "meta-skills",
+    "motion-generation",
+    "omnigraph",
+    "physics",
+    "skill-distillation",
+    "stage"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "physics.set.velocity": {
+   "traces": 3,
+   "drills": [
+    "PH1"
+   ],
+   "skills": [
+    "omnigraph",
+    "physics"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "physics.set.pose": {
+   "traces": 13,
+   "drills": [
+    "PH1",
+    "live"
+   ],
+   "skills": [
+    "appsession",
+    "articulation",
+    "gpunuc",
+    "isaac-sim-headless-deployment",
+    "isaac-sim-sensor",
+    "isaac-sim-web-viewer",
+    "meta-skills",
+    "nav2",
+    "omnigraph",
+    "physics",
+    "physics-simulation",
+    "place-camera-aim-at",
+    "sense",
+    "skill-distillation",
+    "stage",
+    "viewport"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "physics.apply.material": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "physics.add.fixed_joint": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "sim.play": {
+   "traces": 100,
+   "drills": [
+    "A1",
+    "A2",
+    "AP1",
+    "D1",
+    "G1",
+    "N1",
+    "N2",
+    "P1",
+    "PH1",
+    "R1",
+    "R2",
+    "live",
+    "mock"
+   ],
+   "skills": [
+    "action-and-event-data-generation",
+    "actor-sdg-sweep-config",
+    "appsession",
+    "articulation",
+    "behavior",
+    "behavior-tree-generation",
+    "calibrate-metropolis-camera",
+    "data-collection-sim",
+    "deform",
+    "generate-incident-config",
+    "gpunuc",
+    "isaac-sim-assets",
+    "isaac-sim-headless-deployment",
+    "isaac-sim-installation",
+    "isaac-sim-rendering",
+    "isaac-sim-robot-navigation",
+    "isaac-sim-ros-workspaces",
+    "isaac-sim-ros2-bridge",
+    "isaac-sim-sensor",
+    "isaac-sim-web-viewer",
+    "manipulation",
+    "manipulation-ik",
+    "mobility-gen",
+    "motion-generation",
+    "nav2",
+    "object-bin-packing",
+    "omnigraph",
+    "physics",
+    "physics-simulation",
+    "physx-to-newton-conversion",
+    "place-camera-aim-at",
+    "pyapi",
+    "radac",
+    "rendering",
+    "rosnav",
+    "sdg",
+    "sdg-adv",
+    "sense",
+    "sensors",
+    "spatial-reasoning",
+    "usd-articulation",
+    "usd-composition-architecture",
+    "usd-pipeline",
+    "vlm-scene-captioning"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "sim.pause": {
+   "traces": 21,
+   "drills": [
+    "AP1",
+    "P1",
+    "PH1",
+    "live"
+   ],
+   "skills": [
+    "appsession",
+    "articulation",
+    "calibrate-metropolis-camera",
+    "gpunuc",
+    "isaac-sim-headless-deployment",
+    "isaac-sim-rendering",
+    "isaac-sim-sensor",
+    "manipulation",
+    "manipulation-ik",
+    "motion-generation",
+    "physics",
+    "physics-simulation",
+    "pyapi",
+    "skill-distillation",
+    "spatial-reasoning",
+    "usd-pipeline",
+    "vlm-scene-captioning"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "sim.reset": {
+   "traces": 17,
+   "drills": [
+    "AP1",
+    "PH1",
+    "live"
+   ],
+   "skills": [
+    "actor-sdg-sweep-config",
+    "appsession",
+    "gpunuc",
+    "isaac-sim-headless-deployment",
+    "isaac-sim-remote",
+    "isaac-sim-sensor",
+    "manipulation",
+    "modeling",
+    "motion-generation",
+    "physics",
+    "physics-simulation",
+    "physx-to-newton-conversion",
+    "place-camera-aim-at",
+    "pyapi",
+    "sense"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "sim.stop": {
+   "traces": 12,
+   "drills": [
+    "AP1",
+    "P1",
+    "PH1",
+    "live"
+   ],
+   "skills": [
+    "appsession",
+    "articulation",
+    "isaac-sim-headless-deployment",
+    "isaac-sim-remote",
+    "isaac-sim-sensor",
+    "manipulation",
+    "modeling",
+    "nav2",
+    "physics",
+    "pyapi",
+    "skill-distillation",
+    "usd-composition-architecture"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "sim.step": {
+   "traces": 27,
+   "drills": [
+    "AP1",
+    "D1",
+    "N2",
+    "P1",
+    "PH1",
+    "R2"
+   ],
+   "skills": [
+    "appsession",
+    "articulation",
+    "behavior",
+    "deform",
+    "isaac-sim-headless-deployment",
+    "isaac-sim-rendering",
+    "isaac-sim-sensor",
+    "isaac-sim-web-viewer",
+    "manipulation",
+    "manipulation-ik",
+    "motion-generation",
+    "nav2",
+    "physics",
+    "pyapi",
+    "radac",
+    "rendering",
+    "sensors"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "sim.set.gravity": {
+   "traces": 10,
+   "drills": [
+    "PH1",
+    "live"
+   ],
+   "skills": [
+    "action-and-event-data-generation",
+    "gpunuc",
+    "isaac-sim-headless-deployment",
+    "isaac-sim-sensor",
+    "motion-generation",
+    "omnigraph",
+    "physics",
+    "usd-composition-architecture"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "sim.set.dt": {
+   "traces": 10,
+   "drills": [
+    "G1",
+    "PH1",
+    "live"
+   ],
+   "skills": [
+    "appsession",
+    "gpunuc",
+    "isaac-sim-assets",
+    "isaac-sim-headless-deployment",
+    "isaac-sim-ros-workspaces",
+    "isaac-sim-sensor",
+    "manipulation-ik",
+    "motion-generation",
+    "omnigraph",
+    "physics"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "import.asset.usd": {
+   "traces": 7,
+   "drills": [
+    "MO1",
+    "live"
+   ],
+   "skills": [
+    "actor-sdg-generate-lighting-variations",
+    "gpunuc",
+    "isaac-camera",
+    "manipulation",
+    "modeling",
+    "physx-to-newton-conversion",
+    "stage",
+    "urdf-mjcf-to-usd-conversion",
+    "usd-pipeline"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "scene.create.prim": {
+   "traces": 14,
+   "drills": [
+    "ST1",
+    "live"
+   ],
+   "skills": [
+    "actor-sdg-generate-lighting-variations",
+    "appsession",
+    "isaac-sim-remote",
+    "meta-skills",
+    "modeling",
+    "omnigraph",
+    "physics-simulation",
+    "place-camera-aim-at",
+    "stage"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "scene.delete.prim": {
+   "traces": 69,
+   "drills": [
+    "N1",
+    "P1",
+    "ST1",
+    "live"
+   ],
+   "skills": [
+    "action-and-event-data-generation",
+    "actor-sdg-sweep-config",
+    "appsession",
+    "articulation",
+    "behavior-tree-generation",
+    "data-collection-sim",
+    "deform",
+    "isaac-sim-headless-deployment",
+    "isaac-sim-installation",
+    "isaac-sim-remote",
+    "isaac-sim-robot-navigation",
+    "isaac-sim-ros2-bridge",
+    "isaac-sim-troubleshooting",
+    "isaac-sim-validator",
+    "manipulation-ik",
+    "meta-skills",
+    "mobility-gen",
+    "modeling",
+    "motion-generation",
+    "nav2",
+    "omnigraph",
+    "physics",
+    "physics-simulation",
+    "place-camera-aim-at",
+    "profile-isaac-sim",
+    "pyapi",
+    "rosnav",
+    "run-incident-events",
+    "sense",
+    "skill-distillation",
+    "stage",
+    "usd-articulation"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "scene.open": {
+   "traces": 13,
+   "drills": [
+    "AP1",
+    "G2",
+    "live"
+   ],
+   "skills": [
+    "appsession",
+    "deform",
+    "gpunuc",
+    "isaac-sim-assets",
+    "isaac-sim-remote",
+    "isaac-sim-troubleshooting",
+    "modeling",
+    "object-bin-packing",
+    "run-incident-events",
+    "stage",
+    "usd-composition-architecture"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "scene.save": {
+   "traces": 11,
+   "drills": [
+    "AP1",
+    "ST1",
+    "live"
+   ],
+   "skills": [
+    "appsession",
+    "articulation",
+    "calibrate-metropolis-camera",
+    "isaac-sim-remote",
+    "meta-skills",
+    "modeling",
+    "run-incident-events",
+    "stage"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "scene.clear": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "anim.add.anim_curves": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "physics.add.collision_group": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "joint.add.d6": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "joint.add.distance": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "joint.add.fixed": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "physics.add.physics": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "physics.add.physics_scene": {
+   "traces": 9,
+   "drills": [
+    "D1"
+   ],
+   "skills": [
+    "appsession",
+    "behavior",
+    "deform",
+    "isaac-sim-web-viewer",
+    "rendering"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "joint.add.prismatic": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "joint.add.revolute": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "material.add.rigid_body_material": {
+   "traces": 12,
+   "drills": [
+    "MO1",
+    "live"
+   ],
+   "skills": [
+    "appsession",
+    "articulation",
+    "generate-incident-config",
+    "manipulation",
+    "modeling",
+    "nav2",
+    "physics",
+    "pyapi"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "joint.add.spherical": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.add.xform_op": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.append.api_to_prims": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "material.bind.material": {
+   "traces": 17,
+   "drills": [
+    "MO1",
+    "live"
+   ],
+   "skills": [
+    "appsession",
+    "articulation",
+    "generate-incident-config",
+    "gpunuc",
+    "manipulation",
+    "modeling",
+    "nav2",
+    "physics",
+    "pyapi"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "prim.change.metadata_in_prims": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "stage.change.pipeline_stage": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.change.prim_display_name": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "anim.clear.curves_splits_overrides": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.connect.prim": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "physics.cook.physx_colliders": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.copy.prim": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.copy.prims": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "material.create.and_bind_mdl_material_from_library": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "material.create.and_bind_mtlx_surface_from_library": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "physics.create.audio_prim_from_asset_path": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.create.default_xform_on": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "joint.create.joint": {
+   "traces": 42,
+   "drills": [
+    "AR1",
+    "live",
+    "mock"
+   ],
+   "skills": [
+    "appsession",
+    "articulation",
+    "data-collection-sim",
+    "deform",
+    "generate-incident-config",
+    "gpunuc",
+    "isaac-sim-installation",
+    "isaac-sim-orchestrator",
+    "isaac-sim-robot-navigation",
+    "isaac-sim-ros-workspaces",
+    "isaac-sim-sensor",
+    "manipulation",
+    "manipulation-ik",
+    "meta-skills",
+    "motion-generation",
+    "nav2",
+    "omnigraph",
+    "physics",
+    "physics-simulation",
+    "rosnav",
+    "sense",
+    "sensors",
+    "skill-distillation",
+    "usd-articulation"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "joint.create.joints": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "material.create.mdl_material": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "mesh.create.mesh": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "mesh.create.mesh_prim_with_default_xform": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "material.create.mtlx_material": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "material.create.preview_surface_material": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "material.create.preview_surface_texture_material": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.create.prim": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.create.prim_with_default_xform": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.create.prims": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "material.create.shader_prim_from_sdr": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "robot.create.surface_gripper": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "stage.create.usd_attribute": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "stage.create.usd_attribute_on_path": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.delete.prims": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.do.disconnect": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "camera.duplicate.camera": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "camera.duplicate.viewport_camera": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "anim.do.edit_anim_curve_keys": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.do.enable_xform_op": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "anim.do.extract_anim_curves": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.do.frame_prims": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.group.prims": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "sensor.create.light_beam_sensor": {
+   "traces": 8,
+   "drills": [
+    "SE1",
+    "live"
+   ],
+   "skills": [
+    "isaac-sim-sensor",
+    "sensors"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "sensor.create.rtx_ids": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "sensor.create.rtx_lidar": {
+   "traces": 17,
+   "drills": [
+    "N2",
+    "live",
+    "mock"
+   ],
+   "skills": [
+    "articulation",
+    "generate-incident-config",
+    "isaac-sim-sensor",
+    "meta-skills",
+    "nav2",
+    "omnigraph",
+    "radac",
+    "rosnav",
+    "sensors"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "sensor.create.rtx_radar": {
+   "traces": 10,
+   "drills": [
+    "R1",
+    "SE1",
+    "live"
+   ],
+   "skills": [
+    "isaac-sim-sensor",
+    "meta-skills",
+    "nav2",
+    "omnigraph",
+    "radac",
+    "sensors"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "sensor.create.rtx_sensor": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "sensor.create.rtx_ultrasonic": {
+   "traces": 10,
+   "drills": [
+    "R2",
+    "SE1",
+    "live"
+   ],
+   "skills": [
+    "isaac-sim-sensor",
+    "meta-skills",
+    "nav2",
+    "object-bin-packing",
+    "omnigraph",
+    "radac",
+    "rendering",
+    "sensors",
+    "stage"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "prim.do.isaac_sim_destroy": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.do.isaac_sim_scale": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.do.isaac_sim_spawn": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.do.isaac_sim_teleport": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.move.prim": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.move.prim_specs_to_layer": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.move.prims": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.do.parent_prims": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "anim.do.paste_anim_curve_keys": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "anim.do.paste_anim_curves": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.do.prim_var": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "sensor.do.range_sensor_create_generic": {
+   "traces": 8,
+   "drills": [
+    "SE1",
+    "live"
+   ],
+   "skills": [
+    "isaac-sim-ros-workspaces",
+    "isaac-sim-sensor",
+    "meta-skills",
+    "omnigraph",
+    "rosnav",
+    "sensors"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "sensor.do.range_sensor_create_lidar": {
+   "traces": 7,
+   "drills": [
+    "SE1",
+    "live"
+   ],
+   "skills": [
+    "isaac-sim-sensor",
+    "meta-skills",
+    "nav2",
+    "omnigraph",
+    "sensors"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "sensor.do.range_sensor_create": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.remove.api_from_prims": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "anim.remove.anim_curve_keys": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "anim.remove.anim_curves": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "joint.remove.d6": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "joint.remove.distance": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "joint.remove.fixed": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "physics.remove.physics": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.remove.prim_spec": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "joint.remove.prismatic": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "joint.remove.revolute": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "physics.remove.rigid_body_2": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "joint.remove.spherical": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "physics.remove.static_collider": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.remove.xform_op": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.remove.xform_op_and_attrbute": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.do.reorder": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "scene.do.scene_optimizer_json_parser": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "scene.do.scene_optimizer_list_operation_arguments": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "scene.do.scene_optimizer_list_operations": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "scene.do.scene_optimizer_operation": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "anim.do.select_anim_curve_keys": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.do.select_prims": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.do.select_variant": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "anim.set.anim_curve_default_tangent_type": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "anim.set.anim_curve_infinity_type": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "anim.set.anim_curve_keys": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "light.set.lighting_menu_mode": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "material.set.material_strength": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.set.pay_load_load_selected_prims": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "physics.set.rigid_body": {
+   "traces": 7,
+   "drills": [
+    "PH1",
+    "live"
+   ],
+   "skills": [
+    "isaac-sim-headless-deployment",
+    "isaac-sim-sensor",
+    "motion-generation",
+    "omnigraph",
+    "physics",
+    "physics-simulation"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "physics.set.static_collider": {
+   "traces": 3,
+   "drills": [
+    "PH1"
+   ],
+   "skills": [
+    "data-collection-sim",
+    "isaac-sim-headless-deployment",
+    "isaac-sim-sensor",
+    "motion-generation",
+    "physics"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "stage.set.usd_shade_info_attribute": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "camera.set.viewport_camera": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "anim.do.simplify_anim_curves": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.do.stitch_prim_specs_to_layer": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.do.toggle_active_prims": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.do.toggle_pay_load_load_selected_prims": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.do.toggle_prim_var": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.do.toggle_visibility_selected_prims": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.do.transform_multi_prims_srt_cpp": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.do.transform": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.do.transform_prim_srt": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.do.transform_prims": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.do.transform_prims_srt": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.do.ungroup_prims": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.do.unhide_all_prims": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "prim.do.unparent_prims": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "light.upgrade.usd_lux_lights": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "stage.do.usd_shade_disconnect": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "import.robot.urdf": {
+   "traces": 7,
+   "drills": [
+    "MO1",
+    "live"
+   ],
+   "skills": [
+    "actor-sdg-generate-lighting-variations",
+    "appsession",
+    "data-collection-sim",
+    "gpunuc",
+    "isaac-sim-assets",
+    "isaac-sim-troubleshooting",
+    "modeling",
+    "physx-to-newton-conversion",
+    "urdf-mjcf-to-usd-conversion"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "import.robot.mjcf": {
+   "traces": 7,
+   "drills": [
+    "MO1",
+    "live"
+   ],
+   "skills": [
+    "actor-sdg-generate-lighting-variations",
+    "data-collection-sim",
+    "gpunuc",
+    "isaac-sim-assets",
+    "isaac-sim-troubleshooting",
+    "modeling",
+    "physics-simulation",
+    "physx-to-newton-conversion",
+    "place-camera-aim-at",
+    "stage",
+    "urdf-mjcf-to-usd-conversion",
+    "viewport"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "export.asset.urdf": {
+   "traces": 7,
+   "drills": [
+    "MO1",
+    "live"
+   ],
+   "skills": [
+    "actor-sdg-generate-lighting-variations",
+    "appsession",
+    "articulation",
+    "calibrate-metropolis-camera",
+    "gpunuc",
+    "isaac-sim-assets",
+    "modeling",
+    "navigation-primitives",
+    "physx-to-newton-conversion",
+    "urdf-mjcf-to-usd-conversion"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "import.asset.heightmap": {
+   "traces": 7,
+   "drills": [
+    "MO1",
+    "live"
+   ],
+   "skills": [
+    "actor-sdg-generate-lighting-variations",
+    "appsession",
+    "gpunuc",
+    "isaac-sim-assets",
+    "isaac-sim-troubleshooting",
+    "modeling"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "create.asset.conveyor": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": false
+  },
+  "robot.clone": {
+   "traces": 9,
+   "drills": [
+    "MO1",
+    "live"
+   ],
+   "skills": [
+    "appsession",
+    "data-collection-sim",
+    "isaac-sim-robot-navigation",
+    "isaac-sim-ros-workspaces",
+    "isaac-sim-ros2-bridge",
+    "modeling",
+    "object-bin-packing",
+    "physics-simulation",
+    "place-camera-aim-at",
+    "stage"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "robot.add.articulation": {
+   "traces": 26,
+   "drills": [
+    "AR1",
+    "live",
+    "mock"
+   ],
+   "skills": [
+    "appsession",
+    "articulation",
+    "data-collection-sim",
+    "deform",
+    "generate-incident-config",
+    "isaac-sim-installation",
+    "isaac-sim-orchestrator",
+    "isaac-sim-robot-navigation",
+    "isaac-sim-ros-workspaces",
+    "isaac-sim-sensor",
+    "manipulation",
+    "manipulation-ik",
+    "meta-skills",
+    "motion-generation",
+    "nav2",
+    "omnigraph",
+    "physics",
+    "rosnav",
+    "sensors",
+    "usd-articulation"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "robot.set.joint_drive": {
+   "traces": 57,
+   "drills": [
+    "AR1",
+    "N1",
+    "live",
+    "mock"
+   ],
+   "skills": [
+    "appsession",
+    "articulation",
+    "data-collection-sim",
+    "deform",
+    "generate-incident-config",
+    "gpunuc",
+    "isaac-sim-installation",
+    "isaac-sim-robot-navigation",
+    "isaac-sim-ros-workspaces",
+    "isaac-sim-ros2-bridge",
+    "isaac-sim-sensor",
+    "manipulation",
+    "meta-skills",
+    "mobility-gen",
+    "motion-generation",
+    "nav2",
+    "omnigraph",
+    "physics",
+    "pyapi",
+    "rosnav",
+    "sensors",
+    "usd-articulation"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "robot.set.wheel_drive": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  },
+  "sensor.add.contact": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": false
+  },
+  "sensor.add.camera": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": false
+  },
+  "sensor.add.imu": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": false
+  },
+  "rl.env.create": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": false
+  },
+  "rl.env.step": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": false
+  },
+  "rl.env.reset": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": false
+  },
+  "rl.reward.add": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": false
+  },
+  "rl.termination.add": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": false
+  },
+  "rl.observation.add": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": false
+  },
+  "rl.action.add": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": false
+  },
+  "rl.command.add": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": false
+  },
+  "rl.curriculum.add": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": false
+  },
+  "rl.event.add": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": false
+  },
+  "rl.agent.create": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": false
+  },
+  "rl.train.run": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": false
+  },
+  "rl.play.run": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": false
+  },
+  "rl.actuator.set": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": false
+  },
+  "ros2.bridge.enable": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": false
+  },
+  "ros2.publisher.create": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": false
+  },
+  "ros2.subscriber.create": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": false
+  },
+  "ros2.topic.publish": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": false
+  },
+  "ros2.clock.enable": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": false
+  },
+  "ros2.tf.publish": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": false
+  },
+  "ros2.urdf.import": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": false
+  },
+  "ros2.sim.control": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": false
+  },
+  "robot.set.torque": {
+   "traces": 6,
+   "drills": [
+    "AR1"
+   ],
+   "skills": [
+    "articulation",
+    "generate-incident-config",
+    "isaac-sim-orchestrator",
+    "manipulation",
+    "manipulation-ik",
+    "nav2",
+    "omnigraph"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "robot.set.torque_limit": {
+   "traces": 10,
+   "drills": [
+    "AR1",
+    "live"
+   ],
+   "skills": [
+    "articulation",
+    "data-collection-sim",
+    "generate-incident-config",
+    "isaac-sim-orchestrator",
+    "manipulation",
+    "manipulation-ik",
+    "nav2",
+    "omnigraph",
+    "physics",
+    "usd-articulation"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "robot.set.velocity_limit": {
+   "traces": 6,
+   "drills": [
+    "AR1"
+   ],
+   "skills": [
+    "articulation",
+    "generate-incident-config",
+    "manipulation",
+    "manipulation-ik",
+    "nav2",
+    "omnigraph",
+    "usd-articulation"
+   ],
+   "handled": true,
+   "available": true
+  },
+  "robot.set.dc_motor": {
+   "traces": 0,
+   "drills": [],
+   "skills": [],
+   "handled": false,
+   "available": true
+  }
+ },
+ "gaps": {
+  "handled_undrilled": [],
+  "available_undrilled": [
+   "anim.add.anim_curves",
+   "anim.clear.curves_splits_overrides",
+   "anim.do.edit_anim_curve_keys",
+   "anim.do.extract_anim_curves",
+   "anim.do.paste_anim_curve_keys",
+   "anim.do.paste_anim_curves",
+   "anim.do.select_anim_curve_keys",
+   "anim.do.simplify_anim_curves",
+   "anim.remove.anim_curve_keys",
+   "anim.remove.anim_curves",
+   "anim.set.anim_curve_default_tangent_type",
+   "anim.set.anim_curve_infinity_type",
+   "anim.set.anim_curve_keys",
+   "camera.duplicate.camera",
+   "camera.duplicate.viewport_camera",
+   "camera.set.viewport_camera",
+   "joint.add.d6",
+   "joint.add.distance",
+   "joint.add.fixed",
+   "joint.add.prismatic",
+   "joint.add.revolute",
+   "joint.add.spherical",
+   "joint.create.joints",
+   "joint.remove.d6",
+   "joint.remove.distance",
+   "joint.remove.fixed",
+   "joint.remove.prismatic",
+   "joint.remove.revolute",
+   "joint.remove.spherical",
+   "light.set.lighting_menu_mode",
+   "light.upgrade.usd_lux_lights",
+   "material.create.and_bind_mdl_material_from_library",
+   "material.create.and_bind_mtlx_surface_from_library",
+   "material.create.mdl_material",
+   "material.create.mtlx_material",
+   "material.create.preview_surface_material",
+   "material.create.preview_surface_texture_material",
+   "material.create.shader_prim_from_sdr",
+   "material.set.material_strength",
+   "mesh.create.mesh",
+   "mesh.create.mesh_prim_with_default_xform",
+   "physics.add.collision_group",
+   "physics.add.fixed_joint",
+   "physics.add.physics",
+   "physics.apply.material",
+   "physics.cook.physx_colliders",
+   "physics.create.audio_prim_from_asset_path",
+   "physics.remove.physics",
+   "physics.remove.rigid_body_2",
+   "physics.remove.static_collider",
+   "prim.add.xform_op",
+   "prim.append.api_to_prims",
+   "prim.change.metadata_in_prims",
+   "prim.change.prim_display_name",
+   "prim.connect.prim",
+   "prim.copy.prim",
+   "prim.copy.prims",
+   "prim.create.default_xform_on",
+   "prim.create.prim",
+   "prim.create.prim_with_default_xform",
+   "prim.create.prims",
+   "prim.delete.prims",
+   "prim.do.disconnect",
+   "prim.do.enable_xform_op",
+   "prim.do.frame_prims",
+   "prim.do.isaac_sim_destroy",
+   "prim.do.isaac_sim_scale",
+   "prim.do.isaac_sim_spawn",
+   "prim.do.isaac_sim_teleport",
+   "prim.do.parent_prims",
+   "prim.do.prim_var",
+   "prim.do.reorder",
+   "prim.do.select_prims",
+   "prim.do.select_variant",
+   "prim.do.stitch_prim_specs_to_layer",
+   "prim.do.toggle_active_prims",
+   "prim.do.toggle_pay_load_load_selected_prims",
+   "prim.do.toggle_prim_var",
+   "prim.do.toggle_visibility_selected_prims",
+   "prim.do.transform",
+   "prim.do.transform_multi_prims_srt_cpp",
+   "prim.do.transform_prim_srt",
+   "prim.do.transform_prims",
+   "prim.do.transform_prims_srt",
+   "prim.do.ungroup_prims",
+   "prim.do.unhide_all_prims",
+   "prim.do.unparent_prims",
+   "prim.group.prims",
+   "prim.move.prim",
+   "prim.move.prim_specs_to_layer",
+   "prim.move.prims",
+   "prim.remove.api_from_prims",
+   "prim.remove.prim_spec",
+   "prim.remove.xform_op",
+   "prim.remove.xform_op_and_attrbute",
+   "prim.set.pay_load_load_selected_prims",
+   "robot.create.surface_gripper",
+   "robot.set.dc_motor",
+   "robot.set.wheel_drive",
+   "scene.clear",
+   "scene.do.scene_optimizer_json_parser",
+   "scene.do.scene_optimizer_list_operation_arguments",
+   "scene.do.scene_optimizer_list_operations",
+   "scene.do.scene_optimizer_operation",
+   "sensor.create.rtx_ids",
+   "sensor.create.rtx_sensor",
+   "sensor.do.range_sensor_create",
+   "stage.change.pipeline_stage",
+   "stage.create.usd_attribute",
+   "stage.create.usd_attribute_on_path",
+   "stage.do.usd_shade_disconnect",
+   "stage.set.usd_shade_info_attribute"
+  ]
+ }
+}

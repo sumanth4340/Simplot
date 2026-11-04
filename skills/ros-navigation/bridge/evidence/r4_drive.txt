@@ -1,0 +1,42 @@
+BUILD: R4-BUILD-OK nodes=['CTL', 'OnPB', 'TF', 'Time'] parent=[Sdf.Path('/World')] targets=3
+PLAY: PLAYING-60
+LISTEN: PY=C:\dev\lyrical\.pixi\envs\default\python.exe
+LISTEN-OK count=8
+LISTEN-DONE
+PUMP-LOG: {
+  "status": "ok",
+  "output": "PUMP40 art=/World/R4Bot_1793727380",
+  "result": null
+}
+
+{
+  "status": "ok",
+  "output": "PUMP40 art=/World/R4Bot_1793727380",
+  "result": null
+}
+
+{
+  "status": "ok",
+  "output": "PUMP40 art=/World/R4Bot_1793727380",
+  "result": null
+}
+
+{
+  "status": "ok",
+  "output": "PUMP40 art=/World/R4Bot_1793727380",
+  "result": null
+}
+
+{
+  "status": "ok",
+  "output": "PUMP40 art=/World/R4Bot_1793727380",
+  "result": null
+}
+
+{
+  "status": "ok",
+  "output": "PUMP40 art=/World/R4Bot_1793727380",
+  "result": null
+}
+
+STOP: STOPPED

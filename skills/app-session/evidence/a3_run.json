@@ -1,0 +1,5 @@
+{
+  "status": "ok",
+  "output": "A3-REPORT pyserver=True bogus=False count=659 echo=hello-a3",
+  "result": null
+}

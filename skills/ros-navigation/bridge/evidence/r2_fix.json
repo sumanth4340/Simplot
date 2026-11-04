@@ -1,0 +1,5 @@
+﻿{
+  "status": "ok",
+  "output": "FIXVERIFY={\"ndof\": 2, \"joints\": [\"J1\", \"J2\"], \"dofs\": [\"J1\", \"J2\"], \"links\": [\"base\", \"link1\", \"link2\"], \"dof_pos\": [0.003635574597865343, -0.012326757423579693]}",
+  "result": null
+}

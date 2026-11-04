@@ -1,0 +1,5 @@
+{
+  "status": "ok",
+  "output": "X9-REPORT valid=True sizeB=0.15 sizeL=0.20 bx=3.00 dtype=position stiff=100.0 damp=10.0 nodes=4 tgt=/World/V9Bot/Hinge1 en=True rivals=0",
+  "result": null
+}

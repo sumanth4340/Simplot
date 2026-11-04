@@ -1,0 +1,35 @@
+{
+ "n_commands": 0,
+ "has_create": false,
+ "has_delete": false,
+ "cmd_create": true,
+ "root_tail": "us-west-2.amazonaws.com/Assets/Isaac/6.0",
+ "was_playing": false,
+ "playing": true,
+ "time_adv": true,
+ "stopped": true,
+ "cmd_dir_undo": [
+  "POST_UNDO_CALLBACK",
+  "PRE_UNDO_CALLBACK"
+ ],
+ "undo_mod": [
+  "begin_disabled",
+  "begin_group",
+  "can_redo",
+  "can_repeat",
+  "can_undo",
+  "clear_history",
+  "clear_stack",
+  "disabled",
+  "end_disabled",
+  "end_group",
+  "execute",
+  "get_history"
+ ],
+ "cmd_undo": true,
+ "cmd_redo": true,
+ "stat_root": "Result.OK",
+ "nvidia_list_n": 8,
+ "has_rotary2d": true,
+ "stat_missing": "Result.ERROR_NOT_FOUND"
+}

@@ -1,0 +1,5 @@
+{
+  "status": "ok",
+  "output": "O2-BUILD-OK graph=True nodes=['OnPB', 'Write'] valuetype=token",
+  "result": null
+}

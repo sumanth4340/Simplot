@@ -1,0 +1,18 @@
+[package]
+version = "0.2.0"
+category = "isaac"
+title = "Action Reasoner Executor"
+description = "In-sim prompt GUI + validated action executor. Type one action per line (e.g. 'create.objects.cuboid size=1') and run it against the live stage."
+authors = ["action-reasoner"]
+keywords = ["isaac", "agent", "executor", "action-reasoner"]
+
+[dependencies]
+"isaacsim.core.api" = {}
+"isaacsim.sensors.experimental.rtx" = {}
+"omni.kit.menu.utils" = {}
+"omni.kit.uiapp" = {}
+"omni.timeline" = {}
+"omni.usd" = {}
+
+[[python.module]]
+name = "isaacsim.action.reasoner.executor"

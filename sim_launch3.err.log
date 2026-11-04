@@ -1,0 +1,266 @@
+Warning: Possible version incompatibility. Attempting to load omni::fabric::IStageReaderWriter with version v0.16 against v0.14.
+Warning: Possible version incompatibility. Attempting to load omni::fabric::IStageReaderWriter with version v0.16 against v0.14.
+Warning: Possible version incompatibility. Attempting to load omni::fabric::IStageReaderWriter with version v0.16 against v0.15.
+2026-11-03T19:20:22Z [584,044ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:22Z [584,045ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:22Z [584,046ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:22Z [584,046ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:22Z [584,047ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:22Z [584,047ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:22Z [584,126ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:22Z [584,127ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:22Z [584,127ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:22Z [584,127ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:22Z [584,127ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:22Z [584,128ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:22Z [584,231ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:22Z [584,231ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:22Z [584,231ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:22Z [584,231ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:22Z [584,232ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:22Z [584,232ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,307ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,307ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,308ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,308ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,308ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,308ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,383ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,384ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,384ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,384ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,384ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,385ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,447ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,448ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,448ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,448ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,448ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,449ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,510ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,510ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,510ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,511ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,511ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,511ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,571ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,572ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,572ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,572ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,572ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,572ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,633ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,633ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,634ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,634ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,634ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,634ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,695ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,696ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,696ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,696ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,696ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,696ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,759ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,760ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,760ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,760ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,760ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,760ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,820ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,820ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,820ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,821ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,821ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,821ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,880ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,880ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,880ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,880ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,881ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,881ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,940ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,940ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,940ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,940ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [584,941ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [584,941ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [585,111ms] [Error] [omni.graph.core.plugin] /ROS2/N2/HELP: [/ROS2/N2] Assertion raised in compute - Unable to get camera: unknown render product or viewport '/Render/OmniverseKit/HydraTextures/rtx_sensor_150634645794' (<class 'str'>)
+  File "c:\isaacsim\exts\isaacsim.ros2.nodes\isaacsim\ros2\nodes\ogn\python\nodes\OgnROS2RtxLidarHelper.py", line 233, in compute
+    prim = ViewportManager.get_camera(render_product_path).GetPrim()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:/isaacsim/exts/isaacsim.core.rendering_manager/isaacsim/core/rendering_manager/impl/viewport_manager.py", line 211, in get_camera
+    raise ValueError(
+
+2026-11-03T19:20:23Z [585,115ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [585,115ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [585,115ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [585,116ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [585,116ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [585,116ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [585,178ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [585,178ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [585,179ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [585,179ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:23Z [585,179ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:23Z [585,179ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:24Z [585,273ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:24Z [585,273ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:24Z [585,274ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:24Z [585,274ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:24Z [585,274ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:24Z [585,274ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:24Z [585,351ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:24Z [585,352ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:24Z [585,352ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:24Z [585,352ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:24Z [585,352ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:24Z [585,353ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:24Z [585,414ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:24Z [585,414ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:24Z [585,415ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:24Z [585,415ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:24Z [585,415ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:24Z [585,415ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:24Z [585,478ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:24Z [585,478ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:24Z [585,478ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:24Z [585,478ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:24Z [585,479ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:24Z [585,479ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:24Z [585,604ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:24Z [585,605ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:24Z [585,605ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:24Z [585,605ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:24Z [585,605ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:24Z [585,606ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:24Z [586,244ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:24Z [586,245ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:24Z [586,245ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:24Z [586,245ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getTransforms
+2026-11-03T19:20:24Z [586,245ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:20:24Z [586,245ms] [Error] [omni.physx.tensors.plugin] Simulation view object is invalidated and cannot be used again to call omni::physx::tensors::CpuRigidBodyView::getVelocities
+2026-11-03T19:24:14Z [815,617ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,618ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,618ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,619ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,619ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,619ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,621ms] [Error] [omni.kit.app._impl] [py stderr]: sys:1: RuntimeWarning: coroutine 'VariablesService._pending_dirty_handler' was never awaited
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+2026-11-03T19:24:14Z [815,621ms] [Error] [omni.kit.app._impl] [py stderr]: sys:1: RuntimeWarning: coroutine 'AnimationGraphManager._process_usd_change.<locals>.create_node_graph' was never awaited
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+2026-11-03T19:24:14Z [815,626ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,627ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,627ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,627ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,628ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,628ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,633ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,633ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,633ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,634ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,634ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,635ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,637ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,637ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,637ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,638ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,638ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,639ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,641ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,641ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,641ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,642ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,642ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:14Z [815,643ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,907ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,908ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,908ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,912ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,912ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,913ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,916ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,916ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,917ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,918ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,919ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,919ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,921ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,921ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,921ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,925ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,925ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,925ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,928ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,929ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,929ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,932ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,933ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,933ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,935ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,935ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,936ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,938ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,938ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+
+2026-11-03T19:24:20Z [821,939ms] [Error] [omni.usd] TF_PYTHON_EXCEPTION (secondary thread): in TfPyConvertPythonExceptionToTfErrors at line 98 of C:\g\281687118\conan\src\0.25.11.kit.2\pxr\base\tf\pyError.cpp -- Tf Python Exception
+

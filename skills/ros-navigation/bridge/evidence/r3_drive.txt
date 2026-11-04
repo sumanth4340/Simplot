@@ -1,0 +1,32 @@
+BUILD: R3-BUILD-OK nodes=['CTL', 'OnPB', 'SUB'] art=/World/R3Bot_1793727330
+PLAY: PLAYING-60
+TALK: PRE-TALK (match building):
+TALK-OK n=60
+TALK-OK n=249
+TALK-DONE
+PUMP-LOG: {
+  "status": "ok",
+  "output": "PUMP40 pose=[4.320340633392334, -2.700030565261841]",
+  "result": null
+}
+
+{
+  "status": "ok",
+  "output": "PUMP40 pose=[5.027158260345459, -3.141589403152466]",
+  "result": null
+}
+
+{
+  "status": "ok",
+  "output": "PUMP40 pose=[5.733975887298584, -3.583148241043091]",
+  "result": null
+}
+
+{
+  "status": "ok",
+  "output": "PUMP40 pose=[-6.125577449798584, -4.024707317352295]",
+  "result": null
+}
+
+READ: FINAL-POSE=[5.435957431793213, 1.318115472793579]
+STOP: STOPPED

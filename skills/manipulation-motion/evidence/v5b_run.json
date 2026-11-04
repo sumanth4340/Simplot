@@ -1,0 +1,5 @@
+{
+ "status": "ok",
+ "output": "V5B-REPORT zmax=1.8028 err_p=0.0091 pxy=0.0024 pz=0.0000 spd=0.0000 released=True q_end=[1.7242931127548218, 1.0907577276229858] block1=[0.5523991584777832, -4.012452336610295e-06, 0.36000001430511475] conv=True",
+ "comment": "mirror of M4b; block carried B->A, placed x=+0.5524; metrics bit-identical to M4b"
+}

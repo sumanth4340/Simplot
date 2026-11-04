@@ -1,0 +1,46 @@
+$ send --file Downloads/IsaacSim-release-6.3/IsaacSim-release-6.3/skills/isaac-sim-remote/scripts/simulation_control.py --arg action=stop
+Simulation: STOPPED
+$ send --file Downloads/IsaacSim-release-6.3/IsaacSim-release-6.3/skills/isaac-sim-remote/scripts/simulation_control.py --arg action=status
+Simulation state: STOPPED
+Physics DT: 0.016666666666666666
+Simulation time: 0.0
+Physics steps: 0
+Is simulating: False
+Backend: numpy
+Device: cpu
+Physics scenes: [<isaacsim.core.simulation_manager.impl.physx_scene.PhysxScene object at 0x000001DB4A779BE0>]
+$ send --file Downloads/IsaacSim-release-6.3/IsaacSim-release-6.3/skills/isaac-sim-remote/scripts/simulation_control.py --arg action=play
+Simulation: PLAYING
+$ send --file Downloads/IsaacSim-release-6.3/IsaacSim-release-6.3/skills/isaac-sim-remote/scripts/simulation_control.py --arg action=status
+Simulation state: PLAYING
+Physics DT: 0.016666666666666666
+Simulation time: 0.23333333333333334
+Physics steps: 14
+Is simulating: True
+Backend: numpy
+Device: cpu
+Physics scenes: [<isaacsim.core.simulation_manager.impl.physx_scene.PhysxScene object at 0x000001DB4A779BE0>]
+$ send --file Downloads/IsaacSim-release-6.3/IsaacSim-release-6.3/skills/isaac-sim-remote/scripts/simulation_control.py --arg action=pause
+Simulation: PAUSED
+$ send --file Downloads/IsaacSim-release-6.3/IsaacSim-release-6.3/skills/isaac-sim-remote/scripts/simulation_control.py --arg action=status
+Simulation state: PAUSED
+Physics DT: 0.016666666666666666
+Simulation time: 0.35
+Physics steps: 21
+Is simulating: True
+Backend: numpy
+Device: cpu
+Physics scenes: [<isaacsim.core.simulation_manager.impl.physx_scene.PhysxScene object at 0x000001DB4A779BE0>]
+$ send --file Downloads/IsaacSim-release-6.3/IsaacSim-release-6.3/skills/isaac-sim-remote/scripts/simulation_control.py --arg action=stop
+Simulation: STOPPED
+STOPPED_SEEN=True
+PLAYING_SEEN=True
+PAUSED_SEEN=True
+$ send --file action-reasoner/skills/app-session/scripts/a1_time.py
+TIME-SET-GET 2.500
+$ send --file Downloads/IsaacSim-release-6.3/IsaacSim-release-6.3/skills/isaac-sim-remote/scripts/simulation_control.py --arg action=step --arg num_steps=60
+Advanced 60 simulation step(s)
+Simulation time: 1.0666666666666667
+Physics steps: 64
+$ send --file Downloads/IsaacSim-release-6.3/IsaacSim-release-6.3/skills/isaac-sim-remote/scripts/simulation_control.py --arg action=stop
+Simulation: STOPPED

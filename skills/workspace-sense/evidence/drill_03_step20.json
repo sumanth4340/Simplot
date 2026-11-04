@@ -1,0 +1,5 @@
+{
+  "status": "ok",
+  "output": "DRILL03-SETUP-OK live scene, cubes@z2+z4 clock=0\nSTEP-FALLBACK AttributeError(\"'NoneType' object has no attribute 'get_physics_dt'\")\nLIVE-TRUTH z=1.4196 vz=-3.2700 via=update_app_async",
+  "result": null
+}

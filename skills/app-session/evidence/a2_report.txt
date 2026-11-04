@@ -1,0 +1,27 @@
+$ send Downloads/IsaacSim-release-6.3/IsaacSim-release-6.3/skills/isaac-sim-remote/scripts/open_stage.py --arg action=new
+Created new stage (template: empty)
+$ send --file action-reasoner/skills/app-session/scripts/a2_marker.py
+A2-MARKER valid=True size=0.70
+$ send action=save --arg usd_path=C:/Users/sruja_ob3di74/action-reasoner/skills/app-session/evidence/a2_stage.usd
+Saved as: C:/Users/sruja_ob3di74/action-reasoner/skills/app-session/evidence/a2_stage.usd
+$ send Downloads/IsaacSim-release-6.3/IsaacSim-release-6.3/skills/isaac-sim-remote/scripts/open_stage.py --arg action=new
+Created new stage (template: empty)
+$ send Downloads/IsaacSim-release-6.3/IsaacSim-release-6.3/skills/isaac-sim-remote/scripts/open_stage.py --arg action=info
+Stage URL: anon:00000244AE120300:World2.usd
+Up axis: Z
+Units (meters per unit): (1.0, 1.0)
+Prim count: 12
+Stage loading: False
+$ send action=open --arg usd_path=C:/Users/sruja_ob3di74/action-reasoner/skills/app-session/evidence/a2_stage.usd
+Opened: C:/Users/sruja_ob3di74/action-reasoner/skills/app-session/evidence/a2_stage.usd
+Stage prims: 17
+$ send Downloads/IsaacSim-release-6.3/IsaacSim-release-6.3/skills/isaac-sim-remote/scripts/open_stage.py --arg action=info
+Stage URL: C:/Users/sruja_ob3di74/action-reasoner/skills/app-session/evidence/a2_stage.usd
+Up axis: Z
+Units (meters per unit): (1.0, 1.0)
+Prim count: 17
+Stage loading: False
+$ send --file action-reasoner/skills/app-session/scripts/a2_check.py
+A2-CHECK valid=True
+USD_EXISTS=True
+USD_BYTES=4612

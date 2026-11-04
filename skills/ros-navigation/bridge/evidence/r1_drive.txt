@@ -1,0 +1,6 @@
+BUILD: R1-BUILD-OK graph=True nodes=['Clock', 'OnPB', 'Time'] linked=True
+PLAY: PLAYING-60
+LISTEN: PY=C:\dev\lyrical\.pixi\envs\default\python.exe
+LISTEN-OK count=8
+
+STOP: STOPPED

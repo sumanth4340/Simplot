@@ -1,0 +1,5 @@
+{
+  "status": "ok",
+  "output": "O3-BUILD-OK graph=True nodes=['Mul', 'OnPB', 'Write']",
+  "result": null
+}

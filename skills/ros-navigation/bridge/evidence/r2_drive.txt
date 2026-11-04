@@ -1,0 +1,42 @@
+BUILD: R2-BUILD-OK nodes=['CTL', 'JS', 'OnPB', 'Time'] target=[Sdf.Path('/World/R2Bot_1793727311')]
+PLAY: PLAYING-60
+LISTEN: PY=C:\dev\lyrical\.pixi\envs\default\python.exe
+LISTEN-OK count=8
+LISTEN-DONE
+PUMP-LOG: {
+  "status": "ok",
+  "output": "PUMP40 pose=[2.534153938293457, -2.534153938293457]",
+  "result": null
+}
+
+{
+  "status": "ok",
+  "output": "PUMP40 pose=[3.384335517883301, -3.384335517883301]",
+  "result": null
+}
+
+{
+  "status": "ok",
+  "output": "PUMP40 pose=[4.251072406768799, -4.251072406768799]",
+  "result": null
+}
+
+{
+  "status": "ok",
+  "output": "PUMP40 pose=[5.084202289581299, -5.084202289581299]",
+  "result": null
+}
+
+{
+  "status": "ok",
+  "output": "PUMP40 pose=[5.917332172393799, -5.917332172393799]",
+  "result": null
+}
+
+{
+  "status": "ok",
+  "output": "PUMP40 pose=[-5.782583713531494, 5.782583713531494]",
+  "result": null
+}
+
+STOP: STOPPED

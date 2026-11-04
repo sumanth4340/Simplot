@@ -1,0 +1,5 @@
+﻿{
+  "status": "ok",
+  "output": "M2-REPORT out=C:\\Users\\sruja_ob3di74\\action-reasoner\\skills\\modeling-assets\\assets\\m2_out\\m2_bot_2\\m2_bot.usda root=True joints=/World/M2Bot/Physics/root_joint,/World/M2Bot/Physics/shoulder base=True arm=True",
+  "result": null
+}

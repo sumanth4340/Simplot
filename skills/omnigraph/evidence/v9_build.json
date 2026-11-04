@@ -1,0 +1,5 @@
+{
+  "status": "ok",
+  "output": "V9-BUILD-OK graph=True nodes=['Add', 'Mul', 'OnPB', 'Write'] linked=True rivals=[]",
+  "result": null
+}

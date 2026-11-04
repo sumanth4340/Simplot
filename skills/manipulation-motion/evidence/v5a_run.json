@@ -1,0 +1,5 @@
+{
+ "status": "ok",
+ "output": "V5A-SEED PAPP err=0.0011 q=[1.4913, 1.1249]\nV5A-SEED PDSC err=0.0006 q=[1.7339, 1.0925]\nV5A-SEED APP err=0.0011 q=[-1.4913, -1.1249]\nV5A-REPORT err_pd=0.0006 err_a=0.0011 err_t=0.0014 err_g=0.0072 g0=0.0072 g0b=0.0072 attached=True bq=[1.0, -0.0, 0.0, 0.0] q_place=[1.7339246273040771, 1.0924890041351318] q_grasp=[-1.7161632776260376, -1.1232386827468872] block0=[-0.5499996542930603, 6.353287318461298e-08, 0.35999995470046997] conv=True",
+ "comment": "mirror of M4a; q_mirror=(-q1,-q2) from matching q_place seed; errors bit-identical to M4a"
+}

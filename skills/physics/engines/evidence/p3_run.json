@@ -1,0 +1,5 @@
+{
+  "status": "ok",
+  "output": "P3-REPORT avail=[\"('newton', False)\", \"('physx', True)\"] default=physx a1=newton b1=torch a2=physx b2=torch",
+  "result": null
+}

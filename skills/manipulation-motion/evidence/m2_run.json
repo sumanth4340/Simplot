@@ -1,0 +1,5 @@
+{
+  "status": "ok",
+  "output": "M2-TRACE it=1 err=0.3418 q=[0.1001, 0.0995] dq=[0.1, 0.1]\nM2-TRACE it=2 err=0.2289 q=[0.2004, 0.1985] dq=[0.1, 0.1]\nM2-TRACE it=3 err=0.1171 q=[0.2357, 0.2971] dq=[0.0349, 0.1]\nM2-REPORT err0=0.3418 err1=0.0143 iters=7 q=[0.13745997846126556, 0.5927016735076904] conv=True",
+  "result": null
+}

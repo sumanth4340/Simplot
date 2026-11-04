@@ -1,0 +1,5 @@
+﻿{
+  "status": "ok",
+  "output": "P1-STEP-FALLBACK AttributeError(\"'NoneType' object has no attribute 'get_physics_dt'\")\nP1-MOTION-REPORT z0=1.9918 z1=0.5000 t0=0.000 t1=2.000 engine=physx via=update_app_async",
+  "result": null
+}

@@ -1,0 +1,5 @@
+﻿{
+  "status": "ok",
+  "output": "S3-REPORT tr=1.0,2.0,3.0 rot=0.0,0.0,90.0 sc=2.0,1.0,0.5 size=2.0 color=1.0,0.0,0.0 vis1=invisible vis2=inherited pur1=guide pur2=render op=0.5 tag=s3",
+  "result": null
+}

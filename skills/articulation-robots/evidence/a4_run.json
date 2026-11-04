@@ -1,0 +1,5 @@
+﻿{
+  "status": "ok",
+  "output": "A4-REPORT robot=True type=Manipulator links=/World/A4Bot/Base|/World/A4Bot/Link1|/World/A4Bot/Link2 joints=/World/A4Bot/RootFixed|/World/A4Bot/Hinge1|/World/A4Bot/Hinge2 bad=0 rootlink=/World/A4Bot/Base",
+  "result": null
+}

@@ -1,0 +1,1 @@
+[{"drill": "r1", "drive_rc": 0, "verify_rc": 0, "verify_tail": ["R1-PASS"]}, {"drill": "r2", "drive_rc": 0, "verify_rc": 0, "verify_tail": ["R2-PASS"]}, {"drill": "r3", "drive_rc": 0, "verify_rc": 0, "verify_tail": ["R3-PASS"]}, {"drill": "r4", "drive_rc": 0, "verify_rc": 0, "verify_tail": ["R4-PASS"]}]

@@ -1,0 +1,10 @@
+#usda 1.0
+def Xform "World"
+{
+    def Cube "VBase"
+    {
+        double size = 1
+        double3 xformOp:translate = (0, 0, 0.5)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+}

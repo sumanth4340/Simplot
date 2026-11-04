@@ -1,0 +1,5 @@
+{
+  "status": "ok",
+  "output": "S3-IMU time=[199.6167] physics_step=[5993.0] linear_acceleration=[0.0, 0.0, 9.81] angular_velocity=[0.0, 0.0, 0.0] orientation=[1.0, 0.0, 0.0, 0.0]\nS3-CONTACT time=[199.6167] physics_step=[5993.0] in_contact=[1.0] force=[9.8098] number_of_contacts=[4.0]\nS3-REPORT amag=9.8100 wmag=0.0000 in_contact=True force=9.8098 ncontacts=4",
+  "result": null
+}

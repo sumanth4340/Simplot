@@ -1,0 +1,5 @@
+{
+  "status": "ok",
+  "output": "X13-REPORT valid=True sA=1.00 sB=0.60 tA=-0.80,0.00,0.50 dome=3000.0 stopped=True",
+  "result": null
+}

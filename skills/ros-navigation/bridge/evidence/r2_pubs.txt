@@ -1,0 +1,3 @@
+PUBS=1
+PUB node=_ROS2_R2_JS ns=/
+NODES=[('_ROS2_R2_JS', '/'), ('_World_R1Clock_Clock', '/'), ('_ros2cli_daemon_0_cefc36df61d142aa9264b564d7223ecf', '/'), ('muse_probe3', '/')]

@@ -1,0 +1,5 @@
+{
+  "status": "ok",
+  "output": "S1-REPORT shape=240x320x4 dtype=uint8 mean=63.66 max=255",
+  "result": null
+}

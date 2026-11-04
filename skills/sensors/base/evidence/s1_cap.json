@@ -1,0 +1,5 @@
+{
+  "status": "ok",
+  "output": "S1-REPORT rgbmean=85.9 rgbmax=91 dshape=[240, 320, 1] dctr=3.738 dmin=3.693 dmax=3.784",
+  "result": null
+}

@@ -1,0 +1,25 @@
+$ send Downloads/IsaacSim-release-6.3/IsaacSim-release-6.3/skills/isaac-sim-remote/scripts/open_stage.py --arg action=new
+Created new stage (template: empty)
+$ send --file action-reasoner/skills/app-session/scripts/v13_build.py
+V13-BUILD-OK valid=True
+$ send action=save --arg usd_path=C:/Users/sruja_ob3di74/action-reasoner/skills/app-session/evidence/v13_stage.usd
+Saved as: C:/Users/sruja_ob3di74/action-reasoner/skills/app-session/evidence/v13_stage.usd
+$ send Downloads/IsaacSim-release-6.3/IsaacSim-release-6.3/skills/isaac-sim-remote/scripts/open_stage.py --arg action=new
+Created new stage (template: empty)
+$ send action=open --arg usd_path=C:/Users/sruja_ob3di74/action-reasoner/skills/app-session/evidence/v13_stage.usd
+Opened: C:/Users/sruja_ob3di74/action-reasoner/skills/app-session/evidence/v13_stage.usd
+Stage prims: 15
+$ send --file action-reasoner/skills/app-session/scripts/v13_check.py
+V13-CHECK valid=True
+$ send action=step --arg num_steps=60
+Advanced 60 simulation step(s)
+Simulation time: 1.0666666666666667
+Physics steps: 64
+$ send Downloads/IsaacSim-release-6.3/IsaacSim-release-6.3/skills/isaac-sim-remote/scripts/viewport_screenshot.py --arg output_path=C:/Users/sruja_ob3di74/action-reasoner/skills/app-session/evidence/v13_view.png
+Saved image to C:/Users/sruja_ob3di74/action-reasoner/skills/app-session/evidence\v13_view.png with shape (720, 1280, 4)
+Viewport screenshot saved: C:/Users/sruja_ob3di74/action-reasoner/skills/app-session/evidence/v13_view.png (21714 bytes)
+Saved viewport screenshot: C:/Users/sruja_ob3di74/action-reasoner/skills/app-session/evidence/v13_view.png
+$ send Downloads/IsaacSim-release-6.3/IsaacSim-release-6.3/skills/isaac-sim-remote/scripts/simulation_control.py --arg action=stop
+Simulation: STOPPED
+USD_BYTES=4760
+SHOT_BYTES=21714

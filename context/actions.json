@@ -1,0 +1,2384 @@
+{
+ "version": 1,
+ "note": "Live-probed on Isaac Sim 6.0.0-rc.59 via the action bridge. states: neverplayed/playing/nonplaying (snapshot prints stopped as paused; neverplayed = fresh stage pre-play).",
+ "actions": [
+  {
+   "key": "create.objects.plane",
+   "group": "create",
+   "available": true,
+   "params": {
+    "size": {
+     "type": "float",
+     "default": 10.0
+    }
+   },
+   "pre_rules": [
+    "only one plane allowed",
+    "born with collider"
+   ],
+   "verified": true,
+   "states": {
+    "neverplayed": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_01b_neverplayed.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "create.objects.cuboid",
+   "group": "create",
+   "available": true,
+   "params": {
+    "pos": {
+     "type": "vec3",
+     "default": [
+      0.0,
+      0.0,
+      0.5
+     ]
+    },
+    "color": {
+     "type": "vec3",
+     "default": null
+    },
+    "size": {
+     "type": "float",
+     "default": 1.0
+    },
+    "mass": {
+     "type": "float",
+     "default": 1.0
+    }
+   },
+   "pre_rules": [
+    "born rigid + collider (Dynamic* class)",
+    "clamp pos.z >= size/2"
+   ],
+   "verified": true,
+   "states": {
+    "neverplayed": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_01_neverplayed.txt"
+     ]
+    },
+    "playing": {
+     "ok": 8,
+     "fail": 9,
+     "cmds": [
+      "ctx_03_playing.txt",
+      "ctx_20_creates.txt",
+      "ctx_21_extras.txt",
+      "ctx_26b_probe.txt",
+      "ctx_27_resetheal.txt",
+      "ctx_29_creates.txt",
+      "ctx_30_extras.txt",
+      "ctx_33_resetheal2.txt",
+      "ctx_34_creates.txt",
+      "ctx_35_extras.txt",
+      "ctx_38a_cubscale.txt",
+      "ctx_38c_cubori.txt",
+      "ctx_42_playprobe.txt",
+      "ctx_43_heal.txt",
+      "ctx_46_playprobe.txt",
+      "ctx_47_heal.txt",
+      "ctx_62_resetrecreate.txt"
+     ]
+    },
+    "nonplaying": {
+     "ok": 4,
+     "fail": 1,
+     "cmds": [
+      "ctx_06_paused.txt",
+      "ctx_08_stopped.txt",
+      "ctx_08b_stopped.txt",
+      "ctx_50b_marker.txt",
+      "ctx_60d_dup.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": [
+    {
+     "cmd": "ctx_20_creates.txt",
+     "state": "playing",
+     "msg": "create.objects.cuboid failed: Failed to get rigid body velocities from backend"
+    },
+    {
+     "cmd": "ctx_35_extras.txt",
+     "state": "playing",
+     "msg": "create.objects.cuboid failed: \n\tError in 'pxrInternal_v0_25_11__pxrReserved__::UsdStage::_SetValueImpl' at line 7061 in file C:\\g\\281687118\\conan\\src\\0.25.11.kit.2\\pxr\\usd\\usd\\stage.cpp : 'Type mismatch for </World/kx_cub.xformOp:orient>: expected 'GfQuatd', got 'GfQuatf''"
+    },
+    {
+     "cmd": "ctx_60d_dup.txt",
+     "state": "nonplaying",
+     "msg": "prim already exists: /World/np_cub"
+    }
+   ]
+  },
+  {
+   "key": "create.objects.sphere",
+   "group": "create",
+   "available": true,
+   "params": {
+    "pos": {
+     "type": "vec3",
+     "default": [
+      0.0,
+      0.0,
+      0.5
+     ]
+    },
+    "color": {
+     "type": "vec3",
+     "default": null
+    },
+    "radius": {
+     "type": "float",
+     "default": 0.5
+    },
+    "mass": {
+     "type": "float",
+     "default": 1.0
+    }
+   },
+   "pre_rules": [
+    "born rigid + collider (Dynamic* class)",
+    "clamp pos.z >= radius"
+   ],
+   "verified": true,
+   "states": {
+    "playing": {
+     "ok": 7,
+     "fail": 3,
+     "cmds": [
+      "ctx_23_jointbodies.txt",
+      "ctx_32_jointbodies.txt",
+      "ctx_34_creates.txt",
+      "ctx_37_jointbodies.txt",
+      "ctx_38b_sphori.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": [
+    {
+     "cmd": "ctx_23_jointbodies.txt",
+     "state": "playing",
+     "msg": "create.objects.sphere failed: Failed to get rigid body velocities from backend"
+    }
+   ]
+  },
+  {
+   "key": "create.objects.cylinder",
+   "group": "create",
+   "available": true,
+   "params": {
+    "pos": {
+     "type": "vec3",
+     "default": [
+      0.0,
+      0.0,
+      0.5
+     ]
+    },
+    "color": {
+     "type": "vec3",
+     "default": null
+    },
+    "radius": {
+     "type": "float",
+     "default": 0.4
+    },
+    "height": {
+     "type": "float",
+     "default": 1.0
+    },
+    "mass": {
+     "type": "float",
+     "default": 1.0
+    }
+   },
+   "pre_rules": [
+    "born rigid + collider (Dynamic* class)",
+    "clamp pos.z >= height/2"
+   ],
+   "verified": true,
+   "states": {
+    "playing": {
+     "ok": 3,
+     "fail": 0,
+     "cmds": [
+      "ctx_34_creates.txt",
+      "ctx_38d_cylscl.txt",
+      "ctx_38g_cylori.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "create.objects.cone",
+   "group": "create",
+   "available": true,
+   "params": {
+    "pos": {
+     "type": "vec3",
+     "default": [
+      0.0,
+      0.0,
+      0.5
+     ]
+    },
+    "color": {
+     "type": "vec3",
+     "default": null
+    },
+    "radius": {
+     "type": "float",
+     "default": 0.4
+    },
+    "height": {
+     "type": "float",
+     "default": 1.0
+    },
+    "mass": {
+     "type": "float",
+     "default": 1.0
+    }
+   },
+   "pre_rules": [
+    "born rigid + collider (Dynamic* class)",
+    "clamp pos.z >= height/2"
+   ],
+   "verified": true,
+   "states": {
+    "playing": {
+     "ok": 2,
+     "fail": 0,
+     "cmds": [
+      "ctx_34_creates.txt",
+      "ctx_38e_conori.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "create.objects.capsule",
+   "group": "create",
+   "available": true,
+   "params": {
+    "pos": {
+     "type": "vec3",
+     "default": [
+      0.0,
+      0.0,
+      0.5
+     ]
+    },
+    "color": {
+     "type": "vec3",
+     "default": null
+    },
+    "radius": {
+     "type": "float",
+     "default": 0.3
+    },
+    "height": {
+     "type": "float",
+     "default": 1.0
+    },
+    "mass": {
+     "type": "float",
+     "default": 1.0
+    }
+   },
+   "pre_rules": [
+    "born rigid + collider (Dynamic* class)",
+    "clamp pos.z >= height/2"
+   ],
+   "verified": true,
+   "states": {
+    "playing": {
+     "ok": 2,
+     "fail": 0,
+     "cmds": [
+      "ctx_34_creates.txt",
+      "ctx_38f_capori.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "create.objects.fixed_cuboid",
+   "group": "create",
+   "available": true,
+   "params": {
+    "pos": {
+     "type": "vec3",
+     "default": [
+      0.0,
+      0.0,
+      0.5
+     ]
+    },
+    "color": {
+     "type": "vec3",
+     "default": null
+    },
+    "size": {
+     "type": "float",
+     "default": 1.0
+    }
+   },
+   "pre_rules": [
+    "born static collider: never settles"
+   ],
+   "verified": true,
+   "states": {
+    "neverplayed": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_01_neverplayed.txt"
+     ]
+    },
+    "playing": {
+     "ok": 2,
+     "fail": 0,
+     "cmds": [
+      "ctx_03_playing.txt",
+      "ctx_34_creates.txt"
+     ]
+    },
+    "nonplaying": {
+     "ok": 3,
+     "fail": 0,
+     "cmds": [
+      "ctx_06_paused.txt",
+      "ctx_08_stopped.txt",
+      "ctx_08b_stopped.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "create.objects.fixed_sphere",
+   "group": "create",
+   "available": true,
+   "params": {
+    "pos": {
+     "type": "vec3",
+     "default": [
+      0.0,
+      0.0,
+      0.5
+     ]
+    },
+    "color": {
+     "type": "vec3",
+     "default": null
+    },
+    "radius": {
+     "type": "float",
+     "default": 0.5
+    }
+   },
+   "pre_rules": [
+    "born static collider: never settles"
+   ],
+   "verified": true,
+   "states": {
+    "playing": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_34_creates.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "create.objects.fixed_cylinder",
+   "group": "create",
+   "available": true,
+   "params": {
+    "pos": {
+     "type": "vec3",
+     "default": [
+      0.0,
+      0.0,
+      0.5
+     ]
+    },
+    "color": {
+     "type": "vec3",
+     "default": null
+    },
+    "radius": {
+     "type": "float",
+     "default": 0.4
+    },
+    "height": {
+     "type": "float",
+     "default": 1.0
+    }
+   },
+   "pre_rules": [
+    "born static collider: never settles"
+   ],
+   "verified": true,
+   "states": {
+    "playing": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_34_creates.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "create.objects.fixed_cone",
+   "group": "create",
+   "available": true,
+   "params": {
+    "pos": {
+     "type": "vec3",
+     "default": [
+      0.0,
+      0.0,
+      0.5
+     ]
+    },
+    "color": {
+     "type": "vec3",
+     "default": null
+    },
+    "radius": {
+     "type": "float",
+     "default": 0.4
+    },
+    "height": {
+     "type": "float",
+     "default": 1.0
+    }
+   },
+   "pre_rules": [
+    "born static collider: never settles"
+   ],
+   "verified": true,
+   "states": {
+    "playing": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_34_creates.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "create.objects.fixed_capsule",
+   "group": "create",
+   "available": true,
+   "params": {
+    "pos": {
+     "type": "vec3",
+     "default": [
+      0.0,
+      0.0,
+      0.5
+     ]
+    },
+    "color": {
+     "type": "vec3",
+     "default": null
+    },
+    "radius": {
+     "type": "float",
+     "default": 0.3
+    },
+    "height": {
+     "type": "float",
+     "default": 1.0
+    }
+   },
+   "pre_rules": [
+    "born static collider: never settles"
+   ],
+   "verified": true,
+   "states": {
+    "playing": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_34_creates.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "create.objects.visual_cuboid",
+   "group": "create",
+   "available": true,
+   "params": {
+    "pos": {
+     "type": "vec3",
+     "default": [
+      0.0,
+      0.0,
+      0.5
+     ]
+    },
+    "color": {
+     "type": "vec3",
+     "default": null
+    },
+    "size": {
+     "type": "float",
+     "default": 1.0
+    }
+   },
+   "pre_rules": [
+    "born without collider or rigid body"
+   ],
+   "verified": true,
+   "states": {
+    "neverplayed": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_01_neverplayed.txt"
+     ]
+    },
+    "playing": {
+     "ok": 2,
+     "fail": 0,
+     "cmds": [
+      "ctx_03_playing.txt",
+      "ctx_34_creates.txt"
+     ]
+    },
+    "nonplaying": {
+     "ok": 3,
+     "fail": 0,
+     "cmds": [
+      "ctx_06_paused.txt",
+      "ctx_08_stopped.txt",
+      "ctx_08b_stopped.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "create.objects.visual_sphere",
+   "group": "create",
+   "available": true,
+   "params": {
+    "pos": {
+     "type": "vec3",
+     "default": [
+      0.0,
+      0.0,
+      0.5
+     ]
+    },
+    "color": {
+     "type": "vec3",
+     "default": null
+    },
+    "radius": {
+     "type": "float",
+     "default": 0.5
+    }
+   },
+   "pre_rules": [
+    "born without collider or rigid body"
+   ],
+   "verified": true,
+   "states": {
+    "playing": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_34_creates.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "create.objects.visual_cylinder",
+   "group": "create",
+   "available": true,
+   "params": {
+    "pos": {
+     "type": "vec3",
+     "default": [
+      0.0,
+      0.0,
+      0.5
+     ]
+    },
+    "color": {
+     "type": "vec3",
+     "default": null
+    },
+    "radius": {
+     "type": "float",
+     "default": 0.4
+    },
+    "height": {
+     "type": "float",
+     "default": 1.0
+    }
+   },
+   "pre_rules": [
+    "born without collider or rigid body"
+   ],
+   "verified": true,
+   "states": {
+    "playing": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_34_creates.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "create.objects.visual_cone",
+   "group": "create",
+   "available": true,
+   "params": {
+    "pos": {
+     "type": "vec3",
+     "default": [
+      0.0,
+      0.0,
+      0.5
+     ]
+    },
+    "color": {
+     "type": "vec3",
+     "default": null
+    },
+    "radius": {
+     "type": "float",
+     "default": 0.4
+    },
+    "height": {
+     "type": "float",
+     "default": 1.0
+    }
+   },
+   "pre_rules": [
+    "born without collider or rigid body"
+   ],
+   "verified": true,
+   "states": {
+    "playing": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_34_creates.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "create.objects.visual_capsule",
+   "group": "create",
+   "available": true,
+   "params": {
+    "pos": {
+     "type": "vec3",
+     "default": [
+      0.0,
+      0.0,
+      0.5
+     ]
+    },
+    "color": {
+     "type": "vec3",
+     "default": null
+    },
+    "radius": {
+     "type": "float",
+     "default": 0.3
+    },
+    "height": {
+     "type": "float",
+     "default": 1.0
+    }
+   },
+   "pre_rules": [
+    "born without collider or rigid body"
+   ],
+   "verified": true,
+   "states": {
+    "playing": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_34_creates.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "physics.add.rigid_body",
+   "group": "physics",
+   "available": true,
+   "params": {
+    "target": {
+     "type": "name",
+     "default": null
+    }
+   },
+   "pre_rules": [
+    "target exists",
+    "not already rigid",
+    "sim paused"
+   ],
+   "verified": true,
+   "states": {
+    "nonplaying": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_40_physics.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "physics.remove.rigid_body",
+   "group": "physics",
+   "available": true,
+   "params": {
+    "target": {
+     "type": "name",
+     "default": null
+    }
+   },
+   "pre_rules": [
+    "target exists",
+    "target is rigid",
+    "sim paused"
+   ],
+   "verified": true,
+   "states": {
+    "nonplaying": {
+     "ok": 3,
+     "fail": 0,
+     "cmds": [
+      "ctx_40_physics.txt",
+      "ctx_40b_physics2.txt",
+      "ctx_45_removerigid.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "physics.add.collider",
+   "group": "physics",
+   "available": true,
+   "params": {
+    "target": {
+     "type": "name",
+     "default": null
+    }
+   },
+   "pre_rules": [
+    "target exists",
+    "has mesh",
+    "not already collider",
+    "sim paused"
+   ],
+   "verified": true,
+   "states": {
+    "nonplaying": {
+     "ok": 1,
+     "fail": 1,
+     "cmds": [
+      "ctx_40_physics.txt",
+      "ctx_40b_physics2.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": [
+    {
+     "cmd": "ctx_40_physics.txt",
+     "state": "nonplaying",
+     "msg": "'k_vissph' already has a collider"
+    }
+   ]
+  },
+  {
+   "key": "physics.remove.collider",
+   "group": "physics",
+   "available": true,
+   "params": {
+    "target": {
+     "type": "name",
+     "default": null
+    }
+   },
+   "pre_rules": [
+    "target exists",
+    "has collider",
+    "sim paused"
+   ],
+   "verified": true,
+   "states": {
+    "nonplaying": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_40b_physics2.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "physics.add.physics_scene",
+   "group": "physics",
+   "available": true,
+   "params": {
+    "stage": {
+     "type": "any",
+     "required": true
+    },
+    "path": {
+     "type": "any",
+     "required": true
+    }
+   },
+   "pre_rules": [],
+   "verified": true,
+   "states": {
+    "neverplayed": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_01_neverplayed.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "physics.set.mass",
+   "group": "physics",
+   "available": true,
+   "params": {
+    "target": {
+     "type": "name",
+     "default": null
+    },
+    "value": {
+     "type": "float",
+     "default": 1.0
+    }
+   },
+   "pre_rules": [
+    "target exists",
+    "target is rigid",
+    "value > 0",
+    "sim paused"
+   ],
+   "verified": true,
+   "states": {
+    "neverplayed": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_01_neverplayed.txt"
+     ]
+    },
+    "playing": {
+     "ok": 0,
+     "fail": 1,
+     "cmds": [
+      "ctx_04a_mass_playing.txt"
+     ]
+    },
+    "nonplaying": {
+     "ok": 3,
+     "fail": 1,
+     "cmds": [
+      "ctx_06_paused.txt",
+      "ctx_08_stopped.txt",
+      "ctx_08b_stopped.txt",
+      "ctx_60h_mass0.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": [
+    {
+     "cmd": "ctx_04a_mass_playing.txt",
+     "state": "playing",
+     "msg": "pause the sim first (timeline is playing)"
+    },
+    {
+     "cmd": "ctx_60h_mass0.txt",
+     "state": "nonplaying",
+     "msg": "line 2: param 'value' must be > 0"
+    }
+   ]
+  },
+  {
+   "key": "physics.set.pose",
+   "group": "physics",
+   "available": true,
+   "params": {
+    "target": {
+     "type": "name",
+     "default": null
+    },
+    "pos": {
+     "type": "vec3",
+     "default": null
+    },
+    "orient": {
+     "type": "vec4",
+     "default": null
+    }
+   },
+   "pre_rules": [
+    "target exists",
+    "sim paused"
+   ],
+   "verified": true,
+   "states": {
+    "neverplayed": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_01_neverplayed.txt"
+     ]
+    },
+    "playing": {
+     "ok": 0,
+     "fail": 1,
+     "cmds": [
+      "ctx_04b_pose_playing.txt"
+     ]
+    },
+    "nonplaying": {
+     "ok": 3,
+     "fail": 1,
+     "cmds": [
+      "ctx_06_paused.txt",
+      "ctx_08_stopped.txt",
+      "ctx_08b_stopped.txt",
+      "ctx_40b_physics2.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": [
+    {
+     "cmd": "ctx_04b_pose_playing.txt",
+     "state": "playing",
+     "msg": "pause the sim first (timeline is playing)"
+    },
+    {
+     "cmd": "ctx_40b_physics2.txt",
+     "state": "nonplaying",
+     "msg": "physics.set.pose failed: \n\tError in 'pxrInternal_v0_25_11__pxrReserved__::UsdStage::_SetValueImpl' at line 7061 in file C:\\g\\281687118\\conan\\src\\0.25.11.kit.2\\pxr\\usd\\usd\\stage.cpp : 'Type mismatch for </World/k_cub.xformOp:orient>: expected 'GfQuatd', got 'GfQuatf''"
+    }
+   ]
+  },
+  {
+   "key": "physics.set.velocity",
+   "group": "physics",
+   "available": true,
+   "params": {
+    "target": {
+     "type": "name",
+     "default": null
+    },
+    "linear": {
+     "type": "vec3",
+     "default": null
+    },
+    "angular": {
+     "type": "vec3",
+     "default": null
+    }
+   },
+   "pre_rules": [
+    "target exists",
+    "target is rigid"
+   ],
+   "verified": false,
+   "states": {
+    "neverplayed": {
+     "ok": 0,
+     "fail": 1,
+     "cmds": [
+      "ctx_01_neverplayed.txt"
+     ]
+    },
+    "playing": {
+     "ok": 0,
+     "fail": 1,
+     "cmds": [
+      "ctx_03_playing.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": [
+    {
+     "cmd": "ctx_01_neverplayed.txt",
+     "state": "neverplayed",
+     "msg": "physics.set.velocity failed: 'PhysxRigidBodyAPI' object has no attribute 'CreateVelocityAttr'"
+    }
+   ]
+  },
+  {
+   "key": "physics.set.rigid_body",
+   "group": "physics",
+   "available": true,
+   "params": {
+    "path": {
+     "type": "any",
+     "required": true
+    },
+    "approximationShape": {
+     "type": "str",
+     "default": "convexHull"
+    },
+    "kinematic": {
+     "type": "bool",
+     "default": false
+    }
+   },
+   "pre_rules": [],
+   "verified": true,
+   "states": {
+    "nonplaying": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_40_physics.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "physics.set.static_collider",
+   "group": "physics",
+   "available": true,
+   "params": {
+    "path": {
+     "type": "any",
+     "required": true
+    },
+    "approximationShape": {
+     "type": "str",
+     "default": "none"
+    }
+   },
+   "pre_rules": [],
+   "verified": true,
+   "states": {
+    "nonplaying": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_40_physics.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "joint.create.joint",
+   "group": "joint",
+   "available": true,
+   "params": {
+    "stage": {
+     "type": "any",
+     "required": true
+    },
+    "joint_type": {
+     "type": "any",
+     "required": true
+    },
+    "from_prim": {
+     "type": "any",
+     "required": true
+    },
+    "to_prim": {
+     "type": "any",
+     "required": true
+    }
+   },
+   "pre_rules": [],
+   "verified": true,
+   "states": {
+    "neverplayed": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_01b_neverplayed.txt"
+     ]
+    },
+    "playing": {
+     "ok": 0,
+     "fail": 1,
+     "cmds": [
+      "ctx_04c_joint_playing.txt"
+     ]
+    },
+    "nonplaying": {
+     "ok": 8,
+     "fail": 2,
+     "cmds": [
+      "ctx_06_paused.txt",
+      "ctx_08_stopped.txt",
+      "ctx_08b_stopped.txt",
+      "ctx_41_joints.txt",
+      "ctx_60c_missingfrom.txt",
+      "ctx_60g_jointbad.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": [
+    {
+     "cmd": "ctx_04c_joint_playing.txt",
+     "state": "playing",
+     "msg": "pause the sim first (timeline is playing)"
+    },
+    {
+     "cmd": "ctx_60c_missingfrom.txt",
+     "state": "nonplaying",
+     "msg": "line 2: missing required param 'from_prim'"
+    },
+    {
+     "cmd": "ctx_60g_jointbad.txt",
+     "state": "nonplaying",
+     "msg": "line 2: joint_type must be one of fixed/revolute/prismatic/spherical/distance, got 'wobbly'"
+    }
+   ]
+  },
+  {
+   "key": "robot.add.articulation",
+   "group": "robot",
+   "available": true,
+   "params": {
+    "path": {
+     "type": "str",
+     "default": null
+    },
+    "usd_path": {
+     "type": "asset",
+     "default": null
+    }
+   },
+   "pre_rules": [],
+   "verified": true,
+   "states": {
+    "nonplaying": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_41_joints.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "robot.set.joint_drive",
+   "group": "robot",
+   "available": true,
+   "params": {
+    "target": {
+     "type": "name",
+     "default": null
+    },
+    "stiffness": {
+     "type": "float",
+     "default": 10000.0
+    },
+    "damping": {
+     "type": "float",
+     "default": 1000.0
+    },
+    "max_force": {
+     "type": "float",
+     "default": 10000.0
+    }
+   },
+   "pre_rules": [],
+   "verified": true,
+   "states": {
+    "nonplaying": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_41_joints.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "robot.set.torque",
+   "group": "robot",
+   "available": true,
+   "params": {
+    "target": {
+     "type": "name",
+     "default": null
+    },
+    "value": {
+     "type": "float",
+     "default": 0.0
+    }
+   },
+   "pre_rules": [],
+   "verified": true,
+   "states": {
+    "nonplaying": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_41_joints.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "robot.set.torque_limit",
+   "group": "robot",
+   "available": true,
+   "params": {
+    "target": {
+     "type": "name",
+     "default": null
+    },
+    "value": {
+     "type": "float",
+     "default": 10.0
+    }
+   },
+   "pre_rules": [],
+   "verified": true,
+   "states": {
+    "nonplaying": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_41_joints.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "robot.set.velocity_limit",
+   "group": "robot",
+   "available": true,
+   "params": {
+    "target": {
+     "type": "name",
+     "default": null
+    },
+    "value": {
+     "type": "float",
+     "default": 10.0
+    }
+   },
+   "pre_rules": [],
+   "verified": false,
+   "states": {
+    "nonplaying": {
+     "ok": 0,
+     "fail": 2,
+     "cmds": [
+      "ctx_41_joints.txt",
+      "ctx_41b_robot2.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": [
+    {
+     "cmd": "ctx_41_joints.txt",
+     "state": "nonplaying",
+     "msg": "no articulation root above target (add articulation first)"
+    },
+    {
+     "cmd": "ctx_41b_robot2.txt",
+     "state": "nonplaying",
+     "msg": "PhysX build lacks maxJointVelocity"
+    }
+   ]
+  },
+  {
+   "key": "robot.clone",
+   "group": "robot",
+   "available": true,
+   "params": {
+    "target": {
+     "type": "name",
+     "default": null
+    },
+    "count": {
+     "type": "int",
+     "default": 2
+    }
+   },
+   "pre_rules": [],
+   "verified": true,
+   "states": {
+    "nonplaying": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_41c_clone.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "material.add.rigid_body_material",
+   "group": "material",
+   "available": true,
+   "params": {
+    "stage": {
+     "type": "any",
+     "required": true
+    },
+    "path": {
+     "type": "any",
+     "required": true
+    },
+    "density": {
+     "type": "NoneType",
+     "default": null
+    },
+    "staticFriction": {
+     "type": "NoneType",
+     "default": null
+    },
+    "dynamicFriction": {
+     "type": "NoneType",
+     "default": null
+    },
+    "restitution": {
+     "type": "NoneType",
+     "default": null
+    }
+   },
+   "pre_rules": [],
+   "verified": true,
+   "states": {
+    "playing": {
+     "ok": 1,
+     "fail": 1,
+     "cmds": [
+      "ctx_22_material.txt",
+      "ctx_31_material.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": [
+    {
+     "cmd": "ctx_31_material.txt",
+     "state": "playing",
+     "msg": "prim already exists: /World/Looks/ctxrubber"
+    }
+   ]
+  },
+  {
+   "key": "material.bind.material",
+   "group": "material",
+   "available": true,
+   "params": {
+    "prim_path": {
+     "type": "typing.Union[str, list]",
+     "required": true
+    },
+    "material_path": {
+     "type": "str",
+     "required": true
+    },
+    "strength": {
+     "type": "NoneType",
+     "default": null
+    },
+    "context_name": {
+     "type": "typing.Optional[str]",
+     "default": null
+    },
+    "material_purpose": {
+     "type": "typing.Optional[str]",
+     "default": ""
+    }
+   },
+   "pre_rules": [],
+   "verified": true,
+   "states": {
+    "playing": {
+     "ok": 1,
+     "fail": 1,
+     "cmds": [
+      "ctx_22_material.txt",
+      "ctx_36_materialbind.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": [
+    {
+     "cmd": "ctx_22_material.txt",
+     "state": "playing",
+     "msg": "unknown prim 'g_sph'"
+    }
+   ]
+  },
+  {
+   "key": "sensor.create.rtx_lidar",
+   "group": "sensor",
+   "available": true,
+   "params": {},
+   "pre_rules": [],
+   "verified": true,
+   "states": {
+    "playing": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_48a_lidar.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "sensor.create.rtx_radar",
+   "group": "sensor",
+   "available": true,
+   "params": {
+    "path": {
+     "type": "str | None",
+     "default": null
+    },
+    "parent": {
+     "type": "str | None",
+     "default": null
+    },
+    "config": {
+     "type": "str | None",
+     "default": null
+    },
+    "usd_path": {
+     "type": "str | None",
+     "default": null
+    },
+    "translation": {
+     "type": "vec3",
+     "default": "(0, 0, 0)"
+    },
+    "orientation": {
+     "type": "Gf.Quatd | None",
+     "default": "(1, 0, 0, 0)"
+    },
+    "visibility": {
+     "type": "bool",
+     "default": false
+    },
+    "variant": {
+     "type": "str | dict[str, str] | None",
+     "default": null
+    },
+    "force_camera_prim": {
+     "type": "bool",
+     "default": false
+    }
+   },
+   "pre_rules": [],
+   "verified": true,
+   "states": {
+    "playing": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_48b_radar.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "sensor.create.rtx_ultrasonic",
+   "group": "sensor",
+   "available": true,
+   "params": {
+    "path": {
+     "type": "str | None",
+     "default": null
+    },
+    "parent": {
+     "type": "str | None",
+     "default": null
+    },
+    "config": {
+     "type": "str | None",
+     "default": null
+    },
+    "usd_path": {
+     "type": "str | None",
+     "default": null
+    },
+    "translation": {
+     "type": "vec3",
+     "default": "(0, 0, 0)"
+    },
+    "orientation": {
+     "type": "Gf.Quatd | None",
+     "default": "(1, 0, 0, 0)"
+    },
+    "visibility": {
+     "type": "bool",
+     "default": false
+    },
+    "variant": {
+     "type": "str | dict[str, str] | None",
+     "default": null
+    },
+    "force_camera_prim": {
+     "type": "bool",
+     "default": false
+    }
+   },
+   "pre_rules": [],
+   "verified": true,
+   "states": {
+    "playing": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_48c_sonic.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "sensor.do.range_sensor_create_generic",
+   "group": "sensor",
+   "available": true,
+   "params": {
+    "path": {
+     "type": "str",
+     "default": "/GenericSensor"
+    },
+    "parent": {
+     "type": "object",
+     "default": null
+    },
+    "translation": {
+     "type": "vec3",
+     "default": "(0, 0, 0)"
+    },
+    "orientation": {
+     "type": "Quatd",
+     "default": "(1, 0, 0, 0)"
+    },
+    "min_range": {
+     "type": "float",
+     "default": 0.4
+    },
+    "max_range": {
+     "type": "float",
+     "default": 100.0
+    },
+    "draw_points": {
+     "type": "bool",
+     "default": false
+    },
+    "draw_lines": {
+     "type": "bool",
+     "default": false
+    },
+    "sampling_rate": {
+     "type": "int",
+     "default": 60
+    }
+   },
+   "pre_rules": [],
+   "verified": true,
+   "states": {
+    "playing": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_48d_ray.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "sensor.do.range_sensor_create_lidar",
+   "group": "sensor",
+   "available": true,
+   "params": {
+    "path": {
+     "type": "str",
+     "default": "/Lidar"
+    },
+    "parent": {
+     "type": "object",
+     "default": null
+    },
+    "translation": {
+     "type": "vec3",
+     "default": "(0, 0, 0)"
+    },
+    "orientation": {
+     "type": "Quatd",
+     "default": "(1, 0, 0, 0)"
+    },
+    "min_range": {
+     "type": "float",
+     "default": 0.4
+    },
+    "max_range": {
+     "type": "float",
+     "default": 100.0
+    },
+    "draw_points": {
+     "type": "bool",
+     "default": false
+    },
+    "draw_lines": {
+     "type": "bool",
+     "default": false
+    },
+    "horizontal_fov": {
+     "type": "float",
+     "default": 360.0
+    },
+    "vertical_fov": {
+     "type": "float",
+     "default": 30.0
+    },
+    "horizontal_resolution": {
+     "type": "float",
+     "default": 0.4
+    },
+    "vertical_resolution": {
+     "type": "float",
+     "default": 4.0
+    },
+    "rotation_rate": {
+     "type": "float",
+     "default": 20.0
+    },
+    "high_lod": {
+     "type": "bool",
+     "default": false
+    },
+    "yaw_offset": {
+     "type": "float",
+     "default": 0.0
+    },
+    "enable_semantics": {
+     "type": "bool",
+     "default": false
+    }
+   },
+   "pre_rules": [],
+   "verified": true,
+   "states": {
+    "playing": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_48e_raylidar.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "sensor.create.light_beam_sensor",
+   "group": "sensor",
+   "available": true,
+   "params": {
+    "path": {
+     "type": "str",
+     "default": "/LightBeam_Sensor"
+    },
+    "parent": {
+     "type": "str",
+     "default": null
+    },
+    "translation": {
+     "type": "vec3",
+     "default": "(0, 0, 0)"
+    },
+    "orientation": {
+     "type": "Quatd",
+     "default": "(1, 0, 0, 0)"
+    },
+    "num_rays": {
+     "type": "int",
+     "default": 1
+    },
+    "curtain_length": {
+     "type": "float",
+     "default": 0.0
+    },
+    "forward_axis": {
+     "type": "vec3",
+     "default": "(1, 0, 0)"
+    },
+    "curtain_axis": {
+     "type": "vec3",
+     "default": "(0, 0, 1)"
+    },
+    "min_range": {
+     "type": "float",
+     "default": 0.4
+    },
+    "max_range": {
+     "type": "float",
+     "default": 100.0
+    },
+    "draw_points": {
+     "type": "bool",
+     "default": false
+    },
+    "draw_lines": {
+     "type": "bool",
+     "default": false
+    }
+   },
+   "pre_rules": [],
+   "verified": true,
+   "states": {
+    "playing": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_48f_beam.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "import.robot.urdf",
+   "group": "import",
+   "available": true,
+   "params": {
+    "path": {
+     "type": "asset",
+     "default": null
+    },
+    "fix_base": {
+     "type": "bool",
+     "default": false
+    },
+    "merge_fixed_joints": {
+     "type": "bool",
+     "default": true
+    }
+   },
+   "pre_rules": [],
+   "verified": true,
+   "states": {
+    "nonplaying": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_51a_urdf.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "import.robot.mjcf",
+   "group": "import",
+   "available": true,
+   "params": {
+    "path": {
+     "type": "asset",
+     "default": null
+    }
+   },
+   "pre_rules": [],
+   "verified": true,
+   "states": {
+    "nonplaying": {
+     "ok": 1,
+     "fail": 2,
+     "cmds": [
+      "ctx_51b2_mjcf.txt",
+      "ctx_51b3_mjcf.txt",
+      "ctx_51b_mjcf.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": [
+    {
+     "cmd": "ctx_51b2_mjcf.txt",
+     "state": "nonplaying",
+     "msg": "converted to C:\\Users\\sruja_ob3di74\\action-reasoner-bridge\\mini_bot_2\\mini_bot.usda but prim already exists: /World/mini_bot"
+    }
+   ]
+  },
+  {
+   "key": "import.asset.usd",
+   "group": "import",
+   "available": true,
+   "params": {
+    "path": {
+     "type": "asset",
+     "default": null
+    },
+    "name": {
+     "type": "str",
+     "default": null
+    },
+    "pos": {
+     "type": "vec3",
+     "default": null
+    }
+   },
+   "pre_rules": [
+    "path in asset registry",
+    "name not taken"
+   ],
+   "verified": true,
+   "states": {
+    "nonplaying": {
+     "ok": 1,
+     "fail": 1,
+     "cmds": [
+      "ctx_51c2_usd.txt",
+      "ctx_51c_usd.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": [
+    {
+     "cmd": "ctx_51c_usd.txt",
+     "state": "nonplaying",
+     "msg": "line 2: unknown param 'prim_path' for 'import.asset.usd'"
+    }
+   ]
+  },
+  {
+   "key": "import.asset.heightmap",
+   "group": "import",
+   "available": true,
+   "params": {
+    "path": {
+     "type": "asset",
+     "default": null
+    },
+    "scale": {
+     "type": "float",
+     "default": 1.0
+    }
+   },
+   "pre_rules": [],
+   "verified": true,
+   "states": {
+    "nonplaying": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_51d_height.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "export.asset.urdf",
+   "group": "export",
+   "available": true,
+   "params": {
+    "path": {
+     "type": "str",
+     "default": null
+    }
+   },
+   "pre_rules": [],
+   "verified": true,
+   "states": {
+    "nonplaying": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_51e_export.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "scene.create.prim",
+   "group": "scene",
+   "available": true,
+   "params": {
+    "path": {
+     "type": "str",
+     "default": null
+    },
+    "type": {
+     "type": "str",
+     "default": "Xform"
+    },
+    "pos": {
+     "type": "vec3",
+     "default": null
+    },
+    "scale": {
+     "type": "vec3",
+     "default": null
+    }
+   },
+   "pre_rules": [
+    "path free"
+   ],
+   "verified": true,
+   "states": {
+    "nonplaying": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_50a_createsave.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "scene.delete.prim",
+   "group": "scene",
+   "available": true,
+   "params": {
+    "target": {
+     "type": "name",
+     "default": null
+    }
+   },
+   "pre_rules": [
+    "target exists",
+    "sim paused"
+   ],
+   "verified": true,
+   "states": {
+    "neverplayed": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_01b_neverplayed.txt"
+     ]
+    },
+    "playing": {
+     "ok": 5,
+     "fail": 0,
+     "cmds": [
+      "ctx_03_playing.txt",
+      "ctx_26a_dels.txt",
+      "ctx_28_delstale.txt"
+     ]
+    },
+    "nonplaying": {
+     "ok": 4,
+     "fail": 2,
+     "cmds": [
+      "ctx_06_paused.txt",
+      "ctx_08_stopped.txt",
+      "ctx_08b_stopped.txt",
+      "ctx_60e_delunknown.txt",
+      "ctx_60f_delworld.txt",
+      "ctx_61_delrigid.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": [
+    {
+     "cmd": "ctx_60e_delunknown.txt",
+     "state": "nonplaying",
+     "msg": "unknown target 'no_such_prim_xyz'"
+    },
+    {
+     "cmd": "ctx_60f_delworld.txt",
+     "state": "nonplaying",
+     "msg": "refusing to delete /World itself"
+    }
+   ]
+  },
+  {
+   "key": "scene.save",
+   "group": "scene",
+   "available": true,
+   "params": {
+    "path": {
+     "type": "str",
+     "default": null
+    }
+   },
+   "pre_rules": [],
+   "verified": true,
+   "states": {
+    "nonplaying": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_50a_createsave.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "scene.open",
+   "group": "scene",
+   "available": true,
+   "params": {
+    "path": {
+     "type": "str",
+     "default": null
+    }
+   },
+   "pre_rules": [],
+   "verified": true,
+   "states": {
+    "nonplaying": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_50c_open.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "sim.play",
+   "group": "sim",
+   "available": true,
+   "params": {},
+   "pre_rules": [
+    "not already playing",
+    "at least one dynamic body"
+   ],
+   "verified": true,
+   "states": {
+    "playing": {
+     "ok": 6,
+     "fail": 1,
+     "cmds": [
+      "ctx_02_play.txt",
+      "ctx_07b_play.txt",
+      "ctx_09_play.txt",
+      "ctx_15_play.txt",
+      "ctx_25_play.txt",
+      "ctx_42_playprobe.txt",
+      "ctx_46_playprobe.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": [
+    {
+     "cmd": "ctx_09_play.txt",
+     "state": "playing",
+     "msg": "already playing"
+    }
+   ]
+  },
+  {
+   "key": "sim.pause",
+   "group": "sim",
+   "available": true,
+   "params": {},
+   "pre_rules": [
+    "is playing"
+   ],
+   "verified": true,
+   "states": {
+    "playing": {
+     "ok": 4,
+     "fail": 0,
+     "cmds": [
+      "ctx_05_pause.txt",
+      "ctx_11_pause.txt",
+      "ctx_39_pause.txt",
+      "ctx_44_pause.txt"
+     ]
+    },
+    "nonplaying": {
+     "ok": 0,
+     "fail": 1,
+     "cmds": [
+      "ctx_60i_pausepaused.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": [
+    {
+     "cmd": "ctx_60i_pausepaused.txt",
+     "state": "nonplaying",
+     "msg": "not playing"
+    }
+   ]
+  },
+  {
+   "key": "sim.stop",
+   "group": "sim",
+   "available": true,
+   "params": {},
+   "pre_rules": [
+    "is playing"
+   ],
+   "verified": true,
+   "states": {
+    "nonplaying": {
+     "ok": 0,
+     "fail": 2,
+     "cmds": [
+      "ctx_07_stop.txt",
+      "ctx_13_stop.txt"
+     ]
+    },
+    "playing": {
+     "ok": 2,
+     "fail": 0,
+     "cmds": [
+      "ctx_07c_stop.txt",
+      "ctx_24_stop.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": [
+    {
+     "cmd": "ctx_07_stop.txt",
+     "state": "nonplaying",
+     "msg": "not playing"
+    }
+   ]
+  },
+  {
+   "key": "sim.step",
+   "group": "sim",
+   "available": true,
+   "params": {
+    "n": {
+     "type": "int",
+     "default": 1
+    }
+   },
+   "pre_rules": [
+    "n >= 1"
+   ],
+   "verified": false,
+   "states": {
+    "playing": {
+     "ok": 0,
+     "fail": 3,
+     "cmds": [
+      "ctx_10b_step_playing.txt",
+      "ctx_12b_step_paused.txt",
+      "ctx_14_step_stopped.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": [
+    {
+     "cmd": "ctx_10b_step_playing.txt",
+     "state": "playing",
+     "msg": "sim.step failed: 'NoneType' object has no attribute '_step' (needs a live physics context; play the sim first so physics initializes)"
+    }
+   ]
+  },
+  {
+   "key": "sim.reset",
+   "group": "sim",
+   "available": true,
+   "params": {},
+   "pre_rules": [],
+   "verified": true,
+   "states": {
+    "playing": {
+     "ok": 6,
+     "fail": 0,
+     "cmds": [
+      "ctx_08c_reset.txt",
+      "ctx_27_resetheal.txt",
+      "ctx_33_resetheal2.txt",
+      "ctx_43_heal.txt",
+      "ctx_47_heal.txt",
+      "ctx_62_resetrecreate.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "sim.set.gravity",
+   "group": "sim",
+   "available": true,
+   "params": {
+    "value": {
+     "type": "vec3",
+     "default": [
+      0,
+      0,
+      -9.81
+     ]
+    }
+   },
+   "pre_rules": [],
+   "verified": true,
+   "states": {
+    "playing": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_03_playing.txt"
+     ]
+    },
+    "nonplaying": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_40b_physics2.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": []
+  },
+  {
+   "key": "sim.set.dt",
+   "group": "sim",
+   "available": true,
+   "params": {
+    "physics": {
+     "type": "float",
+     "default": 0.016666666666666666
+    },
+    "rendering": {
+     "type": "float",
+     "default": 0.016666666666666666
+    }
+   },
+   "pre_rules": [],
+   "verified": true,
+   "states": {
+    "playing": {
+     "ok": 0,
+     "fail": 1,
+     "cmds": [
+      "ctx_10a_dt_playrefusal.txt"
+     ]
+    },
+    "nonplaying": {
+     "ok": 1,
+     "fail": 0,
+     "cmds": [
+      "ctx_12a_dt_paused.txt"
+     ]
+    }
+   },
+   "example": null,
+   "failures": [
+    {
+     "cmd": "ctx_10a_dt_playrefusal.txt",
+     "state": "playing",
+     "msg": "pause the sim first (timeline is playing)"
+    }
+   ]
+  }
+ ]
+}

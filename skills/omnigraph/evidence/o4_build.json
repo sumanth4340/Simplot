@@ -1,0 +1,5 @@
+{
+  "status": "ok",
+  "output": "O4-BUILD-OK graph=True nodes=['Mul', 'OnPB', 'Write'] linked=True",
+  "result": null
+}
