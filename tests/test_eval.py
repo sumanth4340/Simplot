@@ -53,6 +53,17 @@ def test_action_empty_scores_zero():
     assert out["total"] == 0 and out["valid_rate"] == 0.0, out
 
 
+def test_action_malformed_line_scores_invalid_not_crash():
+    # First adapter grade died here: a trailing bare token raised
+    # inside parse_batch and killed the whole suite.
+    out = score.score_action_output(
+        "create.objects.plane size=20\n"
+        "create.objects.cuboid size=1 pos=0,0,2 0.0,\n",
+        catalog, "stage", ["stage"])
+    assert out["total"] == 2 and out["valid"] == 1, out
+    assert out["valid_rate"] == 0.5 and len(out["errors"]) == 1, out
+
+
 def test_dispatch_scores_acceptance():
     good = score.score_dispatch_output(
         "DEPLOY agent=sense\nSTEP n=1 agent=sense do=read-stage\n")

@@ -28,17 +28,32 @@ eval_tasks = _load("eval_tasks", ROOT / "eval" / "eval_tasks.py")
 
 
 def score_action_output(content, catalog, expect_skill, retrieved):
-    """Grade an action reply: line validity + skill retrieval hit."""
+    """Grade an action reply: line validity + skill retrieval hit.
+
+    Scores line by line so one malformed model line counts invalid
+    instead of crashing the suite (a bare token like ``0.0,`` killed
+    the first adapter grade via parse_batch raising).
+    """
     kept, drop_notes = thinker.extract_actions(content, set(catalog))
-    batch = protocol.parse_batch(kept)
-    valid, errors = 0, []
-    for key, raw, lineno in batch:
+    valid, errors, total = 0, [], 0
+    for i, line in enumerate(kept.splitlines(), start=1):
+        if not line.strip():
+            continue
         try:
-            protocol.validate(key, raw, catalog, lineno=lineno)
+            parsed = protocol.parse_line(line, lineno=i)
+        except (protocol.ValidationError, protocol.ProtocolError) as e:
+            total += 1
+            errors.append(f"line {i}: {e}"[:120])
+            continue
+        if parsed is None:
+            continue  # blank/comment: not an emitted line
+        total += 1
+        key, raw = parsed
+        try:
+            protocol.validate(key, raw, catalog, lineno=i)
             valid += 1
         except (protocol.ValidationError, protocol.ProtocolError) as e:
-            errors.append(f"line {lineno}: {e}"[:120])
-    total = len(batch)
+            errors.append(f"line {i}: {e}"[:120])
     return {
         "total": total,
         "valid": valid,
