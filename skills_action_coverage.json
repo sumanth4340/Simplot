@@ -4,9 +4,9 @@
    "traces_drills.jsonl": 270,
    "traces_mock.jsonl": 19,
    "traces_dispatch.jsonl": 36,
-   "traces_live.jsonl": 116
+   "traces_live.jsonl": 133
   },
-  "traces": 441,
+  "traces": 458,
   "compact_actions": 195,
   "handled_actions": 57,
   "unknown_keys": {}
@@ -425,7 +425,7 @@
    "dispatch": 0
   },
   "live": {
-   "traces": 116,
+   "traces": 133,
    "skills": [
     "action-and-event-data-generation",
     "actor-sdg-generate-lighting-variations",
@@ -456,6 +456,7 @@
     "modeling",
     "motion-generation",
     "nav2",
+    "navigation-primitives",
     "omnigraph",
     "physics",
     "physics-simulation",
@@ -612,7 +613,7 @@
    "available": true
   },
   "create.objects.cuboid": {
-   "traces": 124,
+   "traces": 126,
    "drills": [
     "AR1",
     "MO1",
@@ -733,7 +734,7 @@
    "available": true
   },
   "create.objects.sphere": {
-   "traces": 76,
+   "traces": 77,
    "drills": [
     "N1",
     "PH1",
@@ -812,7 +813,7 @@
    "available": true
   },
   "create.objects.cylinder": {
-   "traces": 21,
+   "traces": 26,
    "drills": [
     "ST1",
     "live"
@@ -821,6 +822,7 @@
     "articulation",
     "gpunuc",
     "isaac-sim-orchestrator",
+    "isaac-sim-sensor",
     "manipulation",
     "meta-skills",
     "modeling",
@@ -833,6 +835,7 @@
     "run-incident-events",
     "sdg-adv",
     "sense",
+    "sensors",
     "stage"
    ],
    "handled": true,
@@ -924,16 +927,21 @@
    "available": true
   },
   "create.objects.cone": {
-   "traces": 18,
+   "traces": 20,
    "drills": [
     "D1",
     "live"
    ],
    "skills": [
+    "action-and-event-data-generation",
+    "actor-sdg-sweep-config",
     "appsession",
     "behavior",
     "deform",
     "gpunuc",
+    "isaac-sim-remote",
+    "isaac-sim-robot-navigation",
+    "isaac-sim-validator",
     "isaac-sim-web-viewer",
     "meta-skills",
     "omnigraph",
@@ -1197,7 +1205,7 @@
    "available": true
   },
   "sim.reset": {
-   "traces": 16,
+   "traces": 17,
    "drills": [
     "AP1",
     "PH1",
@@ -1285,20 +1293,26 @@
    "available": true
   },
   "sim.set.gravity": {
-   "traces": 11,
+   "traces": 15,
    "drills": [
     "PH1",
     "live"
    ],
    "skills": [
     "action-and-event-data-generation",
+    "actor-sdg-sweep-config",
+    "generate-incident-config",
     "gpunuc",
     "isaac-sim-headless-deployment",
     "isaac-sim-sensor",
     "motion-generation",
     "omnigraph",
     "physics",
-    "usd-composition-architecture"
+    "physics-simulation",
+    "spatial-reasoning",
+    "usd-composition-architecture",
+    "usd-pipeline",
+    "vlm-scene-captioning"
    ],
    "handled": true,
    "available": true
@@ -1365,7 +1379,7 @@
    "available": true
   },
   "scene.delete.prim": {
-   "traces": 106,
+   "traces": 162,
    "drills": [
     "N1",
     "P1",
@@ -1387,6 +1401,7 @@
     "isaac-sim-remote",
     "isaac-sim-robot-navigation",
     "isaac-sim-ros2-bridge",
+    "isaac-sim-sensor",
     "isaac-sim-troubleshooting",
     "isaac-sim-validator",
     "manipulation",
@@ -1404,7 +1419,9 @@
     "pyapi",
     "rosnav",
     "run-incident-events",
+    "sdg-adv",
     "sense",
+    "sensors",
     "skill-distillation",
     "stage",
     "usd-articulation"
@@ -1438,7 +1455,7 @@
    "available": true
   },
   "scene.save": {
-   "traces": 12,
+   "traces": 13,
    "drills": [
     "AP1",
     "ST1",
@@ -1448,9 +1465,11 @@
     "appsession",
     "articulation",
     "generate-incident-config",
+    "gpunuc",
     "isaac-sim-remote",
     "meta-skills",
     "modeling",
+    "navigation-primitives",
     "run-incident-events",
     "stage"
    ],
@@ -1899,13 +1918,14 @@
    "available": true
   },
   "sensor.create.rtx_lidar": {
-   "traces": 19,
+   "traces": 22,
    "drills": [
     "N2",
     "live",
     "mock"
    ],
    "skills": [
+    "actor-sdg-sweep-config",
     "articulation",
     "generate-incident-config",
     "isaac-sim-sensor",
@@ -1914,6 +1934,7 @@
     "omnigraph",
     "radac",
     "rosnav",
+    "sdg-adv",
     "sensors"
    ],
    "handled": true,
