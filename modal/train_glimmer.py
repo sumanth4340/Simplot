@@ -5,7 +5,7 @@ lines. Text-only rows (protocol + skills); stage awareness comes
 from the sense watchdog's event lines, not screenshots.
 
 Data: finetune traces_mock + traces_drills + traces_dispatch +
-traces_live (458 traces; missing files are skipped).
+traces_live (470 traces; missing files are skipped).
 8 stratified held out for a post-train check.
 Loss is completion-only via prompt/completion columns (TRL builds
 the mask natively): gradient only on the assistant turn. Full-token

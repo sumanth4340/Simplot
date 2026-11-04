@@ -1,12 +1,12 @@
 {
  "meta": {
   "sources": {
-   "traces_drills.jsonl": 270,
+   "traces_drills.jsonl": 282,
    "traces_mock.jsonl": 19,
    "traces_dispatch.jsonl": 36,
    "traces_live.jsonl": 133
   },
-  "traces": 458,
+  "traces": 470,
   "compact_actions": 195,
   "handled_actions": 57,
   "unknown_keys": {}
@@ -254,12 +254,15 @@
    "dispatch": 0
   },
   "N2": {
-   "traces": 12,
+   "traces": 18,
    "skills": [
     "isaac-sim-sensor",
     "nav2",
+    "place-camera-aim-at",
+    "radac",
     "rosnav",
-    "sensors"
+    "sensors",
+    "skill-distillation"
    ],
    "actions": [
     "create.objects.cuboid",
@@ -390,7 +393,7 @@
    "dispatch": 0
   },
   "ST1": {
-   "traces": 36,
+   "traces": 42,
    "skills": [
     "appsession",
     "isaac-sim-orchestrator",
@@ -407,12 +410,14 @@
    ],
    "actions": [
     "create.objects.capsule",
+    "create.objects.cone",
     "create.objects.cuboid",
     "create.objects.cylinder",
     "create.objects.fixed_capsule",
     "create.objects.fixed_cone",
     "create.objects.fixed_cylinder",
     "create.objects.fixed_sphere",
+    "create.objects.sphere",
     "create.objects.visual_capsule",
     "create.objects.visual_cone",
     "create.objects.visual_cuboid",
@@ -613,7 +618,7 @@
    "available": true
   },
   "create.objects.cuboid": {
-   "traces": 126,
+   "traces": 135,
    "drills": [
     "AR1",
     "MO1",
@@ -657,6 +662,7 @@
     "physx-to-newton-conversion",
     "place-camera-aim-at",
     "pyapi",
+    "radac",
     "rosnav",
     "run-incident-events",
     "sdg-adv",
@@ -734,10 +740,11 @@
    "available": true
   },
   "create.objects.sphere": {
-   "traces": 77,
+   "traces": 80,
    "drills": [
     "N1",
     "PH1",
+    "ST1",
     "live",
     "mock"
    ],
@@ -927,9 +934,10 @@
    "available": true
   },
   "create.objects.cone": {
-   "traces": 20,
+   "traces": 23,
    "drills": [
     "D1",
+    "ST1",
     "live"
    ],
    "skills": [
@@ -1109,7 +1117,7 @@
    "available": true
   },
   "sim.play": {
-   "traces": 106,
+   "traces": 109,
    "drills": [
     "A1",
     "A2",
@@ -1257,7 +1265,7 @@
    "available": true
   },
   "sim.step": {
-   "traces": 28,
+   "traces": 31,
    "drills": [
     "AP1",
     "D1",
@@ -1284,10 +1292,12 @@
     "motion-generation",
     "nav2",
     "physics",
+    "place-camera-aim-at",
     "pyapi",
     "radac",
     "rendering",
-    "sensors"
+    "sensors",
+    "skill-distillation"
    ],
    "handled": true,
    "available": true
@@ -1918,7 +1928,7 @@
    "available": true
   },
   "sensor.create.rtx_lidar": {
-   "traces": 22,
+   "traces": 28,
    "drills": [
     "N2",
     "live",
@@ -1932,10 +1942,12 @@
     "meta-skills",
     "nav2",
     "omnigraph",
+    "place-camera-aim-at",
     "radac",
     "rosnav",
     "sdg-adv",
-    "sensors"
+    "sensors",
+    "skill-distillation"
    ],
    "handled": true,
    "available": true

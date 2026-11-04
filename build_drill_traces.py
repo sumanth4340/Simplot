@@ -506,6 +506,27 @@ DRILL_TASKS = [
     ("set a finer physics sim dt for the contact test", [
         "sim.set.dt physics=0.008 rendering=0.016",
     ], "PH1", "physics"),
+    # -- grade-gap ST1: color words always become r,g,b triples --
+    ("create a red crate and a green crate side by side", [
+        "# color words become r,g,b triples, never bare words (stage ST1)",
+        "create.objects.cuboid pos=-1,0,0.5 size=1.0 color=1.0,0.0,0.0 name=crate_red",
+        "create.objects.cuboid pos=1,0,0.5 size=1.0 color=0.2,0.8,0.2 name=crate_green",
+    ], "ST1", "stage"),
+    ("create a blue sphere and a yellow cone on the floor", [
+        "create.objects.sphere pos=-1,0,0.3 radius=0.3 color=0.2,0.4,1.0 name=ball_blue",
+        "create.objects.cone pos=1,0,0.5 color=1.0,0.85,0.2 name=cone_yellow",
+    ], "ST1", "stage"),
+    # -- grade-gap N2: lidar takes path + config + pos (no parent) --
+    ("mount a vendor-configured lidar above the rover", [
+        "# rtx lidar takes path + config + pos; it has no parent param (nav2 N2)",
+        "create.objects.cuboid pos=0,0,0.25 size=0.5 name=rover",
+        "sensor.create.rtx_lidar path=/World/lidar_nav config=OS1_128 pos=0,0,1.2",
+        "sim.play",
+    ], "N2", "nav2"),
+    ("put a roof lidar at a world offset and step the scan", [
+        "sensor.create.rtx_lidar path=/World/roof_lidar config=OS1_64 pos=2,0,2.5",
+        "sim.step n=60",
+    ], "N2", "nav2"),
 ]
 
 
