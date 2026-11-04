@@ -8,8 +8,8 @@
 | `finetune/traces_mock.jsonl` | 19 task -> action traces in chat format |
 | `finetune/traces_drills.jsonl` | 270 drill-derived traces (90 validated tasks x 3 snapshots) |
 | `finetune/traces_dispatch.jsonl` | 36 dispatcher traces (12 deploy plans x 3 snapshots) |
-| `finetune/traces_live.jsonl` | 82 converted live traces (all-ok GUI + bridge runs) |
-| `finetune/traces_vision.jsonl` | 15 vision-grounded traces (live PNGs in `finetune/images/`) |
+| `finetune/traces_live.jsonl` | 106 converted live traces (all-ok GUI + bridge runs) |
+| `finetune/traces_vision.jsonl` | 20 vision-grounded traces (live PNGs in `finetune/images/`) |
 | `~/action-reasoner-traces/traces.jsonl` | Live traces, appended by the GUI (think + run events) |
 
 Regenerate offline data anytime (no Isaac Sim, no GPU):

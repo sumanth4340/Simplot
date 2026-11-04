@@ -20,6 +20,13 @@ except Exception:  # pragma: no cover - outside Kit
     _USD_OK = False
 
 try:
+    import omni.kit.app as _kit_app
+
+    _KIT_APP_OK = True
+except Exception:  # pragma: no cover - outside Kit
+    _KIT_APP_OK = False
+
+try:
     from pxr import PhysxSchema
 
     _PHYSX_SCHEMA_OK = True
@@ -752,28 +759,39 @@ class Executor:
         return True, "sim stopped"
 
     def _do_sim_step(self, p: dict) -> tuple:
-        world = self._get_world()
-        if world is None:
-            return False, "step needs isaacsim World (unavailable)"
+        # World.step() can never work here: the Kit timeline owns the
+        # loop, so World's internal stepper stays None while playing
+        # (live-proven 2026-11-04). Pump Kit app frames instead — the
+        # pyapi play/update/stop roundtrip every drill relies on.
+        if not _KIT_APP_OK:
+            return False, "step needs the Kit app loop (unavailable)"
         n = int(p.get("n") or 1)
+        if n < 1:
+            return False, "need n >= 1"
+        capped = min(n, 600)
         resume = self.is_playing()
         if not resume:
-            # World.step needs the physics context that play() creates.
-            world.play()
+            _timeline().play()
         try:
-            for _ in range(n):
-                world.step(render=False)
+            app = _kit_app.get_app()
+            for _ in range(capped):
+                app.update()
         except Exception as exc:
             if not resume:
                 try:
-                    world.pause()
+                    _timeline().pause()
                 except Exception:
                     pass
-            return False, (f"sim.step failed: {exc} (needs a live physics "
-                           "context; play the sim first so physics initializes)")
+            return False, f"sim.step failed: {exc}"
         if not resume:
-            world.pause()
-        return True, f"stepped {n} frame(s)"
+            try:
+                _timeline().pause()
+            except Exception:
+                pass
+        msg = f"stepped {capped} frame(s)"
+        if capped != n:
+            msg += f" (capped at 600, asked {n})"
+        return True, msg
 
     def _do_sim_reset(self, p: dict) -> tuple:
         world = self._get_world()
@@ -910,6 +928,15 @@ class Executor:
             return False, f"unknown target '{target}'"
         if path in ("/", "/World"):
             return False, "refusing to delete /World itself"
+        try:
+            prim = _stage().GetPrimAtPath(path)
+            if prim.IsValid() and prim.GetTypeName() == "PhysicsScene":
+                return False, (
+                    f"refusing to delete PhysicsScene {path} "
+                    f"(orphans the physics backend; use scene.open to switch stages)"
+                )
+        except Exception:
+            pass
         _stage().RemovePrim(path)
         dropped = [n for n, pp in self.objects.items()
                    if pp == path or pp.startswith(path + "/")]

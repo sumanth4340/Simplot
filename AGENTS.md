@@ -27,7 +27,7 @@ with the pack path + objective, and stands it down when done.
 
 | Agent | Pack | Call when the task involves |
 |---|---|---|
-| `sense` | `skills/workspace-sense/` | reading stage state, sense maps, what-exists-where |
+| `sense` | `skills/workspace-sense/` | reading stage state, sense maps, what-exists-where; owns the always-on watchdog (`executor/watcher.py`: stage diff → `event.*` lines, quiet unless delta) |
 | `stage` | `skills/stage-core/` | USD prims, layers, references, stage surgery |
 | `modeling` | `skills/modeling-assets/` | building meshes, assets, importing models |
 | `articulation` | `skills/articulation-robots/` | robot imports, articulations, joints, drives |

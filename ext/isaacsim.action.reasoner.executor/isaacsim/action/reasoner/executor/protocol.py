@@ -143,8 +143,14 @@ def coerce(type_name: str, raw: str, param: str):
 
 
 def parse_line(line: str, lineno: int = 0):
-    """Parse one line -> (action_key, raw_params) or None for blank/comment."""
-    text = line.strip()
+    """Parse one line -> (action_key, raw_params) or None for blank/comment.
+
+    Backslashes are normalized to forward slashes BEFORE tokenizing:
+    POSIX shlex would otherwise strip them (``C:\\stage\\x.usd`` arrived
+    as ``C:stagex.usd``). No value in the action grammar needs a
+    backslash; USD paths and Windows file APIs both accept ``/``.
+    """
+    text = line.strip().replace("\\", "/")
     if not text or text.startswith("#"):
         return None
     try:
@@ -241,6 +247,13 @@ def _apply_offline_rules(key: str, typed: dict, warnings: list, errors: list, li
     elif key == "sim.step":
         if (typed.get("n") or 0) < 1:
             errors.append(f"line {lineno}: param 'n' must be >= 1")
+    elif key == "scene.delete.prim":
+        target = typed.get("target")
+        if isinstance(target, str) and target.rstrip("/").rsplit("/", 1)[-1] == "PhysicsScene":
+            errors.append(
+                f"line {lineno}: refusing to delete the PhysicsScene "
+                f"(orphans the physics backend; use scene.open to switch stages)"
+            )
     elif key == "joint.create.joint":
         raw_type = typed.get("joint_type")
         norm = raw_type.strip().lower() if isinstance(raw_type, str) else ""

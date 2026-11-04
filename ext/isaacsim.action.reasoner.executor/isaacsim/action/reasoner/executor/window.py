@@ -57,6 +57,7 @@ from .thinker import (
     plan_stream as thinker_plan_stream,
     select_skills,
 )
+from .watcher import Watcher, capture_compact
 
 DEFAULT_PROMPT = """# one action per line, # starts a comment
 create.objects.plane size=20
@@ -106,6 +107,7 @@ def _log_trace(event: dict) -> None:
 class ReasonerWindow:
     def __init__(self):
         self._executor = Executor()
+        self._watcher = Watcher()
         try:
             self._catalog = load_catalog(_catalog_path())
         except Exception as exc:
@@ -676,11 +678,21 @@ class ReasonerWindow:
         })
 
     # -- run -------------------------------------------------------------
+    def _sense_capture(self):
+        """One watchdog snapshot, or None. Never breaks the batch."""
+        try:
+            return capture_compact()
+        except Exception:
+            return None
+
     def _run_batch_text(self, text: str) -> dict:
-        """Validate + run one batch -> {"ok", "lines", "results", "log"}.
+        """Validate + run one batch -> {"ok", "lines", "results", "log", "events"}.
 
         Shared by the Run button and the file bridge so both behave alike:
-        top to bottom, stopping at the first failure.
+        top to bottom, stopping at the first failure. The sense watchdog
+        snapshots the stage before/after so every executed batch reports
+        what actually changed ("events", also mirrored into "log" as
+        sense: lines).
         """
         try:
             batch = parse_batch(text)
@@ -688,14 +700,15 @@ class ReasonerWindow:
             return {"ok": False, "lines": [],
                     "results": [{"key": "", "line": 0, "ok": False,
                                  "msg": str(exc)}],
-                    "log": [f"ERROR: {exc}"]}
+                    "log": [f"ERROR: {exc}"], "events": []}
         if not batch:
             return {"ok": True, "lines": [], "results": [],
-                    "log": ["(nothing to run)"]}
+                    "log": ["(nothing to run)"], "events": []}
         lines = [key + "".join(f" {k}={v}" for k, v in raw.items())
                  for key, raw, _ in batch]
         results, log = [], []
         ok_all = True
+        sense_before = self._sense_capture()
         for key, raw, lineno in batch:
             try:
                 action = validate(key, raw, self._catalog, lineno=lineno)
@@ -716,7 +729,15 @@ class ReasonerWindow:
                 log.append(f"stopped at line {lineno}")
                 ok_all = False
                 break
-        return {"ok": ok_all, "lines": lines, "results": results, "log": log}
+        try:
+            events = self._watcher.observe_after(
+                sense_before, self._sense_capture())
+        except Exception:
+            events = []
+        for ev in events:
+            log.append("sense: " + ev)
+        return {"ok": ok_all, "lines": lines, "results": results,
+                "log": log, "events": events}
 
     def _on_run(self):
         if not self._catalog:
@@ -730,6 +751,7 @@ class ReasonerWindow:
             "event": "run",
             "lines": outcome["lines"],
             "results": outcome["results"],
+            "events": outcome.get("events", []),
         })
 
     # -- timeline watcher (who pauses/stops the sim, and when) -----------
@@ -842,6 +864,7 @@ class ReasonerWindow:
                 "cmd": result["cmd"],
                 "lines": result["lines"],
                 "results": result["results"],
+                "events": result.get("events", []),
             })
             png = self._bridge_dirs["outbox"] / (result["stem"] + ".png")
             started, msg = capture_viewport(
@@ -854,6 +877,23 @@ class ReasonerWindow:
             self._bridge_status.text = (
                 f"Bridge: on ({len(processed)} ran, last: {processed[-1]['cmd']})"
             )
+        else:
+            self._sense_idle_tick()
+
+    def _sense_idle_tick(self):
+        """Watchdog idle tick: report external stage edits, else stay quiet."""
+        try:
+            snap = self._sense_capture()
+            if snap is None:
+                return
+            events = self._watcher.observe(snap)
+        except Exception:
+            return
+        for ev in events:
+            self._log("sense: " + ev)
+            self._tl_write("sense " + ev)
+        if events:
+            _log_trace({"event": "sense", "events": events})
 
     def _on_bridge_shot_done(self, ok: bool, msg: str, result_file: str, png: str):
         self._log(("bridge shot: " if ok else "bridge shot ERROR: ") + msg)

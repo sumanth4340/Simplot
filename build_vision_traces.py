@@ -112,6 +112,32 @@ VIS_TASKS = [
         "create.objects.sphere pos=0,0,2.0 radius=0.3 mass=1.0 name=vball",
         "sim.reset",
     ]),
+    ("vis16", "drop a soft purple deformable cone and let it settle on the ground", "deform", [
+        "physics.add.physics_scene path=/World/PhysicsScene",
+        "create.objects.cone pos=0,0,1.5 color=0.6,0.2,0.8 name=vsoft",
+        "sim.play",
+    ]),
+    ("vis17", "assembling a robot arm articulation with angular drive targets", "articulation", [
+        "create.objects.cuboid pos=0,0,0.25 size=0.5 color=0.5,0.5,0.5 name=vbase",
+        "create.objects.cuboid pos=0,0,0.9 size=0.5 color=1.0,0.8,0.2 name=varm",
+        "joint.create.joint joint_type=revolute from_prim=/World/vbase to_prim=/World/varm axis=Z",
+    ]),
+    ("vis18", "bind a bumpy rubber rigid-body material to the crate", "modeling", [
+        "create.objects.cuboid pos=0,0,0.5 size=0.8 color=0.6,0.4,0.2 name=vcrate",
+        "material.add.rigid_body_material stage=/World path=/World/Looks/vrubber density=1100 staticFriction=0.9 dynamicFriction=0.7 restitution=0.2",
+        "material.bind.material prim_path=/World/vcrate material_path=/World/Looks/vrubber",
+    ]),
+    ("vis19", "drop the red ball in moon gravity for the trial", "physics", [
+        "create.objects.sphere pos=0,0,2.0 radius=0.3 color=1.0,0.2,0.2 mass=1.0 name=vmoon",
+        "sim.set.gravity value=0,0,-1.62",
+        "sim.play",
+    ]),
+    ("vis20", "measure range on the crate stack with a spinning rtx lidar", "sensors", [
+        "create.objects.fixed_cuboid pos=0,0,0.5 size=1.0 name=vstack0",
+        "create.objects.fixed_cuboid pos=0,0,1.5 size=1.0 name=vstack1",
+        "sensor.create.rtx_lidar path=/World/vlidar",
+        "sim.play",
+    ]),
 ]
 
 

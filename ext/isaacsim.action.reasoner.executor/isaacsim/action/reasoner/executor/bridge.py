@@ -103,7 +103,7 @@ def process_inbox(base, run_batch, snapshot_fn=None, log_fn=None) -> list:
     """Run every pending inbox batch. Returns one result dict per batch.
 
     ``run_batch(text)`` runs the GUI-equivalent validate+execute pass and
-    returns {"ok", "lines", "results", "log"}. ``snapshot_fn`` returns the
+    returns {"ok", "lines", "results", "log", "events"}. ``snapshot_fn`` returns the
     stage snapshot string ("" when omitted). ``log_fn`` receives GUI log
     lines when given. A batch that fails still moves to done/; an
     unreadable file is left for the next poll.
@@ -127,11 +127,13 @@ def process_inbox(base, run_batch, snapshot_fn=None, log_fn=None) -> list:
             lines = list(outcome.get("lines") or [])
             results = list(outcome.get("results") or [])
             log = list(outcome.get("log") or [])
+            events = list(outcome.get("events") or [])
         except Exception as exc:  # never let one batch kill the poll loop
             ok, lines = False, []
             results = [{"key": "", "line": 0, "ok": False,
                         "msg": f"bridge: run failed: {exc}"}]
             log = [f"ERROR: bridge: run failed: {exc}"]
+            events = []
         if snapshot_fn is not None:
             try:
                 snapshot = snapshot_fn()
@@ -146,6 +148,7 @@ def process_inbox(base, run_batch, snapshot_fn=None, log_fn=None) -> list:
             "lines": lines,
             "results": results,
             "log": log,
+            "events": events,
             "snapshot": snapshot,
             "shot": None,
         }

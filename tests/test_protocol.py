@@ -333,6 +333,42 @@ def test_create_help_shows_transform():
     assert "[orient]" in sig and "[scale]" in sig, sig
 
 
+def test_backslash_path_normalized():
+    key, raw = protocol.parse_line(
+        "scene.open path=C:\\isaacsim\\stages\\dwa_final.usd", lineno=1)
+    assert key == "scene.open", (key, raw)
+    assert raw == {"path": "C:/isaacsim/stages/dwa_final.usd"}, raw
+    a = protocol.validate("scene.open", raw, catalog, lineno=1)
+    assert a.params["path"] == "C:/isaacsim/stages/dwa_final.usd", a.params
+
+
+def test_backslash_prim_target_normalized():
+    key, raw = protocol.parse_line(
+        "scene.delete.prim target=\\World\\oops", lineno=1)
+    assert raw == {"target": "/World/oops"}, raw
+    a = protocol.validate("scene.delete.prim", raw, catalog, lineno=1)
+    assert a.params["target"] == "/World/oops", a.params
+
+
+def test_delete_physics_scene_refused():
+    for target in ("PhysicsScene", "/World/PhysicsScene", "/PhysicsScene",
+                   "/World/PhysicsScene/"):
+        expect_validation_error(
+            lambda t=target: protocol.validate(
+                "scene.delete.prim", {"target": t}, catalog, lineno=2),
+            "refusing to delete the PhysicsScene",
+        )
+
+
+def test_delete_ordinary_prim_allowed():
+    a = protocol.validate("scene.delete.prim", {"target": "/World/oops"},
+                          catalog, lineno=1)
+    assert a.params["target"] == "/World/oops", a.params
+    b = protocol.validate("scene.delete.prim", {"target": "wheel_cyl_fl"},
+                          catalog, lineno=1)
+    assert b.params["target"] == "wheel_cyl_fl", b.params
+
+
 if __name__ == "__main__":
     for name, fn in sorted([(k, v) for k, v in dict(globals()).items() if k.startswith("test_")]):
         check(name, fn)

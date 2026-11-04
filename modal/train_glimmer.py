@@ -5,7 +5,7 @@ lines. Phase A: text-only rows (protocol + skills). Phase B: live
 screenshot rows (15 vis captures) through the vision tower, same adapter.
 
 Data: finetune traces_mock + traces_drills + traces_dispatch +
-traces_live + traces_vision (422 traces; missing files are skipped).
+traces_live + traces_vision (451 traces; missing files are skipped).
 8 stratified held out for a post-train check. Phase B vision SFT runs
 on rows with images (same adapter, 1 epoch).
 
@@ -71,13 +71,9 @@ def upload_data():
     return sorted(os.listdir("/data"))
 
 
-@app.function(
-    image=image,
-    gpu=GPU,
-    volumes={"/data": data_vol, "/out": out_vol,
-             "/root/.cache/huggingface": hf_vol},
-    timeout=6 * 3600,
-)
+# Plain helper (NOT a Modal function): phase B runs in-process inside
+# train()'s GPU container, sharing the loaded model. A decorator here
+# would only mislead — remote execution could never receive `model`.
 def _vision_phase(model, vis_rows, tok):
     """Phase B: vision SFT over live-captured rows (1 epoch, low LR).
 

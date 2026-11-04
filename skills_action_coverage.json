@@ -4,10 +4,10 @@
    "traces_drills.jsonl": 270,
    "traces_mock.jsonl": 19,
    "traces_dispatch.jsonl": 36,
-   "traces_live.jsonl": 82,
-   "traces_vision.jsonl": 15
+   "traces_live.jsonl": 106,
+   "traces_vision.jsonl": 20
   },
-  "traces": 422,
+  "traces": 451,
   "compact_actions": 195,
   "handled_actions": 57,
   "unknown_keys": {}
@@ -426,7 +426,7 @@
    "dispatch": 0
   },
   "live": {
-   "traces": 97,
+   "traces": 126,
    "skills": [
     "action-and-event-data-generation",
     "actor-sdg-generate-lighting-variations",
@@ -451,6 +451,7 @@
     "isaac-sim-ros-workspaces",
     "isaac-sim-sensor",
     "isaac-sim-troubleshooting",
+    "isaac-sim-validator",
     "isaac-sim-web-viewer",
     "manipulation",
     "manipulation-ik",
@@ -465,6 +466,7 @@
     "place-camera-aim-at",
     "pyapi",
     "radac",
+    "rendering",
     "rosnav",
     "run-incident-events",
     "sdg-adv",
@@ -504,6 +506,7 @@
     "joint.create.joint",
     "material.add.rigid_body_material",
     "material.bind.material",
+    "physics.add.physics_scene",
     "physics.add.rigid_body",
     "physics.remove.rigid_body",
     "physics.set.mass",
@@ -615,7 +618,7 @@
    "available": true
   },
   "create.objects.cuboid": {
-   "traces": 125,
+   "traces": 132,
    "drills": [
     "AR1",
     "MO1",
@@ -675,7 +678,7 @@
    "available": true
   },
   "create.objects.fixed_cuboid": {
-   "traces": 55,
+   "traces": 59,
    "drills": [
     "A1",
     "A2",
@@ -695,9 +698,11 @@
     "isaac-sim-headless-deployment",
     "isaac-sim-installation",
     "isaac-sim-sensor",
+    "isaac-sim-web-viewer",
     "meta-skills",
     "modeling",
     "motion-generation",
+    "nav2",
     "object-bin-packing",
     "omnigraph",
     "physics",
@@ -737,7 +742,7 @@
    "available": true
   },
   "create.objects.sphere": {
-   "traces": 77,
+   "traces": 79,
    "drills": [
     "N1",
     "PH1",
@@ -933,7 +938,7 @@
    "available": true
   },
   "create.objects.cone": {
-   "traces": 16,
+   "traces": 18,
    "drills": [
     "D1",
     "live"
@@ -1121,7 +1126,7 @@
    "available": true
   },
   "sim.play": {
-   "traces": 100,
+   "traces": 107,
    "drills": [
     "A1",
     "A2",
@@ -1244,7 +1249,7 @@
    "available": true
   },
   "sim.stop": {
-   "traces": 12,
+   "traces": 16,
    "drills": [
     "AP1",
     "P1",
@@ -1301,7 +1306,7 @@
    "available": true
   },
   "sim.set.gravity": {
-   "traces": 10,
+   "traces": 13,
    "drills": [
     "PH1",
     "live"
@@ -1382,7 +1387,7 @@
    "available": true
   },
   "scene.delete.prim": {
-   "traces": 69,
+   "traces": 103,
    "drills": [
     "N1",
     "P1",
@@ -1395,8 +1400,10 @@
     "appsession",
     "articulation",
     "behavior-tree-generation",
+    "calibrate-metropolis-camera",
     "data-collection-sim",
     "deform",
+    "gpunuc",
     "isaac-sim-headless-deployment",
     "isaac-sim-installation",
     "isaac-sim-remote",
@@ -1404,6 +1411,7 @@
     "isaac-sim-ros2-bridge",
     "isaac-sim-troubleshooting",
     "isaac-sim-validator",
+    "manipulation",
     "manipulation-ik",
     "meta-skills",
     "mobility-gen",
@@ -1427,7 +1435,7 @@
    "available": true
   },
   "scene.open": {
-   "traces": 13,
+   "traces": 14,
    "drills": [
     "AP1",
     "G2",
@@ -1438,7 +1446,9 @@
     "deform",
     "gpunuc",
     "isaac-sim-assets",
+    "isaac-sim-headless-deployment",
     "isaac-sim-remote",
+    "isaac-sim-sensor",
     "isaac-sim-troubleshooting",
     "modeling",
     "object-bin-packing",
@@ -1450,7 +1460,7 @@
    "available": true
   },
   "scene.save": {
-   "traces": 11,
+   "traces": 12,
    "drills": [
     "AP1",
     "ST1",
@@ -1460,6 +1470,7 @@
     "appsession",
     "articulation",
     "calibrate-metropolis-camera",
+    "generate-incident-config",
     "isaac-sim-remote",
     "meta-skills",
     "modeling",
@@ -1519,14 +1530,16 @@
    "available": true
   },
   "physics.add.physics_scene": {
-   "traces": 9,
+   "traces": 12,
    "drills": [
-    "D1"
+    "D1",
+    "live"
    ],
    "skills": [
     "appsession",
     "behavior",
     "deform",
+    "isaac-sim-validator",
     "isaac-sim-web-viewer",
     "rendering"
    ],
@@ -1548,7 +1561,7 @@
    "available": true
   },
   "material.add.rigid_body_material": {
-   "traces": 12,
+   "traces": 14,
    "drills": [
     "MO1",
     "live"
@@ -1588,7 +1601,7 @@
    "available": true
   },
   "material.bind.material": {
-   "traces": 17,
+   "traces": 19,
    "drills": [
     "MO1",
     "live"
@@ -1692,7 +1705,7 @@
    "available": true
   },
   "joint.create.joint": {
-   "traces": 42,
+   "traces": 44,
    "drills": [
     "AR1",
     "live",
@@ -1909,7 +1922,7 @@
    "available": true
   },
   "sensor.create.rtx_lidar": {
-   "traces": 17,
+   "traces": 19,
    "drills": [
     "N2",
     "live",
@@ -1919,6 +1932,7 @@
     "articulation",
     "generate-incident-config",
     "isaac-sim-sensor",
+    "isaac-sim-web-viewer",
     "meta-skills",
     "nav2",
     "omnigraph",
