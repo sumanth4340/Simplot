@@ -53,6 +53,22 @@ def test_build_messages_matches_endpoint_path():
             assert "action lines" in msgs[0]["content"], task["id"]
 
 
+def test_clean_completion_cuts_channel_markers():
+    raw = (" to=user<|message|>create.objects.plane size=20\n"
+           "create.objects.cuboid size=1 pos=0,0,2<|eot|>")
+    assert grade.clean_completion(raw) == (
+        "create.objects.plane size=20\n"
+        "create.objects.cuboid size=1 pos=0,0,2")
+    dispatch = " to=user<|message|>DEPLOY agent=sense<|eot|>"
+    assert grade.clean_completion(dispatch) == "DEPLOY agent=sense"
+
+
+def test_clean_completion_skips_reasoning_turn():
+    raw = (" to=self<|message|>thinking here<|eom|>"
+           " to=user<|message|>sim.play<|eot|> trailing")
+    assert grade.clean_completion(raw) == "sim.play"
+
+
 def test_build_messages_uses_same_builders_as_thinker_plan():
     # run_eval's endpoint path calls these exact builders; grade must not
     # drift to a private prompt format.

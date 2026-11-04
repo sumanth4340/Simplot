@@ -79,6 +79,26 @@ def load_reasoner(root):
             routing, signatures, roster)
 
 
+USER_CHANNEL = "to=user<|message|>"
+
+
+def clean_completion(raw):
+    """Cut channel/end markers from a raw greedy continuation.
+
+    The model correctly emits ` to=user<|message|>...<|eot|>`; decoding
+    with skip_special_tokens=True glues the marker to the first line
+    (`to=userDEPLOY`), which the scorer then rejects. Prefer the user
+    channel (skips any `to=self` reasoning turn), cut at end markers.
+    """
+    if USER_CHANNEL in raw:
+        raw = raw.split(USER_CHANNEL, 1)[1]
+    elif "<|message|>" in raw:
+        raw = raw.split("<|message|>", 1)[1]
+    for end in ("<|eot|>", "<|eom|>"):
+        raw = raw.split(end)[0]
+    return raw
+
+
 def build_messages(task, thinker, signatures, roster, routing):
     """Eval task -> [system, user] messages, exactly like run_eval's
     endpoint path (same builders, same inputs). Pure: tested offline,
@@ -152,7 +172,8 @@ def grade():
                 out = model.generate(**ids, max_new_tokens=GEN_TOKENS,
                                      do_sample=False,
                                      pad_token_id=tok.pad_token_id)
-            return tok.decode(out[0][in_len:], skip_special_tokens=True)
+            raw = tok.decode(out[0][in_len:], skip_special_tokens=False)
+            return clean_completion(raw)
         except Exception as exc:
             print(f"GEN FAILED {task['id']}: {exc!r}")
             return None
