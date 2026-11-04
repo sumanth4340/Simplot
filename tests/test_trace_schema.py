@@ -19,7 +19,6 @@ def _load(name, path):
 trace_schema = _load("trace_schema", ROOT / "trace_schema.py")
 build_traces = _load("build_traces", ROOT / "build_traces.py")
 build_drills = _load("build_drill_traces", ROOT / "build_drill_traces.py")
-build_vision = _load("build_vision", ROOT / "build_vision_traces.py")
 passed = []
 
 
@@ -84,12 +83,8 @@ def test_builders_emit_valid_records():
     stats = build_drills.generate(tmp / "drills")
     assert stats["written"] > 0 and not stats["invalid"], stats["invalid"]
     assert not stats["misses"], stats["misses"]
-    stats = build_vision.generate(tmp / "vision")
-    assert stats["written"] > 0 and not stats["invalid"], stats["invalid"]
-    assert not stats["misses"], stats["misses"]
     n = 0
-    for name in ("mock/traces_mock.jsonl", "drills/traces_drills.jsonl",
-                 "vision/traces_vision.jsonl"):
+    for name in ("mock/traces_mock.jsonl", "drills/traces_drills.jsonl"):
         for line in (tmp / name).read_text(encoding="utf-8").splitlines():
             errs = trace_schema.validate_record(json.loads(line))
             assert not errs, errs
@@ -109,23 +104,6 @@ def test_dispatch_record_passes():
     bad = json.loads(json.dumps(rec))
     bad["meta"]["actions"] = ["sim.play"]
     assert trace_schema.validate_record(bad), "dispatch + actions accepted"
-
-
-def test_vision_record_image_files():
-    rec = _good_record()
-    rec["meta"]["backend"] = "live"
-    rec["meta"]["images"] = 1
-    rec["meta"]["image_files"] = ["images/vis01.png"]
-    assert trace_schema.validate_record(rec) == []
-    bad = json.loads(json.dumps(rec))
-    del bad["meta"]["image_files"]
-    assert trace_schema.validate_record(bad), "images=1 without files accepted"
-    bad2 = json.loads(json.dumps(rec))
-    bad2["meta"]["image_files"] = ["a.png", "b.png"]
-    assert trace_schema.validate_record(bad2), "count mismatch accepted"
-    bad3 = json.loads(json.dumps(rec))
-    bad3["meta"]["images"] = 0
-    assert trace_schema.validate_record(bad3), "files with images=0 accepted"
 
 
 def test_schema_json_is_valid_json():

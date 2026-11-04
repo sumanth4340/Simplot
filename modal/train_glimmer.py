@@ -1,13 +1,12 @@
 """QLoRA SFT of Muse-Glimmer-30B on Action Reasoner traces (Modal).
 
 What it trains: chat SFT mapping TASK + snapshot -> catalog action
-lines. Phase A: text-only rows (protocol + skills). Phase B: live
-screenshot rows (15 vis captures) through the vision tower, same adapter.
+lines. Text-only rows (protocol + skills); stage awareness comes
+from the sense watchdog's event lines, not screenshots.
 
 Data: finetune traces_mock + traces_drills + traces_dispatch +
-traces_live + traces_vision (451 traces; missing files are skipped).
-8 stratified held out for a post-train check. Phase B vision SFT runs
-on rows with images (same adapter, 1 epoch).
+traces_live (441 traces; missing files are skipped).
+8 stratified held out for a post-train check.
 
 GPU: A100-80GB (4-bit 30B base + LoRA adapters + 4k context).
 Time: rough estimate under ~2h for 3 epochs; watch the Modal dashboard
@@ -36,18 +35,8 @@ EPOCHS = 3
 LORA_R = 16
 LORA_ALPHA = 32
 HELD_OUT = 8
-VIS_EVAL_ROWS = 2  # first N vision rows held out (stable as data grows)
-
-
-def split_vision_eval(vis_rows, n_eval=VIS_EVAL_ROWS):
-    """Split vision rows into (train, eval); eval = first rows, stable."""
-    vis_rows = list(vis_rows)
-    if len(vis_rows) <= n_eval:
-        return vis_rows, []
-    return vis_rows[n_eval:], vis_rows[:n_eval]
 TRACE_FILES = ("traces_mock.jsonl", "traces_drills.jsonl",
-               "traces_dispatch.jsonl", "traces_live.jsonl",
-               "traces_vision.jsonl")
+               "traces_dispatch.jsonl", "traces_live.jsonl")
 
 # Pinned 2026-11-04 via probe_versions.py; re-probe before changing.
 image = modal.Image.debian_slim(python_version="3.12").pip_install(
@@ -69,112 +58,6 @@ LOCAL_DATA = os.path.join(os.path.dirname(__file__), "..", "finetune")
 def upload_data():
     # Files are mounted read-write; the local entrypoint writes them.
     return sorted(os.listdir("/data"))
-
-
-# Plain helper (NOT a Modal function): phase B runs in-process inside
-# train()'s GPU container, sharing the loaded model. A decorator here
-# would only mislead — remote execution could never receive `model`.
-def _vision_phase(model, vis_rows, tok):
-    """Phase B: vision SFT over live-captured rows (1 epoch, low LR).
-
-    Formats each row as image + chat text via the model processor,
-    masks the prompt, and trains with plain transformers.Trainer
-    (avoids TRL multimodal quirks). Raises on any failure so the
-    caller can skip loudly with phase A intact.
-    """
-    import torch
-    from PIL import Image
-    from torch.utils.data import Dataset as TorchDataset
-    from transformers import (AutoProcessor, Trainer, TrainingArguments,
-                              default_data_collator)
-
-    processor = AutoProcessor.from_pretrained(MODEL_ID,
-                                              trust_remote_code=True)
-    if getattr(processor, "tokenizer", None) is not None:
-        if processor.tokenizer.pad_token is None:
-            processor.tokenizer.pad_token = processor.tokenizer.eos_token
-    pad_id = processor.tokenizer.pad_token_id
-
-    train_rows, eval_rows = split_vision_eval(vis_rows)
-
-    def _encode(subset):
-        sub = []
-        for r in subset:
-            img_rel = r["meta"]["image_files"][0]
-            im = Image.open(os.path.join("/data", img_rel)).convert("RGB")
-            sys_c, usr_c, asst_c = (m["content"] for m in r["messages"])
-            msgs = [
-                {"role": "system",
-                 "content": [{"type": "text", "text": sys_c}]},
-                {"role": "user", "content": [
-                    {"type": "image"},
-                    {"type": "text", "text": usr_c}]},
-                {"role": "assistant",
-                 "content": [{"type": "text", "text": asst_c}]},
-            ]
-            full = processor.apply_chat_template(
-                msgs, tokenize=False, add_generation_prompt=False)
-            pre = processor.apply_chat_template(
-                msgs[:2], tokenize=False, add_generation_prompt=True)
-            enc = processor(text=full, images=im, return_tensors="pt",
-                            truncation=True, max_length=MAX_SEQ_LEN)
-            enc_pre = processor(text=pre, images=im, return_tensors="pt",
-                                truncation=True, max_length=MAX_SEQ_LEN)
-            input_ids = enc["input_ids"][0]
-            labels = input_ids.clone()
-            labels[:enc_pre["input_ids"].shape[1]] = -100
-            item = {"input_ids": input_ids,
-                    "attention_mask": enc["attention_mask"][0],
-                    "labels": labels}
-            for _k, _v in enc.items():
-                if _k not in ("input_ids", "attention_mask"):
-                    item[_k] = _v[0]  # pixel_values, image_grid_thw, ...
-            sub.append(item)
-        return sub
-
-    train_items = _encode(train_rows)
-    eval_items = _encode(eval_rows)
-    max_len = max(int(t["input_ids"].numel())
-                  for t in train_items + eval_items)
-    import torch.nn.functional as F
-    for t in train_items + eval_items:
-        pad = max_len - int(t["input_ids"].numel())
-        if pad:
-            t["input_ids"] = F.pad(t["input_ids"], (0, pad),
-                                   value=pad_id)
-            t["attention_mask"] = F.pad(t["attention_mask"], (0, pad),
-                                        value=0)
-            t["labels"] = F.pad(t["labels"], (0, pad), value=-100)
-
-    class _DS(TorchDataset):
-        def __init__(self, rows):
-            self._rows = rows
-
-        def __len__(self):
-            return len(self._rows)
-
-        def __getitem__(self, i):
-            return self._rows[i]
-
-    vargs = TrainingArguments(
-        output_dir="/out/adapter_phase_b", num_train_epochs=1,
-        per_device_train_batch_size=2, per_device_eval_batch_size=2,
-        gradient_accumulation_steps=2,
-        learning_rate=5e-5, lr_scheduler_type="cosine",
-        logging_steps=1, save_strategy="no", bf16=True,
-        eval_strategy="epoch",
-        report_to="none", seed=42, remove_unused_columns=False)
-    vtrainer = Trainer(model=model, args=vargs, train_dataset=_DS(train_items),
-                       eval_dataset=_DS(eval_items) if eval_items else None,
-                       data_collator=default_data_collator)
-    vtrainer.train()
-    return {"rows": len(vis_rows), "n_train": len(train_items),
-            "n_eval": len(eval_items), "status": "trained",
-            "loss": [float(x["loss"]) for x in vtrainer.state.log_history
-                     if "loss" in x],
-            "eval_loss": [float(x["eval_loss"])
-                          for x in vtrainer.state.log_history
-                          if "eval_loss" in x]}
 
 
 @app.function(
@@ -220,12 +103,8 @@ def train():
             parts.append(f"<{m['role']}>\n{m['content']}")
         return "\n".join(parts) + tok.eos_token
 
-    # Phase A trains text-only rows; vision rows (whose tasks need
-    # pixels) train in phase B below.
-    text_rows = [r for r in rows if not r["meta"].get("images")]
-    vis_rows = [r for r in rows if r["meta"].get("images")]
-    print(f"text rows: {len(text_rows)}, vision rows: {len(vis_rows)}")
-    rows = text_rows
+    # All rows are text-only (stage awareness via watchdog events).
+    print(f"text rows: {len(rows)}")
     texts = [render(r["messages"]) for r in rows]
     # Stratified held-out: round-robin over (backend, drill) groups so eval
     # covers drill skills, not just the mock head of the file order.
@@ -252,9 +131,9 @@ def train():
         bnb_4bit_use_double_quant=True)
     # VLM auto class -> MuseGlimmerForConditionalGeneration (verified in
     # the local transformers mapping; has generate()). LM head for SFT
-    # loss, generate() for the held-out check, pixel_values path for
-    # phase B. Plain AutoModel gives the headless base; CausalLM auto
-    # class has no MuseGlimmerConfig mapping at all.
+    # loss, generate() for the held-out check. Plain AutoModel gives
+    # the headless base; CausalLM auto class has no MuseGlimmerConfig
+    # mapping at all.
     model = AutoModelForImageTextToText.from_pretrained(
         MODEL_ID, quantization_config=bnb, trust_remote_code=True,
         device_map="auto")
@@ -310,19 +189,6 @@ def train():
     tok.save_pretrained("/out/adapter")
     out_vol.commit()
 
-    # ---- Phase B: vision SFT on live-captured rows (same adapter). ----
-    # Any failure here skips loudly; phase A artifacts are already saved.
-    phase_b = {"rows": len(vis_rows), "status": "skipped: no vision rows"}
-    if vis_rows:
-        try:
-            phase_b = _vision_phase(model, vis_rows, tok)
-            trainer.save_model("/out/adapter")
-            out_vol.commit()
-        except Exception as exc:
-            print(f"VISION PHASE SKIPPED: {exc!r}")
-            phase_b = {"rows": len(vis_rows),
-                       "status": "skipped: %r" % (exc,)}
-
     # Held-out generation check (greedy, short).
     model.eval()
     gens = []
@@ -339,8 +205,7 @@ def train():
            "eval_loss": [float(x["eval_loss"]) for x in trainer.state.log_history
                          if "eval_loss" in x],
            "held_out_gens": gens,
-           "n_train": len(train_texts), "n_eval": len(eval_texts),
-           "phase_b": phase_b}
+           "n_train": len(train_texts), "n_eval": len(eval_texts)}
     with open("/out/train_log.json", "w", encoding="utf-8") as f:
         json.dump(log, f, indent=1)
     out_vol.commit()
@@ -352,7 +217,7 @@ def train():
 @app.local_entrypoint()
 def main():
     import pathlib
-    # Stage the two jsonl files into the data volume (remove-then-put:
+    # Stage the jsonl trace files into the data volume (remove-then-put:
     # batch_upload has no force flag in this Modal version).
     for name in TRACE_FILES:
         try:
@@ -366,16 +231,6 @@ def main():
                 print(f"skip missing local {src}")
                 continue
             batch.put_file(str(src), f"/{name}")
-        img_dir = pathlib.Path(LOCAL_DATA) / "images"
-        if img_dir.is_dir():
-            for png in sorted(img_dir.glob("*.png")):
-                try:
-                    data_vol.remove_file(f"/images/{png.name}")
-                except Exception:
-                    pass
-                batch.put_file(str(png), f"/images/{png.name}")
-            print("images staged:",
-                  len(list(img_dir.glob("*.png"))))
     print("uploaded:", upload_data.remote())
     print("launching QLoRA SFT on", GPU)
     log = train.remote()

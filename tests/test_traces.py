@@ -74,6 +74,9 @@ def test_finetune_artifact_matches_curation():
 def test_committed_finetune_dir_exists():
     finetune = ROOT / "finetune"
     assert (finetune / "traces_mock.jsonl").is_file(), "run build_traces.py"
+    assert (finetune / "traces_drills.jsonl").is_file(), "run build_drill_traces.py"
+    assert (finetune / "traces_dispatch.jsonl").is_file(), "run build_dispatch_traces.py"
+    assert (finetune / "traces_live.jsonl").is_file(), "run build_live_traces.py"
     assert (finetune / "actions_finetune.json").is_file(), "run build_traces.py"
 
 

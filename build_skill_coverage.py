@@ -18,8 +18,7 @@ ROOT = Path(__file__).resolve().parent
 EXT_PY = (ROOT / "ext" / "isaacsim.action.reasoner.executor" / "isaacsim"
           / "action" / "reasoner" / "executor")
 TRACE_FILES = ("traces_drills.jsonl", "traces_mock.jsonl",
-               "traces_dispatch.jsonl", "traces_live.jsonl",
-               "traces_vision.jsonl")
+               "traces_dispatch.jsonl", "traces_live.jsonl")
 
 
 def _load_handlers():

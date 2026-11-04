@@ -8,8 +8,7 @@
 | `finetune/traces_mock.jsonl` | 19 task -> action traces in chat format |
 | `finetune/traces_drills.jsonl` | 270 drill-derived traces (90 validated tasks x 3 snapshots) |
 | `finetune/traces_dispatch.jsonl` | 36 dispatcher traces (12 deploy plans x 3 snapshots) |
-| `finetune/traces_live.jsonl` | 106 converted live traces (all-ok GUI + bridge runs) |
-| `finetune/traces_vision.jsonl` | 20 vision-grounded traces (live PNGs in `finetune/images/`) |
+| `finetune/traces_live.jsonl` | 116 converted live traces (all-ok GUI + bridge runs) |
 | `~/action-reasoner-traces/traces.jsonl` | Live traces, appended by the GUI (think + run events) |
 
 Regenerate offline data anytime (no Isaac Sim, no GPU):
@@ -41,9 +40,9 @@ Every assistant block is machine-validated against the catalog before it
 is written (the generator refuses to emit invalid traces).
 
 This `messages` shape loads directly into common chat fine-tuning stacks
-(TRL `SFTTrainer`, Axolotl, torchtune chat templates). Glimmer is
-multimodal, but mock traces are text-only (`images: 0`); vision traces
-with real screenshots come from the live log below.
+(TRL `SFTTrainer`, Axolotl, torchtune chat templates). All traces are
+text-only (`images: 0`); stage awareness comes from the sense
+watchdog's `event.*` lines, not screenshots.
 
 ## Curation: the 26 excluded actions
 
@@ -75,10 +74,9 @@ every `Run`, and every Reasoner step appends to
 - `reason_done`: Reasoner task, final status (done/failed/stopped),
   reason, step count
 
-Once the Modal endpoint is live, `backend: glimmer` traces with real
-screenshots are your vision fine-tuning set: filter the log for
-`backend == "glimmer"` + all run lines `ok`, and convert to your
-trainer's multimodal chat format (image paths are absolute).
+Once the Modal endpoint is live, filter the log for
+`backend == "glimmer"` + all run lines `ok` to mine more text traces
+(stage deltas arrive as watchdog `event.*` lines).
 
 Text SFT consumes the converted set: `build_live_traces.py` mines
 all-ok GUI + bridge runs into `finetune/traces_live.jsonl`

@@ -91,7 +91,7 @@ def test_covers_training_distribution():
             content = json.loads(line)["messages"][2]["content"]
             assert pat.fullmatch(content), content[:120]
             n += 1
-    for committed in ("traces_live.jsonl", "traces_vision.jsonl"):
+    for committed in ("traces_live.jsonl",):
         path = ROOT / "finetune" / committed
         assert path.is_file(), f"run the {committed} builder"
         for line in path.read_text(encoding="utf-8").splitlines():
