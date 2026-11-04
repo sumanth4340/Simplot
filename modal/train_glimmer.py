@@ -7,9 +7,12 @@ from the sense watchdog's event lines, not screenshots.
 Data: finetune traces_mock + traces_drills + traces_dispatch +
 traces_live (458 traces; missing files are skipped).
 8 stratified held out for a post-train check.
+Loss is completion-only: prompt tokens masked, gradient only on the
+assistant turn (full-token loss taught the model to predict the
+catalog boilerplate instead of actions — grade 0.269).
 
 GPU: A100-80GB (4-bit 30B base + LoRA adapters + 4k context).
-Time: rough estimate under ~2h for 3 epochs; watch the Modal dashboard
+Time: rough estimate ~1h for 5 epochs; watch the Modal dashboard
 for actual spend. Nothing runs locally except the data upload.
 
 Setup (once):
@@ -31,10 +34,14 @@ import modal
 MODEL_ID = "meta-models/Muse-Glimmer-30B"
 GPU = "A100-80GB"
 MAX_SEQ_LEN = 4096
-EPOCHS = 3
+EPOCHS = 5
 LORA_R = 16
 LORA_ALPHA = 32
 HELD_OUT = 8
+# Completion mask boundary: the assistant-turn header, the exact point
+# where add_generation_prompt=True ends the inference prompt, so the
+# model learns the full assistant turn including its channel markers.
+RESPONSE_TEMPLATE = "<|start|>assistant"
 TRACE_FILES = ("traces_mock.jsonl", "traces_drills.jsonl",
                "traces_dispatch.jsonl", "traces_live.jsonl")
 
@@ -52,6 +59,19 @@ out_vol = modal.Volume.from_name("reasoner-sft", create_if_missing=True)
 hf_vol = modal.Volume.from_name("reasoner-hf-cache", create_if_missing=True)
 
 LOCAL_DATA = os.path.join(os.path.dirname(__file__), "..", "finetune")
+
+
+def render(messages, tok):
+    """Render one SFT text with the model's REAL chat template.
+
+    A missing template fails loud: a silent fallback format teaches
+    framing tokens the model then regurgitates at inference.
+    """
+    if not getattr(tok, "chat_template", None):
+        raise RuntimeError(
+            "Glimmer tokenizer has no chat template; refusing fallback")
+    return tok.apply_chat_template(messages, tokenize=False,
+                                   add_generation_prompt=False)
 
 
 @app.function(image=image, volumes={"/data": data_vol}, timeout=600)
@@ -73,7 +93,8 @@ def train():
     from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
     from transformers import (AutoModelForImageTextToText,
                               AutoTokenizer, BitsAndBytesConfig)
-    from trl import SFTConfig, SFTTrainer
+    from trl import (DataCollatorForCompletionOnlyLM, SFTConfig,
+                     SFTTrainer)
 
     rows = []
     for name in TRACE_FILES:
@@ -93,19 +114,9 @@ def train():
     if tok.pad_token is None:
         tok.pad_token = tok.eos_token
 
-    def render(messages):
-        if getattr(tok, "chat_template", None):
-            return tok.apply_chat_template(messages, tokenize=False,
-                                           add_generation_prompt=False)
-        # Fallback when the tokenizer ships no chat template.
-        parts = []
-        for m in messages:
-            parts.append(f"<{m['role']}>\n{m['content']}")
-        return "\n".join(parts) + tok.eos_token
-
     # All rows are text-only (stage awareness via watchdog events).
     print(f"text rows: {len(rows)}")
-    texts = [render(r["messages"]) for r in rows]
+    texts = [render(r["messages"], tok) for r in rows]
     # Stratified held-out: round-robin over (backend, drill) groups so eval
     # covers drill skills, not just the mock head of the file order.
     _groups = {}
@@ -182,8 +193,11 @@ def train():
     _want = {k: v for k, v in _want.items() if k in _sig}
     print("SFTConfig keys:", sorted(_want))
     args = SFTConfig(**_want)
+    collator = DataCollatorForCompletionOnlyLM(RESPONSE_TEMPLATE,
+                                              tokenizer=tok)
     trainer = SFTTrainer(model=model, train_dataset=train_ds,
-                         eval_dataset=eval_ds, args=args)
+                         eval_dataset=eval_ds, args=args,
+                         data_collator=collator)
     trainer.train()
     trainer.save_model("/out/adapter")
     tok.save_pretrained("/out/adapter")
