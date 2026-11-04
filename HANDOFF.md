@@ -18,11 +18,14 @@ sense watchdog's `event.*` lines, not screenshots.
 
 - `ext/isaacsim.action.reasoner.executor/` — the Isaac Sim extension
   source of truth (thinker, protocol, handlers, dispatcher,
-  supervisor, watcher, window, bridge).
+  supervisor, watcher, window, bridge, diagnose, optimize).
 - `skills/` — 18 canonical skill packs (procedures + drills + evidence).
+- `nav/` — DWA planner + math preflight + proof-replay driver
+  (`drive_mission.py`, needs `--left/--right` joint targets).
 - `finetune/` — SFT traces (`traces_{mock,drills,dispatch,live}.jsonl`).
 - `build_*.py` — trace builders; `modal/` — trainer + grader;
-  `eval/` — 12-task scored suite; `tests/` — offline suite (215+).
+  `eval/` — 12-task scored suite; `tests/` — offline suite
+  (`tests/run_all.py`, 250+).
 - `.agents/skills/` (repo root) — registered skill shortcuts.
 
 ## Operating Isaac Sim (three channels)
@@ -82,7 +85,7 @@ instances so only one loop polls). Never edit the copy directly.
 
 ## New-session checklist
 
-1. `python action-reasoner/tests/test_*.py` — full suite green?
+1. `python action-reasoner/tests/run_all.py` — full suite green?
 2. Probe the sim (remote): extension enabled? window has the dispatch
    branch? bridge loop on exactly one instance?
 3. Diff checkout `ext/` vs the live copy; sync + reload if stale.

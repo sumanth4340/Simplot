@@ -23,6 +23,7 @@ sim.play
 
 - `Think` turns the plain-English task box into action lines (see Thinker below); `Think & Run` plans and runs.
 - `Reason` runs the in-GUI Reasoner loop: observe → plan → run actions → verify, until DONE or the step budget (see Reasoner below); `Stop` ends it after the current step.
+- `Dispatch` plans which skill agents do the job (`DEPLOY`/`STEP`/`PARALLEL`/`COWORK`); `Run` then executes the block through the supervisor. The `Agents:` line under the status shows deployed agents plus per-step results, and the log shows each agent's emitted action lines (see Safety net below).
 - `Run` validates every line against the catalog, then executes top to bottom, stopping at the first failure.
 - `Snapshot` prints stage telemetry: sim state, prims with rigid (R) / collider (C) / articulation (A) flags, rigid-body positions, name registry — and captures a viewport screenshot (see Observer).
 - `Shots` opens the screenshot folder in Explorer.
@@ -192,6 +193,28 @@ gates execution, and the emitted lines execute live. Convention: put
 the original task in the first `#` comment line — the bridge has no
 task box, so the supervisor reads it from there.
 
+## Safety net (preflight, black box, optimizer)
+
+Three layers between a plan and the wheels, all stdlib + offline-tested:
+
+- Nav preflight (`nav/preflight.py`): math checks over a drive config
+  before anything moves — wheel-span footprint, bounds membership,
+  goal/start obstacle bubbles, v=0 seed warnings, scan sanity
+  (phantom-ring / blind / NaN). Verdicts are ok/warn/fail; the
+  `nav/drive_mission.py` replay driver refuses FAIL missions without
+  touching the bridge.
+- Failure black box (`executor/diagnose.py`): every exec-stage batch
+  failure packs the failed line, error, before/after snapshots, and
+  recent trace into one bundle (`self._last_blackbox`, plus a
+  `blackbox` trace event and a one-line log summary), ready for
+  one-shot LLM diagnosis (`diagnose.diagnose` returns fix lines or
+  `NO-FIX` + one probe).
+- Optimizer gate (`executor/optimize.py`): fuses a supervisor
+  emission with the preflight verdict into one `EXECUTE`/`VETO` call —
+  math FAIL vetoes with the fix attached, WARN annotates and
+  executes, malformed context fails closed. Standalone; the live-path
+  hook sits at the supervisor/executor boundary (post-hackathon).
+
 ## Observer (screenshot verification)
 
 Every `Snapshot` also captures the active viewport (no UI chrome) to
@@ -210,20 +233,20 @@ Notes:
 ## Offline tests (no Isaac Sim needed)
 
 ```
-python action-reasoner/tests/test_protocol.py
-python action-reasoner/tests/test_thinker.py
-python action-reasoner/tests/test_observer.py
-python action-reasoner/tests/test_traces.py
-python action-reasoner/tests/test_bridge.py
-python action-reasoner/tests/test_reasoner.py
+python action-reasoner/tests/run_all.py
 ```
+
+Runs every `tests/test_*.py` file and totals the result (each file
+stays directly runnable on its own).
 
 Covers parsing, type coercion, defaults, catalog pre-rules (clamps, value > 0),
 unknown-action suggestions, handler/catalog consistency, plus Thinker prompt
 building, skill routing, action extraction, vision blocks (encode, cap,
 unreadable-skip), mock plans (all validated against the catalog), endpoint
-failover to mock, observer availability/paths, and fine-tune data
-curation/schema.
+failover to mock, observer availability/paths, fine-tune data
+curation/schema, dispatcher grammar + agent display, supervisor fan-out,
+DWA planning + math preflight + proof replay, failure black box, and
+the optimizer gate.
 
 Every Think and Run also appends to `~/action-reasoner-traces/traces.jsonl`
 for future training data — see `FINETUNE_README.md`.

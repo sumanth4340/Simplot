@@ -306,6 +306,36 @@ def test_group_without_member_steps_skips_cleanly():
     assert [s["n"] for s in res["steps"]] == [1], res
 
 
+def test_format_agent_lines_shows_emissions():
+    stub = _StubThinker({"sense": "create.objects.cuboid size=1\nsim.play\n"})
+    res = supervisor.run_block(
+        "DEPLOY agent=sense\nSTEP n=1 agent=sense do=read-stage\n",
+        "survey the stage", "sim: paused", _deps(stub))
+    assert res["ok"], res
+    shown = supervisor.format_agent_lines(res)
+    assert shown[0] == (
+        "agent sense step 1 (read-stage) emitted 2 line(s):"), shown
+    assert shown[1:] == [
+        "  create.objects.cuboid size=1", "  sim.play"], shown
+
+
+def test_format_agent_lines_caps_and_skips_blanks():
+    res = {"steps": [{"n": 1, "agent": "rosnav", "do": "drive",
+                      "lines": "\n".join(
+                          [f"sim.set.drive_{i} v={i}" for i in range(12)]
+                          + ["", "  "])}]}
+    shown = supervisor.format_agent_lines(res, max_per_step=8)
+    assert shown[0] == (
+        "agent rosnav step 1 (drive) emitted 12 line(s):"), shown
+    assert len(shown) == 10, shown  # header + 8 lines + overflow note
+    assert shown[-1] == "  ... +4 more", shown
+
+
+def test_format_agent_lines_empty_when_no_steps():
+    assert supervisor.format_agent_lines({"steps": []}) == []
+    assert supervisor.format_agent_lines({}) == []
+
+
 if __name__ == "__main__":
     for name, fn in sorted([(k, v) for k, v in dict(globals()).items() if k.startswith("test_")]):
         check(name, fn)

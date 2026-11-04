@@ -144,6 +144,34 @@ def test_dispatch_prompt_builder():
     assert "xval" in prompt
 
 
+def test_summarize_agents():
+    text = ("DEPLOY agent=sense\n"
+            "DEPLOY agent=rosnav needs=sense\n"
+            "DEPLOY agent=xval\n"
+            "STEP n=1 agent=sense do=read-stage\n"
+            "STEP n=2 agent=rosnav do=drive-forward\n")
+    assert dispatcher.summarize_agents(text) == (
+        "sense[1:read-stage] + rosnav[2:drive-forward] + xval[verdict]")
+
+
+def test_summarize_agents_empty_and_idle():
+    assert dispatcher.summarize_agents("# only a comment\n") == (
+        "no agents (empty plan)")
+    assert dispatcher.summarize_agents("") == "no agents (empty plan)"
+    assert dispatcher.summarize_agents("DEPLOY agent=sense\n") == (
+        "sense[idle]")
+
+
+def test_summarize_agents_never_raises():
+    assert dispatcher.summarize_agents("SPAWN agent=sense\n") == ""
+    assert dispatcher.summarize_agents("DEPLOY agent =sense\n") == ""
+    long_text = "DEPLOY agent=sense\n" + "".join(
+        f"STEP n={n} agent=sense do=job-{n:03d}-with-a-long-slug\n"
+        for n in range(1, 30))
+    short = dispatcher.summarize_agents(long_text, max_len=40)
+    assert len(short) == 40 and short.endswith("\u2026")
+
+
 if __name__ == "__main__":
     for name, fn in sorted([(k, v) for k, v in dict(globals()).items() if k.startswith("test_")]):
         check(name, fn)

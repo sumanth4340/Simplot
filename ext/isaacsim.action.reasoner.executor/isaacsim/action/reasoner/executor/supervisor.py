@@ -33,8 +33,8 @@ from __future__ import annotations
 import concurrent.futures
 
 __all__ = ["run_block", "is_dispatch_text", "task_from_comments",
-           "format_log", "step_results", "failure_outcome",
-           "combine_outcome"]
+           "format_log", "format_agent_lines", "step_results",
+           "failure_outcome", "combine_outcome"]
 
 
 def _agent_skills(agent, task, thinker, routing, dispatcher):
@@ -329,6 +329,28 @@ def format_log(res) -> list:
                  f"({'; '.join(verdict.get('notes', []))})")
     if res.get("skipped"):
         lines.append(f"skipped steps: {res['skipped']}")
+    return lines
+
+
+def format_agent_lines(res, max_per_step: int = 8) -> list:
+    """Per-agent emitted action lines for display (GUI/bridge log).
+
+    Read-only view over a run_block result: one header per ran
+    step plus its emitted lines verbatim, capped per step so a
+    chatty agent cannot flood the log. Empty when no steps ran.
+    """
+    cap = max(0, int(max_per_step))
+    lines = []
+    for step in res.get("steps", []):
+        emitted = [ln.strip()
+                   for ln in (step.get("lines") or "").splitlines()
+                   if ln.strip()]
+        lines.append(f"agent {step['agent']} step {step['n']} "
+                     f"({step['do']}) emitted {len(emitted)} line(s):")
+        for ln in emitted[:cap]:
+            lines.append("  " + ln)
+        if len(emitted) > cap:
+            lines.append(f"  ... +{len(emitted) - cap} more")
     return lines
 
 

@@ -195,3 +195,45 @@ def is_dispatch_line(line: str) -> bool:
 def describe_roster() -> list:
     """One 'agent -> pack' line per agent, for prompt building."""
     return [f"- {agent}: skills/{AGENT_PACKS[agent]}/" for agent in ROSTER]
+
+
+def summarize_agents(text: str, max_len: int = 160) -> str:
+    """One-line agent status for a dispatch block (GUI Agents label).
+
+    Never raises: unparsable text yields "". Empty plans yield
+    "no agents (empty plan)". Otherwise one segment per DEPLOYed
+    agent in DEPLOY order: name[n:do,...]; xval with no steps
+    shows as name[verdict], other idle agents as name[idle].
+    Longer summaries truncate with an ellipsis.
+    """
+    try:
+        ops = parse_block(text)
+    except DispatchError:
+        return ""
+    deployed: list = []
+    for op in ops:
+        if op["verb"] == "DEPLOY":
+            agent = op["args"].get("agent", "")
+            if agent and agent not in deployed:
+                deployed.append(agent)
+    if not deployed:
+        return "no agents (empty plan)"
+    jobs = {agent: [] for agent in deployed}
+    for op in ops:
+        if op["verb"] == "STEP":
+            agent = op["args"].get("agent", "")
+            if agent in jobs:
+                jobs[agent].append(
+                    f"{op['args'].get('n', '?')}:{op['args'].get('do', '?')}")
+    parts = []
+    for agent in deployed:
+        if jobs[agent]:
+            parts.append(f"{agent}[{','.join(jobs[agent])}]")
+        elif agent == "xval":
+            parts.append(f"{agent}[verdict]")
+        else:
+            parts.append(f"{agent}[idle]")
+    out = " + ".join(parts)
+    if len(out) <= max_len:
+        return out
+    return out[:max_len - 1] + "\u2026"

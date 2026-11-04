@@ -13,6 +13,7 @@ from omni import ui
 
 import omni.timeline
 
+from . import diagnose as diagnose_mod
 from . import dispatcher as dispatcher_mod
 from . import protocol as protocol_mod
 from . import supervisor as supervisor_mod
@@ -25,7 +26,11 @@ from .bridge import (
     update_result_shot,
     write_status,
 )
-from .dispatcher import describe_roster, validate_block as dispatcher_validate
+from .dispatcher import (
+    describe_roster,
+    summarize_agents,
+    validate_block as dispatcher_validate,
+)
 from .handlers import HANDLED_ACTIONS, Executor
 from .observer import (
     capture_viewport,
@@ -88,7 +93,7 @@ def _routing_path() -> Path:
 
 TRACE_SUBDIR = "action-reasoner-traces"
 
-BRIDGE_POLL_SECONDS = 1.5
+BRIDGE_POLL_SECONDS = 0.4  # fast loop (video sessions); was 1.5
 
 STREAM_DRAIN_SECONDS = 0.05
 
@@ -143,6 +148,7 @@ class ReasonerWindow:
         self._bridge_dirs = None
         self._timeline_subs: list = []
         self._log_lines: list = []
+        self._last_blackbox = None
         self._window = ui.Window("Action Reasoner", width=560, height=720)
         with self._window.frame:
             with ui.VStack(spacing=6):
@@ -156,6 +162,7 @@ class ReasonerWindow:
                     ui.Button("Dispatch", width=80, clicked_fn=self._on_dispatch)
                     ui.Button("Stop", width=70, clicked_fn=self._on_reason_stop)
                 self._thinker_status = ui.Label("Thinker: " + self._thinker_config.describe())
+                self._agents_status = ui.Label("Agents: \u2014")
                 ui.Label("Action prompt (one action per line):")
                 self._prompt = ui.StringField(multiline=True, height=150)
                 self._prompt.model.set_value(DEFAULT_PROMPT)
@@ -288,6 +295,8 @@ class ReasonerWindow:
         self._thinker_status.text = (
             f"Dispatcher: {self._thinker_config.describe()} -> {result.backend}"
         )
+        self._agents_status.text = (
+            "Agents: " + (summarize_agents(result.actions_text) or "\u2014"))
         self._log(f"--- dispatch ({result.backend}) ---")
         for note in result.notes:
             self._log("dispatcher: " + note)
@@ -716,6 +725,19 @@ class ReasonerWindow:
         else:
             outcome = supervisor_mod.combine_outcome(
                 res, self._run_batch_text(res["final_text"]))
+        # Show each agent's emitted action lines right after the step
+        # summaries, so the log visibly proves agents work in actions.
+        shown = supervisor_mod.format_agent_lines(res)
+        if shown:
+            cut = len(supervisor_mod.format_log(res))
+            outcome["log"][cut:cut] = shown
+        done = sum(1 for s in res.get("steps", []) if s.get("ok"))
+        total = len(res.get("steps", []))
+        verdict = res.get("verdict", {}).get("ok", False)
+        self._agents_status.text = (
+            f"Agents: {summarize_agents(text) or chr(8212)} "
+            f"=> {done}/{total} steps ok, "
+            f"verdict {'ok' if verdict else 'FAIL'}")
         try:
             events = self._watcher.observe_after(
                 sense_before, self._sense_capture())
@@ -725,6 +747,37 @@ class ReasonerWindow:
             outcome["log"].append("sense: " + ev)
         outcome["events"] = events
         return outcome
+
+    def _record_blackbox(self, key: str, raw_line: str, lineno: int,
+                           msg: str, shot_before: str) -> str:
+        """Pack an exec failure for one-shot diagnosis -> log line.
+
+        Log-only: records self._last_blackbox (a diagnose.capture_failure
+        bundle, ready for diagnose.diagnose) plus a trace event, and
+        returns the one-line summary for the batch log. Never raises.
+        Parse/validate failures skip this: their errors already name
+        the fix. The streaming single-line path skips it too: a
+        snapshot per streamed line would multiply stage traffic.
+        """
+        try:
+            box = diagnose_mod.capture_failure(
+                task=self._task.model.get_value_as_string().strip(),
+                line=raw_line, lineno=lineno, key=key, msg=msg,
+                stage="exec", shot_before=shot_before or "",
+                shot_after=self._executor.snapshot(),
+                trace_tail=self._log_lines[-6:],
+            )
+        except Exception:
+            return ""
+        self._last_blackbox = box
+        _log_trace({"event": "blackbox", **{
+            k: box.get(k) for k in
+            ("task", "line", "lineno", "key", "msg", "stage",
+             "stage_changed", "delta", "trace_tail")}})
+        try:
+            return diagnose_mod.summarize_failure(box)
+        except Exception:
+            return ""
 
     def _run_batch_text(self, text: str, task: str = "") -> dict:
         """Validate + run one batch -> {"ok", "lines", "results", "log", "events"}.
@@ -751,6 +804,10 @@ class ReasonerWindow:
         if not batch:
             return {"ok": True, "lines": [], "results": [],
                     "log": ["(nothing to run)"], "events": []}
+        try:
+            batch_shot_before = self._executor.snapshot()
+        except Exception:
+            batch_shot_before = ""
         lines = [key + "".join(f" {k}={v}" for k, v in raw.items())
                  for key, raw, _ in batch]
         results, log = [], []
@@ -773,6 +830,12 @@ class ReasonerWindow:
             log.append(f"{'ok' if ok else 'FAIL'} [{key}] {msg}")
             results.append({"key": key, "line": lineno, "ok": ok, "msg": msg})
             if not ok:
+                raw_line = (key + "".join(f" {k}={v}"
+                                          for k, v in raw.items()))
+                summary = self._record_blackbox(
+                    key, raw_line, lineno, msg, batch_shot_before)
+                if summary:
+                    log.append(summary)
                 log.append(f"stopped at line {lineno}")
                 ok_all = False
                 break
