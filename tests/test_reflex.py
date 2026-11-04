@@ -146,6 +146,93 @@ def test_reflex_is_single_pass_in_loops():
     assert decision == "failed", decision
 
 
+class _FakeRel:
+    def __init__(self, targets):
+        self._targets = targets
+
+    def GetTargets(self):
+        return list(self._targets)
+
+
+class _FakePrim:
+    def __init__(self, path, rels=None, apis=(), parent=None):
+        self._path = path
+        self._rels = rels or {}
+        self._apis = set(apis)
+        self._parent = parent
+
+    def GetRelationship(self, name):
+        if name not in self._rels:
+            raise ValueError(f"no relationship {name}")
+        return _FakeRel(self._rels[name])
+
+    def GetPath(self):
+        return self._path
+
+    def IsValid(self):
+        return True
+
+    def HasAPI(self, api):
+        return api in self._apis
+
+    def GetParent(self):
+        return self._parent
+
+
+class _FakeStage:
+    def __init__(self, prims):
+        self._prims = prims
+
+    def GetPrimAtPath(self, path):
+        return self._prims[str(path)]
+
+
+class _FakeUsdPhysics:
+    ArticulationRootAPI = "ArticulationRootAPI"
+
+
+def _with_fake_stage(prims):
+    real_stage = handlers._stage
+    real_physics = getattr(handlers, "UsdPhysics", None)
+    stage = _FakeStage(prims)
+    handlers._stage = lambda: stage
+    handlers.UsdPhysics = _FakeUsdPhysics
+    return real_stage, real_physics
+
+
+def _restore_fakes(real_stage, real_physics):
+    handlers._stage = real_stage
+    if real_physics is None:
+        del handlers.UsdPhysics
+    else:
+        handlers.UsdPhysics = real_physics
+
+
+def test_velocity_limit_clamps_joint_drives():
+    root = _FakePrim("/World/car", apis=("ArticulationRootAPI",))
+    joint = _FakePrim("/World/Joints/j", {"physics:body0": ["/World/car"]})
+    real = _with_fake_stage({"/World/car": root,
+                             "/World/Joints/j": joint})
+    try:
+        inst = handlers.Executor()
+        inst._vel_limits["/World/car"] = 1.0  # rad/s -> 57.3 deg/s cap
+        assert abs(inst._clamp_to_velocity_limit(joint, 114.6) - 57.296) < 0.01
+        assert abs(inst._clamp_to_velocity_limit(joint, -114.6) + 57.296) < 0.01
+        assert inst._clamp_to_velocity_limit(joint, 30.0) == 30.0
+    finally:
+        _restore_fakes(*real)
+
+
+def test_velocity_limit_passthrough_unresolvable():
+    joint = _FakePrim("/World/Joints/j", {})
+    real = _with_fake_stage({"/World/Joints/j": joint})
+    try:
+        inst = handlers.Executor()
+        assert inst._clamp_to_velocity_limit(joint, 200.0) == 200.0
+    finally:
+        _restore_fakes(*real)
+
+
 if __name__ == "__main__":
     for name, fn in sorted([(k, v) for k, v in dict(globals()).items()
                             if k.startswith("test_")]):

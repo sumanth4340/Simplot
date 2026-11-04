@@ -67,10 +67,10 @@ def test_goal_reached_stops():
 def test_wheel_targets_match_live_calibration():
     cfg = dwa.DWAConfig()
     left, right = dwa.wheel_targets(0.31, 0.0, cfg)
-    assert abs(left + 59.2) < 0.5, (left, right)  # live leg ran -60
-    assert abs(right + 59.2) < 0.5, (left, right)
-    left, right = dwa.wheel_targets(0.0, -0.5, cfg)  # clockwise pivot
-    assert left > 0 and right < 0, (left, right)  # L+/R- verified live
+    assert abs(left - 59.2) < 0.5, (left, right)  # +60 drives nose-fwd
+    assert abs(right - 59.2) < 0.5, (left, right)
+    left, right = dwa.wheel_targets(0.0, 0.5, cfg)  # CCW pivot
+    assert left < 0 and right > 0, (left, right)  # (-81,+81) yaws +8.2 live
 
 
 def test_escape_reverses_out_of_bubble():
@@ -85,6 +85,47 @@ def test_escape_reverses_out_of_bubble():
     ex, ey = traj[-1][0], traj[-1][1]
     end_clear = min(math.hypot(ox - ex, oy - ey) for ox, oy in ring)
     assert end_clear > start_clear, (start_clear, end_clear)
+
+
+def test_pivot_beats_reverse_when_turn_is_safe():
+    cfg = dwa.DWAConfig.live()  # radius 1.2
+    cfg.bounds = (-1.3, 1.3, -1.3, 1.3)  # tight room: movers die, pivot fits
+    state = [0.0, 0.0, 0.0, 0.0, 0.0]
+    scan = dwa.synth_scan((0.0, 0.0, 0.0), [], cfg.bounds)
+    obs = dwa.scan_to_points(scan, (0.0, 0.0, 0.0))
+    v, w, traj = dwa.dwa_control(state, (-1.2, 0.0), obs, cfg)
+    assert v == 0.0 and abs(w) > 0.05, (v, w)  # pivots, never reverses
+    for x, y, *_ in traj[1:]:
+        for ox, oy in obs:
+            assert math.hypot(x - ox, y - oy) >= cfg.robot_radius - 1e-6
+
+
+def test_saved_start_never_reverses():
+    cfg = dwa.DWAConfig.live()  # radius 1.2, true wall bounds
+    state = [1.807, 0.0, math.radians(-3.4), 0.0, 0.0]
+    circles = [(-2.0, 0.0, 0.4), (1.0, 2.2, 0.4), (1.0, -2.2, 0.4)]
+    scan = dwa.synth_scan((state[0], state[1], state[2]),
+                          circles, cfg.bounds)
+    obs = dwa.scan_to_points(scan, (state[0], state[1], state[2]))
+    v, w, traj = dwa.dwa_control(state, (-2.2, 2.4), obs, cfg)
+    assert v >= 0.0, (v, w)  # forward or pivot, never reverse
+    for x, y, *_ in traj[1:]:
+        for ox, oy in obs:
+            assert math.hypot(x - ox, y - oy) >= cfg.robot_radius - 1e-6
+
+
+def test_mission_latches_forward_never_back():
+    legs = [dwa.MissionLeg((-0.5, 1.1), 1.2),
+            dwa.MissionLeg((-2.2, 2.4), 1.2, tol=1.5),
+            dwa.MissionLeg((-2.2, 2.4), 0.7)]
+    g, r, t, n = dwa.mission_step([1.8, 0.0], legs, 0)
+    assert (g, r, n) == ((-0.5, 1.1), 1.2, 0)
+    g, r, t, n = dwa.mission_step([-0.5, 1.1], legs, 0)
+    assert (g, r, n) == ((-2.2, 2.4), 1.2, 1)
+    g, r, t, n = dwa.mission_step([-1.5, 2.0], legs, 1)
+    assert (g, r, n) == ((-2.2, 2.4), 0.7, 2)  # precision inside 1.5 m
+    g, r, t, n = dwa.mission_step([1.8, 0.0], legs, 2)
+    assert n == 2  # latched: never falls back
 
 
 def test_scan_roundtrip_on_known_geometry():

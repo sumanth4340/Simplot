@@ -41,7 +41,10 @@ class DWAConfig:
     w_heading: float = 1.0
     w_clearance: float = 2.0
     w_velocity: float = 0.5
-    bounds: tuple = (-2.15, 3.15, -2.65, 2.65)  # xmin,xmax,ymin,ymax
+    # Inner wall faces, measured live 2026-11-04 from the wall prims
+    # (centers x=-3.0/4.0, y=+-3.5, all 0.3 thick). The old bounds sat
+    # 0.7 m inside the real walls and planned around phantom walls.
+    bounds: tuple = (-2.85, 3.85, -3.35, 3.35)  # xmin,xmax,ymin,ymax
     wheel_r: float = 0.3
     track: float = 1.7
 
@@ -151,6 +154,35 @@ def _escape(state, pool, obstacles, cfg):
     return 0.0, 0.0, [list(state)]
 
 
+def _pivot(state, goal, obstacles, cfg, w_min, w_max):
+    """Turn-in-place fallback when no mover rollout stays clear.
+
+    cruise_seed lifts v_min above 0, so pivots never enter the
+    candidate pool; without this fallback the planner reverses out
+    even when turning toward the goal is safe (proven live 2026-11-04:
+    leg 0 at (1.8, 0) reversed into the east wall though a pivot had
+    clearance 1.34 > 1.2). Returns (0, w, traj) for the best-heading
+    safe pivot, else None (caller tries _escape).
+    """
+    obs = list(obstacles)
+    if not obs:
+        return None
+    best, best_head = None, float("inf")
+    w = w_min
+    while w <= w_max + 1e-9:
+        if abs(w) >= 1e-9:
+            traj = predict(state, 0.0, w, cfg)
+            if (all(_in_bounds(x, y, cfg) for x, y, *_ in traj)
+                    and clearance(traj, obs) >= cfg.robot_radius):
+                ex, ey, eth, _, _ = traj[-1]
+                head = abs(_wrap(math.atan2(goal[1] - ey,
+                                            goal[0] - ex) - eth))
+                if head < best_head:
+                    best, best_head = (0.0, w, traj), head
+        w += cfg.yaw_res
+    return best
+
+
 def dwa_control(state, goal, obstacles, cfg=None):
     """Best (v, w, trajectory) toward goal avoiding obstacles.
 
@@ -186,6 +218,9 @@ def dwa_control(state, goal, obstacles, cfg=None):
     cands = [(v, w, t, h, min(cl, 3.0)) for v, w, t, h, cl in pool
              if cl >= cfg.robot_radius]
     if not cands:
+        piv = _pivot(state, goal, obstacles, cfg, w_min, w_max)
+        if piv is not None:
+            return piv
         return _escape(state, pool, obstacles, cfg)
     movers = [c for c in cands if c[0] > 0.01]
     if movers:
@@ -207,16 +242,22 @@ def dwa_control(state, goal, obstacles, cfg=None):
 def wheel_targets(v: float, w: float, cfg=None) -> tuple:
     """(v, w) -> (left_deg_s, right_deg_s) for the joint drives.
 
-    Body frame: wheel_R sits on body-left, wheel_L on body-right, and
-    symmetric negative joint velocity drives nose-forward (all three
-    live-verified). So each joint takes the negated ground speed of
-    its side, in deg/s (drive units).
+    Body frame: +X nose, wheel_l on body-left (+Y), wheel_r on
+    body-right; +joint velocity about the +Y joint axis rolls its
+    side forward. Each joint takes its own side's ground speed in
+    deg/s (drive units).
+
+    Calibration history: an earlier build had this map v-flipped
+    (negated, sides crossed). Recalibrated live 2026-11-04: symmetric
+    -120 drives along -X at 0.53 m per 1 s leg (bearing matches
+    row0-yaw - 180 deg to 0.3 deg), and (L,R)=(-81,+81) yaws row0
+    +8.2 deg (CCW) per 20-step leg.
     """
     cfg = cfg or DWAConfig()
     v_left_ground = v - w * cfg.track / 2.0
     v_right_ground = v + w * cfg.track / 2.0
-    left = -v_right_ground / cfg.wheel_r * RAD2DEG
-    right = -v_left_ground / cfg.wheel_r * RAD2DEG
+    left = v_left_ground / cfg.wheel_r * RAD2DEG
+    right = v_right_ground / cfg.wheel_r * RAD2DEG
     return left, right
 
 
@@ -271,3 +312,30 @@ def scan_to_points(scan, pose) -> list:
     """Scan (angle, range) + robot pose -> world obstacle points."""
     px, py, _ = pose
     return [(px + r * math.cos(a), py + r * math.sin(a)) for a, r in scan]
+
+
+@dataclass
+class MissionLeg:
+    """One mission phase: goal + bubble + arrival tolerance."""
+    goal: tuple
+    radius: float
+    tol: float = 0.5
+
+
+def mission_step(state, legs, reached):
+    """Active (goal, radius, tol, reached-count) for waypoint missions.
+
+    legs[reached] is active until the robot gets within its tol, then
+    the mission latches forward (never back: a leg passed stays passed
+    even if a later leg swings wide). Pure function of pose so the
+    live driver and unit tests share it.
+    """
+    n = min(reached, len(legs) - 1)
+    while n < len(legs) - 1:
+        gx, gy = legs[n].goal
+        if math.hypot(gx - state[0], gy - state[1]) < legs[n].tol:
+            n += 1
+        else:
+            break
+    leg = legs[n]
+    return leg.goal, leg.radius, leg.tol, n

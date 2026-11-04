@@ -177,6 +177,7 @@ class Executor:
         self._counters = {}
         self._world = None
         self._world_failed = False
+        self._vel_limits = {}  # articulation root path -> max joint vel (rad/s)
 
     # -- helpers ---------------------------------------------------------
     def _unique_name(self, key: str) -> str:
@@ -609,8 +610,14 @@ class Executor:
         extras = ""
         if p.get("target_velocity") is not None:
             target_velocity = float(p["target_velocity"])
+            clamped = self._clamp_to_velocity_limit(prim, target_velocity)
+            if clamped != target_velocity:
+                extras += (f" vel={target_velocity} clamped to "
+                           f"{clamped:.1f} deg/s by velocity limit")
+                target_velocity = clamped
+            else:
+                extras += f" vel={target_velocity}"
             drive.CreateTargetVelocityAttr(target_velocity)
-            extras += f" vel={target_velocity}"
         if p.get("target_position") is not None:
             target_position = float(p["target_position"])
             drive.CreateTargetPositionAttr(target_position)
@@ -836,6 +843,42 @@ class Executor:
                 return node
             node = node.GetParent()
         return None
+
+    def _clamp_to_velocity_limit(self, joint_prim, target_velocity: float) -> float:
+        """Clamp a drive target (deg/s) to any recorded root limit.
+
+        Joints usually live outside the articulation subtree (e.g. under
+        /World/Joints), so the root is resolved through the joint's
+        body0/body1 links. Limits are stored in rad/s; drive targets
+        are deg/s. Anything unresolvable (mock stages included) skips
+        the clamp instead of failing the drive.
+        """
+        try:
+            bodies = []
+            for rel in ("physics:body0", "physics:body1"):
+                try:
+                    bodies += list(joint_prim.GetRelationship(rel).GetTargets())
+                except Exception:
+                    continue
+            stage = _stage()
+            for body in bodies:
+                try:
+                    root = self._walk_articulation_root(
+                        stage.GetPrimAtPath(body))
+                except Exception:
+                    continue
+                if root is None:
+                    continue
+                limit = self._vel_limits.get(str(root.GetPath()))
+                if limit is None:
+                    continue
+                cap = abs(float(limit)) * 180.0 / math.pi
+                if abs(target_velocity) > cap:
+                    return cap if target_velocity > 0 else -cap
+                return target_velocity
+        except Exception:
+            pass
+        return target_velocity
 
     @staticmethod
     def _set_drive_limit(prim, value: float, what: str) -> tuple:
@@ -1289,12 +1332,18 @@ class Executor:
         root = self._walk_articulation_root(_stage().GetPrimAtPath(prim_path))
         if root is None:
             return False, "no articulation root above target (add articulation first)"
+        value = float(p.get("value") or 0.0)
+        self._vel_limits[str(root.GetPath())] = value
         api = PhysxSchema.PhysxArticulationAPI.Apply(root)
         setter = getattr(api, "CreateMaxJointVelocityAttr", None)
-        if setter is None:
-            return False, "PhysX build lacks maxJointVelocity"
-        setter(float(p.get("value") or 0.0))
-        return True, f"velocity limit {p.get('value')} rad/s on '{root.GetPath()}'"
+        if setter is not None:
+            setter(value)
+            return True, f"velocity limit {value} rad/s on '{root.GetPath()}'"
+        # This PhysX build lacks maxJointVelocity: enforce in software by
+        # clamping later joint_drive target_velocity commands (deg/s) for
+        # joints under this root (see _do_robot_set_joint_drive).
+        return True, (f"velocity limit {value} rad/s on '{root.GetPath()}' "
+                       f"(software-enforced: engine lacks maxJointVelocity)")
 
     def _do_robot_clone(self, p: dict) -> tuple:
         ok, msg = self._need_paused()
