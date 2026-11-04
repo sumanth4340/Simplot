@@ -179,6 +179,17 @@ def test_lidar_extras():
     assert a.params["path"] == "lidar_top" and a.params["tick_rate"] == 20.0, a.params
 
 
+def test_lidar_config_and_pos_extras():
+    a = protocol.validate(
+        "sensor.create.rtx_lidar",
+        {"path": "think_cube/ride", "config": "Example_Rotary_2D",
+         "pos": "2.7,0.0,0.9"},
+        catalog,
+    )
+    assert a.params["config"] == "Example_Rotary_2D", a.params
+    assert tuple(a.params["pos"]) == (2.7, 0.0, 0.9), a.params
+
+
 def test_articulation_and_drive_signatures():
     a = protocol.validate("robot.add.articulation", {"path": "chassis"}, catalog)
     assert a.params["path"] == "chassis"

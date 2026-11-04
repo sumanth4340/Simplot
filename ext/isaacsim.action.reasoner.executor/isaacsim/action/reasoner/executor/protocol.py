@@ -65,6 +65,8 @@ EXTRA_PARAM_SPECS = {
     "sensor.create.rtx_lidar": {
         "path": {"type": "str", "default": None},
         "tick_rate": {"type": "float", "default": None},
+        "config": {"type": "str", "default": None},
+        "pos": {"type": "vec3", "default": None},
     },
     "sensor.create.rtx_radar": {
         "tick_rate": {"type": "float", "default": None},

@@ -698,12 +698,27 @@ class Executor:
         self._ensure_world_root(stage)
         if stage.GetPrimAtPath(path).IsValid():
             return False, f"prim already exists: {path}"
-        kwargs = {}
+        kwargs = {"config": p.get("config") or "Example_Rotary_2D",
+                  "accumulate_outputs": True}
         if p.get("tick_rate") is not None:
             kwargs["tick_rate"] = float(p["tick_rate"])
-        Lidar(path, **kwargs)
+        if p.get("pos") is not None:
+            x, y, z = (float(v) for v in p["pos"])
+            kwargs["positions"] = [[x, y, z]]
+        try:
+            Lidar.create(path=path, **kwargs)
+        except TypeError:
+            Lidar(path, **{k: v for k, v in kwargs.items()
+                           if k in ("tick_rate",)})
+        rp = ""
+        try:
+            import omni.replicator.core as rep
+            rp = rep.create.render_product(path, (128, 128)).path
+        except Exception:
+            pass
         self._register(name, path)
-        return True, f"rtx lidar '{name}' at {path}"
+        msg = f"rtx lidar '{name}' at {path} config={kwargs['config']}"
+        return True, msg + (f" rp={rp}" if rp else " (no render product)")
 
     # -- sim -------------------------------------------------------------
     def _do_sim_play(self, p: dict) -> tuple:
